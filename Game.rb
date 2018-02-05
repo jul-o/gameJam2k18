@@ -1,9 +1,11 @@
 class Game < Gosu::Window
 
+  # Dimensions map : 24x14
+
   def initialize
     @WIDTH = 1440
     @HEIGHT = 920
-    @NOM = "le nom du jeu"
+    @NOM = "GameJam"
 
     super @WIDTH, @HEIGHT
 
