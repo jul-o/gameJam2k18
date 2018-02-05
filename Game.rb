@@ -20,7 +20,7 @@ class Game < Gosu::Window
     fx = @width.to_f/@bg.width.to_f
     fy = @height.to_f/@bg.height.to_f
     @bg.draw(0, 0, 0, fx, fy)
-    @heros.draw(0,0,0)
+    @heros.draw
   end
 end
 
