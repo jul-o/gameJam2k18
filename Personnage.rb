@@ -21,7 +21,7 @@ class Personnage < Gosu::Image
       when Direction::LEFT 
         @velocityX -= 0.4
       when Direction::RIGHT
-        @velocityX += 0.4
+        @velocityX += 8
     end
     
     # Ici : changer l'image par rapport à la direction

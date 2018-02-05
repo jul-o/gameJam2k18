@@ -32,7 +32,7 @@ class Heros < Personnage
     @x %= Game.WIDTH
     @y += @velocityY
     @y %= Game.HEIGHT
-    @velocityX *= 0.96
+    @velocityX = 0
     @velocityY *= 0.96
   end
 end
