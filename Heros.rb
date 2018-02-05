@@ -3,8 +3,10 @@ require_relative 'Personnage'
 class Heros < Personnage
   attr_reader :img
 
+  VELOCITY_H = 8
+
   def initialize x, y
-    super x, y, sizeX, sizeY, "resources/mario.png"
+    super x, y, VELOCITY_H, sizeX, sizeY, "resources/mario.png"
 
     # Définition des variables
     @x = x
