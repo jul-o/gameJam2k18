@@ -4,9 +4,9 @@ class Game < Gosu::Window
 
   def initialize
     @NOM = "GameJam"
-    @BACKGROUND = Gosu::Image.new("resources/bg.jpg")
+    @bg = Gosu::Image.new("resources/bg.jpg")
 
-    super 1, 1, options = {:fullscreen => true}
+    super Gosu::screen_width, Gosu::screen_height, options = {:fullscreen => false}
 
     self.caption = @NOM
 
@@ -14,6 +14,6 @@ class Game < Gosu::Window
   end
 
   def draw
-    @BACKGROUND.draw(0,0,0)
+    @bg.draw(0, 0, 0)
   end
 end
