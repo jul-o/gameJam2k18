@@ -17,8 +17,8 @@ class Game < Gosu::Window
   end
 
   def draw
-    fx = @@WIDTH.to_f/@bg.height.to_f
-    fy = @@HEIGHT.to_f/@bg.width.to_f
+    fx = @@WIDTH.to_f/@bg.width.to_f
+    fy = @@HEIGHT.to_f/@bg.height.to_f
     @bg.draw(0, 0, 0, fx, fy)
     @heros.draw
   end
