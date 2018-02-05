@@ -3,16 +3,17 @@ class Game < Gosu::Window
   # Dimensions map : 24x14
 
   def initialize
-
-    @WIDTH = 1440
-    @HEIGHT = 920
     @NOM = "GameJam"
+    @BACKGROUND = Gosu::Image.new("resources/bg.jpg")
 
-
-    super @WIDTH, @HEIGHT, options = {:fullscreen => true}
+    super 1, 1, options = {:fullscreen => true}
 
     self.caption = @NOM
 
     self.show
+  end
+
+  def draw
+    @BACKGROUND.draw(0,0,0)
   end
 end
