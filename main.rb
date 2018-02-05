@@ -1,5 +1,5 @@
 require 'gosu'
 require_relative 'Game'
+require_relative 'personnage'
 
-puts "Hello World !"
 a = Game.new
