@@ -31,7 +31,7 @@ class Game < Gosu::Window
   end
 
   def initSpawns
-    [Spawn.new(2, 2, 20, @map)]
+    [Spawn.new(8, 2, 20, @map)]
   end
 
   def draw
@@ -72,9 +72,39 @@ class Game < Gosu::Window
         puts "AHAH PERDU MISKINE FDP"
         @perdu = true
       end
+      
+      testeBalleTouche
     end
 
     close if Gosu::button_down?(Gosu::KbEscape)
+  end
+
+  def testeBalleTouche
+
+    @mechants.each do |mechant|
+
+      @heros.gun.bullets.each do |key, bullet|
+        xM = mechant.x
+        yM = mechant.y
+        wM = mechant.sizeX
+        hM = mechant.sizeY
+
+
+        xB = bullet.x
+        yB = bullet.y
+        wB = Projectile.SIZE[0]
+        hB = Projectile.SIZE[1]
+
+        #test collision verticale
+        collisionH = (xM + wM >= xB && xM <= xB || xM <= xB + wB && xM + wM >= xB + wB)
+        collisionV = (yM + hM >= yB && yM <= yB || yM <= yB + hB && yM + hM >= yB + hB)
+
+        if collisionH && collisionV
+          @mechants.delete mechant
+          @heros.gun.bullets.delete key
+        end
+      end
+    end
   end
 
   # Vérifie si le héros est touché par un monstre ou non

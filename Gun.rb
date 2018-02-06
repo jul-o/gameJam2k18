@@ -17,6 +17,8 @@ class Gun
     SIZE_Y = 7
     NB_WEAPONS = 2
 
+    attr_reader :bullets
+
     def initialize
         @allGuns = [Guns::VIEUX_FUSIL, Guns::BAZOOKA]
 

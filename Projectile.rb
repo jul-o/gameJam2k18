@@ -7,6 +7,8 @@ class Projectile
     # Vélocité
     VELOCITY_P = 20
 
+    attr_reader :x, :y
+
     def initialize gun,id,x,y,tourneDroite,sprite,rY 
         # rY => radius de projection des balles
         @vY = rand(-rY..rY)
