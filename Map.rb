@@ -1,13 +1,16 @@
 module Tiles
-    VIDE = -1                                             #  0
-    BLOC_PIERRE1 = "resources/tileset/blocPierre1.png"    #  1 
-    BLOC_PIERRE2 = "resources/tileset/blocPierre2.png"    #  2
-    BLOC_PIERRE3 = "resources/tileset/blocPierre3.png"    #  3
-    BLOC_PIERRE4 = "resources/tileset/blocPierre4.png"    #  4
-    BLOC_PIERRE5 = "resources/tileset/blocPierre5.png"    #  5
-    BLOC_PIERRE6 = "resources/tileset/blocPierre6.png"    #  6
-    BRIQUE_GRISE1 = "resources/tileset/briqueGrise1.png"  #  7
-    BRIQUE_GRISE2 = "resources/tileset/briqueGrise2.png"  #  8
+    VIDE = -1                                               #  0
+    BLOC_PIERRE1 = "resources/tileset/blocPierre1.png"      #  1 
+    BLOC_PIERRE2 = "resources/tileset/blocPierre2.png"      #  2
+    BLOC_PIERRE3 = "resources/tileset/blocPierre3.png"      #  3
+    BLOC_PIERRE4 = "resources/tileset/blocPierre4.png"      #  4
+    BLOC_PIERRE5 = "resources/tileset/blocPierre5.png"      #  5
+    BLOC_PIERRE6 = "resources/tileset/blocPierre6.png"      #  6
+    BRIQUE_GRISE1 = "resources/tileset/briqueGrise1.png"    #  7
+    BRIQUE_GRISE2 = "resources/tileset/briqueGrise2.png"    #  8
+    BRIQUE_MOUSSE1 = "resources/tileset/briqueMousse1.png"  #  9
+    BRIQUE_MOUSSE2 = "resources/tileset/briqueMousse2.png"  #  10
+    BLOC_BOIS1 = "resources/tileset/blocBois1.png"          #  11
 end
 
 class Map
@@ -20,9 +23,9 @@ class Map
     def initialize
 
         # Définition des éléments visuels
-        @tiles = [Tiles::VIDE, Tiles::BLOC_PIERRE1, Tiles::BLOC_PIERRE2, Tiles::BLOC_PIERRE3,
-                  Tiles::BLOC_PIERRE4, Tiles::BLOC_PIERRE5, Tiles::BLOC_PIERRE6,
-                  Tiles::BRIQUE_GRISE1, Tiles::BRIQUE_GRISE2]
+        @tiles = [Tiles::VIDE,          Tiles::BLOC_PIERRE1,   Tiles::BLOC_PIERRE2,   Tiles::BLOC_PIERRE3,
+                  Tiles::BLOC_PIERRE4,  Tiles::BLOC_PIERRE5,   Tiles::BLOC_PIERRE6,   Tiles::BRIQUE_GRISE1,
+                  Tiles::BRIQUE_GRISE2, Tiles::BRIQUE_MOUSSE1, Tiles::BRIQUE_MOUSSE2, Tiles::BLOC_BOIS1 ]
 
         @tilesImg = []
         @tiles.each do |fileI|
@@ -30,20 +33,20 @@ class Map
         end
 
         # Définition du contenu de la map
-        @viewGrid = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                     [0,0,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0],
-                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                     [0,0,0,0,8,0,0,0,8,8,8,8,0,0,0,0,0],
-                     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]
+        @viewGrid = [[11,11,11,11,11,11,0,0,0,0,0,11,11,11,11,11,11],
+                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
+                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
+                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
+                     [11,0,0,0,0,0,8,8,8,8,8,0,0,0,0,0,11],
+                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
+                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
+                     [11,8,8,8,8,0,0,0,0,0,0,0,8,8,8,8,11],
+                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
+                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
+                     [11,0,0,0,0,0,8,8,8,8,8,0,0,0,0,0,11],
+                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
+                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
+                     [4,5,6,3,4,3,6,5,3,4,6,3,4,4,5,6,3]]
 
         # Calcul des ratios x\y
         @ratioX = CELLSIZE.to_f/@tilesImg[0].width.to_f

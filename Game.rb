@@ -11,7 +11,10 @@ class Game < Gosu::Window
 
     # Création de la map et du héros
     @map = Map.new
-    @heros = Heros.new @map, 0, 10
+    @heros = Heros.new @map, 1, 10
+
+    # Fond d'écran
+    @bg = Gosu::Image.new("resources/bg.jpg")
 
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
     caption = @NOM
@@ -20,6 +23,7 @@ class Game < Gosu::Window
   end
 
   def draw
+    @bg.draw 0,0,0
     @map.draw
     @heros.draw
   end
