@@ -1,3 +1,4 @@
+
 module Direction
   STATIC = -1
   LEFT = [-1,0]
@@ -11,10 +12,11 @@ class Personnage
   attr_accessor :x, :y, :velocity, :sizeX, :sizeY
 
   # Constantes de classe
-  GRAVITY_Y = 9
+  #GRAVITY_Y = 9*Game.FPS/60
 
   def initialize map, x, y, velocity, sizeX, sizeY, spriteGauche, spriteDroite
     # Création  des sprites gauche\droite
+    @GRAVITY_Y = 2#*Game.FPS/60
     @spD = Gosu::Image.new(spriteDroite)
     @spG = Gosu::Image.new(spriteGauche)
 
@@ -30,7 +32,7 @@ class Personnage
     # Définition des dimensions et vélocités
     @sizeX = sizeX
     @sizeY = sizeY
-    @velocity = velocity
+    @velocity = velocity#*Game.FPS/60
 
     # Calcul des ratios x\y
     @ratioX = @sizeX.to_f/@spD.width.to_f
@@ -76,7 +78,7 @@ class Personnage
     allObst = @map.obstacleAround(coord)
 
     # On ajoute la gravité (si le personnage ne saute pas)
-    @vY += @jumping ? 0 : GRAVITY_Y
+    @vY += @jumping ? 0 : @GRAVITY_Y
 
     # On teste si le personnage peut tenir dans toutes les directions
     # Haut\Bas
