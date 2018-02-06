@@ -1,4 +1,5 @@
 require_relative 'Personnage'
+require_relative 'Gun'
 
 class Heros < Personnage
   attr_reader :img
@@ -22,16 +23,25 @@ class Heros < Personnage
     @vY = 0
     @frameJump = 0
 
+    # Création du gun du menz
+    @gun = Gun.new
+
     super map, x, y, VELOCITY_H, @sizeX, @sizeY, SPRITE_GAUCHE, SPRITE_DROITE
   end
 
-  def draw
+  def draw    
     super
+
+    # Ajout d'un recul après le tir
+    if @gun.pullBack then
+      @vX -= @tourneVersDroite ? @gun.getPullBack : -@gun.getPullBack
+    end
+    @gun.draw @x,@y,@tourneVersDroite
     testJump
   end
 
   def testJump
-    if @jumping        
+    if @jumping
       @frameJump +=1      
 
       if @frameJump < NB_FRAME_JUMP/2     
@@ -50,6 +60,18 @@ class Heros < Personnage
 
   def jump
     @jumping = true
+  end
+
+  # Tir du héros
+  def shoot
+    @gun.shoot @x,@y,@tourneVersDroite
+
+  end
+
+  # Experimental : changer d'arme
+  def switchWeapon
+    @gun.setWeapon(rand(0..Gun.NB_WEAPONS-1))
+    puts "yes"
   end
 
   def self.SIZE

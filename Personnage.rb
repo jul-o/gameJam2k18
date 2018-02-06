@@ -73,9 +73,6 @@ class Personnage
   def move    
     coord = pxToCoord
 
-    # On récupère les obstacles autour du menz
-    allObst = @map.obstacleAround(coord)
-
     # On ajoute la gravité (si le personnage ne saute pas)
     @vY += @jumping ? 0 : GRAVITY_Y
 
@@ -101,7 +98,7 @@ class Personnage
   def pxToCoord  
       rx = (((@x.to_f+@sizeX)/Game.WIDTH)*Map.WX).to_i
       ry = (((@y.to_f+@sizeY)/Game.HEIGHT)*Map.HY).to_i
-      
+  
       return [rx-1,ry-1]
   end
 

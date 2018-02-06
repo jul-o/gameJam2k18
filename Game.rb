@@ -8,7 +8,6 @@ class Game < Gosu::Window
 
   def initialize
     @nom = "GameJam"
-    @bg = Gosu::Image.new("resources/bgcases_dup.png")
 
     # Création de la map et du héros
     @map = Map.new
@@ -21,17 +20,20 @@ class Game < Gosu::Window
   end
 
   def draw
-    fx = @@WIDTH.to_f/@bg.width.to_f
-    fy = @@HEIGHT.to_f/@bg.height.to_f
-    @bg.draw(0, 0, 0, fx, fy)
+    @map.draw
     @heros.draw
   end
 
   def update
-    # Déplacement du personnage 
+    # Déplacements du personnage 
     @heros.setDirection(Direction::LEFT) if Gosu::button_down?(Gosu::KbLeft)
     @heros.setDirection(Direction::RIGHT) if Gosu::button_down?(Gosu::KbRight)
     @heros.jump if Gosu::button_down?(Gosu::KbUp)
+
+    # Tirs
+    @heros.shoot if Gosu::button_down?(Gosu::KbX)
+    # Changer d'arme : pour tester
+    @heros.switchWeapon if Gosu::button_down?(Gosu::KbS)
 
     # Mise à jour des déplacements
     @heros.move
