@@ -55,4 +55,9 @@ class Heros < Personnage
   def self.SIZE
     return [SIZE_X, SIZE_Y]
   end
+
+  def move
+    super
+    @vX = 0
+  end
 end

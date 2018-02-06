@@ -1,9 +1,6 @@
 require_relative 'Heros'
 require_relative 'Map'
-require_relative 'Spawn'
-require_relative 'Caisse'
-
-GRAVITY_Y = 9
+require_relative 'Mechant'
 
 class Game < Gosu::Window
   @@WIDTH, @@HEIGHT = 765, 627
@@ -16,26 +13,21 @@ class Game < Gosu::Window
 
     # Création de la map et du héros
     @map = Map.new
-    @heros = Heros.new @map, 0, 10
-    @spawns = initSpawns()
-    @caisse = Caisse.new 100, 50
+    @heros = Heros.new @map, 5, 0
+    @mechant = Mechant.new(@map, 0, 0)
 
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
-    self.caption = @nom
+    caption = @NOM
 
     self.show
   end
-
 
   def draw
     fx = @@WIDTH.to_f/@bg.width.to_f
     fy = @@HEIGHT.to_f/@bg.height.to_f
     @bg.draw(0, 0, 0, fx, fy)
     @heros.draw
-    @spawns.each do |spawn|           
-        spawn.tick
-    end
-    @caisse.tick @map
+    @mechant.draw
   end
 
   def update
@@ -46,14 +38,35 @@ class Game < Gosu::Window
 
     # Mise à jour des déplacements
     @heros.move
+    @mechant.move
+
+    # On regarde si le héros est touché par un mechant
+    puts "AHAH PERDU MISKINE FDP" if (perdu?)
 
     close if Gosu::button_down?(Gosu::KbEscape)
-
   end
 
-  def initSpawns
-    spawns = [Spawn.new(50,50,10)]
-    return spawns
+  #
+  #
+  # /!\ CONSIDERE L'ENNEMI COMME UNIQUE, PAS ENCORE GERE COMME COLLECTION héhé
+  #
+  #
+  # Vérifie si le héros est touché par un monstre ou non
+  # ==> Vrai si en contact
+  def perdu?
+    # Coordonnées de l'ennemi en pixels
+    mX = @mechant.x
+    mY = @mechant.y
+
+    # Coordonnées du personnage
+    x = @heros.x
+    y = @heros.y
+
+    rect1 = [x, y, Heros.SIZE[0], Heros.SIZE[1]]
+    rect2 = [mX, mY, @mechant.sizeX, @mechant.sizeY]
+
+    return ((rect1[0] < rect2[0] + rect2[2] && rect1[0] + rect1[2] > rect2[0]) &&
+        (rect1[1] < rect2[1] + rect2[3] && rect1[3] + rect1[1] > rect2[1]))
   end
 
   # Getters
