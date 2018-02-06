@@ -79,28 +79,26 @@ class Personnage
     # On ajoute la gravité (si le personnage ne saute pas)
     @velocityY += @jumping ? 0 : GRAVITY_Y
 
-    if (allObst.length>0) then
-      allObst.each do |dirObst|
-        # Pour chaque dir, si le menz a une vélocité dans la dir de l'obstacle
-        # et qu'il est en contact avec la hitbox des obstacles => on annule la vélocité
-        if (isHit?(dirObst[1])) then
-          case dirObst[0]
-            when 0 # Haut
-              @velocityY = 0 if @velocityY<0 
-            when 1 # Bas
-              @velocityY = 0 if @velocityY>0 
-              puts "basHit"
-            when 2 # Droite
-              @velocityX = 0 if @velocityX>0 
-            when 3 # Gauche
-              @velocityX = 0 if @velocityX<0 
-          end
-        end
-      end
+    # On teste si le personnage peut tenir dans toutes les directions
+    # Haut
+    if (@velocityY<0) then
+
+    end
+    # Bas
+    if (@velocityY>0) then
+      
+    end
+    # Droite
+    if (@velocityX>0) then
+      
+    end
+    # Gauche
+    if (@velocityX<0) then
+      
     end
 
     # et on calcule la nouvelle position du bolosse (si on ne sort pas du cadre)
-    @x += @velocityX if (0..Game.WIDTH) ===(@x + @velocityX)
+    @x += @velocityX if (0..(Game.WIDTH - @sizeX)) ===(@x + @velocityX)
     @y += @velocityY if (0..(Game.HEIGHT - @sizeY))===(@y + @velocityY)
 
     @velocityX = 0

@@ -43,6 +43,24 @@ class Map
         return dirObst
     end
 
+    # Renvoie tous les obstacles et leur direction par rapport à coord
+    def allObst(coord)
+        # Array des directions
+        dirObst =  []
+        ind = 0
+
+        @grid.each do |line|
+            line.each do |cell|
+                if cell==1 then
+                    # Direction de la cellule par rapport à coord
+                    
+                end
+            end
+        end
+
+        return dirObst
+    end
+
     # Récupérer une case aux coordonnées coord
     def getCase(coord)
 
