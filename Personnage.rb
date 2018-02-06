@@ -1,3 +1,4 @@
+
 module Direction
   STATIC = -1
   LEFT = [-1,0]
@@ -11,10 +12,11 @@ class Personnage
   attr_accessor :x, :y, :velocity, :sizeX, :sizeY
 
   # Constantes de classe
-
+  #GRAVITY_Y = 9*Game.FPS/60
 
   def initialize map, x, y, velocity, sizeX, sizeY, spriteGauche, spriteDroite
     # Création  des sprites gauche\droite
+    @GRAVITY_Y = 2#*Game.FPS/60
     @spD = Gosu::Image.new(spriteDroite)
     @spG = Gosu::Image.new(spriteGauche)
 
@@ -30,7 +32,7 @@ class Personnage
     # Définition des dimensions et vélocités
     @sizeX = sizeX
     @sizeY = sizeY
-    @velocity = velocity
+    @velocity = velocity#*Game.FPS/60
 
     # Calcul des ratios x\y
     @ratioX = @sizeX.to_f/@spD.width.to_f
@@ -48,7 +50,7 @@ class Personnage
     else
       img = @spG      
     end      
-    img.draw @x, @y, 0, @ratioX, @ratioY    
+    img.draw @x, @y, 0, @ratioX, @ratioY
   end
 
   def setDirection(dir)
@@ -67,7 +69,6 @@ class Personnage
         end
         @vX += @velocity
     end
-    # Ici : changer l'image par rapport à la direction
   end
 
   def move    
@@ -77,7 +78,7 @@ class Personnage
     allObst = @map.obstacleAround(coord)
 
     # On ajoute la gravité (si le personnage ne saute pas)
-    @vY += @jumping ? 0 : GRAVITY_Y
+    @vY += @jumping ? 0 : @GRAVITY_Y
 
     # On teste si le personnage peut tenir dans toutes les directions
     # Haut\Bas
@@ -90,15 +91,21 @@ class Personnage
     end
 
     # et on calcule la nouvelle position du bolosse (si on ne sort pas du cadre)
-    @x += @vX if (0..(Game.WIDTH - @sizeX)) ===(@x + @vX)
+    # on remet sa vitesse à 0 si il sort de la map
+    if (0..(Game.WIDTH - @sizeX)) ===(@x + @vX)
+      @x += @vX
+    else
+      @vX = 0
+    end
     @y += @vY if (0..(Game.HEIGHT - @sizeY))===(@y + @vY)
 
-    @vX = 0
+    # J'ai mis la réinitialisation dans la Heros.rb parce-que Mechant doit pas reset
+    #@vX = 0
     @vY *= 0.96
   end
 
   # Fait la conversion coordpx du personnage => coordgrille
-  def pxToCoord  
+  def pxToCoord
       rx = (((@x.to_f+@sizeX)/Game.WIDTH)*Map.WX).to_i
       ry = (((@y.to_f+@sizeY)/Game.HEIGHT)*Map.HY).to_i
       
