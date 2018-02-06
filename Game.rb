@@ -1,4 +1,5 @@
 require_relative 'Heros'
+require_relative 'Map'
 
 class Game < Gosu::Window
   @@WIDTH, @@HEIGHT = 765, 627
@@ -7,8 +8,11 @@ class Game < Gosu::Window
 
   def initialize
     @nom = "GameJam"
-    @bg = Gosu::Image.new("resources/bgcases.png")
-    @heros = Heros.new 0, 0
+    @bg = Gosu::Image.new("resources/bgcases_dup.png")
+
+    # Création de la map et du héros
+    @map = Map.new
+    @heros = Heros.new @map, 0, 10
 
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
     caption = @NOM
@@ -33,13 +37,17 @@ class Game < Gosu::Window
     close if Gosu::button_down?(Gosu::KbEscape)
   end
 
-  # Getters sur les dimensions de la fenêtre
+  # Getters
   def self.WIDTH
     @@WIDTH
   end
 
   def self.HEIGHT
     @@HEIGHT
+  end
+
+  def getMap
+    @map
   end
 end
 
