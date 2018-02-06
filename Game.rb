@@ -102,6 +102,7 @@ class Game < Gosu::Window
         if collisionH && collisionV
           @mechants.delete mechant
           @heros.gun.bullets.delete key
+          break
         end
       end
     end
