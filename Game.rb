@@ -1,5 +1,6 @@
 require_relative 'Heros'
 require_relative 'Map'
+require_relative 'Spawn'
 
 class Game < Gosu::Window
   @@WIDTH, @@HEIGHT = 765, 627
@@ -13,12 +14,14 @@ class Game < Gosu::Window
     # Création de la map et du héros
     @map = Map.new
     @heros = Heros.new @map, 0, 10
+    @spawns = initSpawns()
 
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
     caption = @NOM
 
     self.show
   end
+
 
   def draw
     fx = @@WIDTH.to_f/@bg.width.to_f
@@ -37,6 +40,15 @@ class Game < Gosu::Window
     @heros.move
 
     close if Gosu::button_down?(Gosu::KbEscape)
+
+    @spawns.each do |spawn|
+        spawn.tick
+    end
+  end
+
+  def initSpawns
+    spawns = [Spawn.new(50,50,10)]
+    return spawns
   end
 
   # Getters
