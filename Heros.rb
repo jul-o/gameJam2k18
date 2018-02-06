@@ -44,7 +44,7 @@ class Heros < Personnage
     if @jumping
       @frameJump +=1      
 
-      if @frameJump < NB_FRAME_JUMP/2     
+      if @frameJump < NB_FRAME_JUMP/2
         r = -(@frameJump - NB_FRAME_JUMP/2)/((NB_FRAME_JUMP.to_f/2))
         @vY = -r*VELOCITY_H*3
       elsif @frameJump < NB_FRAME_JUMP        
@@ -65,16 +65,19 @@ class Heros < Personnage
   # Tir du héros
   def shoot
     @gun.shoot @x,@y,@tourneVersDroite
-
   end
 
   # Experimental : changer d'arme
   def switchWeapon
     @gun.setWeapon(rand(0..Gun.NB_WEAPONS-1))
-    puts "yes"
   end
 
   def self.SIZE
     return [SIZE_X, SIZE_Y]
+  end
+
+  def move
+    super
+    @vX = 0
   end
 end
