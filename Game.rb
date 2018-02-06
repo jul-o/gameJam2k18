@@ -94,10 +94,12 @@ class Game < Gosu::Window
       rect1 = [x, y, Heros.SIZE[0], Heros.SIZE[1]]
       rect2 = [mX, mY, m.sizeX, m.sizeY]
 
-      touchai = ((rect1[0] < rect2[0] + rect2[2] && rect1[0] + rect1[2] > rect2[0]) &&
+      if ((rect1[0] < rect2[0] + rect2[2] && rect1[0] + rect1[2] > rect2[0]) &&
           (rect1[1] < rect2[1] + rect2[3] && rect1[3] + rect1[1] > rect2[1]))
+        return true
+      end
     }
-    return touchai
+    return false
   end
 
   # Getters
