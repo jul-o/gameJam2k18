@@ -1,6 +1,9 @@
 require_relative 'Heros'
 require_relative 'Map'
 require_relative 'Spawn'
+require_relative 'Caisse'
+
+GRAVITY_Y = 9
 
 class Game < Gosu::Window
   @@WIDTH, @@HEIGHT = 765, 627
@@ -15,9 +18,10 @@ class Game < Gosu::Window
     @map = Map.new
     @heros = Heros.new @map, 0, 10
     @spawns = initSpawns()
+    @caisse = Caisse.new 100, 50
 
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
-    caption = @NOM
+    self.caption = @nom
 
     self.show
   end
@@ -28,6 +32,10 @@ class Game < Gosu::Window
     fy = @@HEIGHT.to_f/@bg.height.to_f
     @bg.draw(0, 0, 0, fx, fy)
     @heros.draw
+    @spawns.each do |spawn|           
+        spawn.tick
+    end
+    @caisse.tick @map
   end
 
   def update
@@ -41,9 +49,6 @@ class Game < Gosu::Window
 
     close if Gosu::button_down?(Gosu::KbEscape)
 
-    @spawns.each do |spawn|
-        spawn.tick
-    end
   end
 
   def initSpawns

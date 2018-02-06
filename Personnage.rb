@@ -11,7 +11,7 @@ class Personnage
   attr_accessor :x, :y, :velocity, :sizeX, :sizeY
 
   # Constantes de classe
-  GRAVITY_Y = 9
+
 
   def initialize map, x, y, velocity, sizeX, sizeY, spriteGauche, spriteDroite
     # Création  des sprites gauche\droite

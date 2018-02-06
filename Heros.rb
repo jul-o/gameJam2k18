@@ -43,7 +43,7 @@ class Heros < Personnage
       else
         @vY = 0
         @jumping = false
-        @frameJump = 0 #Bnojour
+        @frameJump = 0
       end
     end
   end
