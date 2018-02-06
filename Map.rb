@@ -1,6 +1,8 @@
 class Map
     @@WX, @@HY = 17,14
 
+    CELLSIZE = 45
+
     def initialize
         # Définition du contenu de la map
         @grid = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -43,22 +45,46 @@ class Map
         return dirObst
     end
 
-    # Renvoie tous les obstacles et leur direction par rapport à coord
-    def allObst(coord)
-        # Array des directions
-        dirObst =  []
-        ind = 0
+    # Renvoie vrai s'il y a collison aux coordonnées pixel coord
+    def obstAt?(coordPx)
+        # Pour chaque obstacle on vérifie les collisions
+        x = 0
+        y = 0
 
         @grid.each do |line|
             line.each do |cell|
-                if cell==1 then
-                    # Direction de la cellule par rapport à coord
-                    
+                if (cell==1) then
+                    obstCoordPx = [x*CELLSIZE, y*CELLSIZE]
+                    return true if (isHit?(obstCoordPx, coordPx))    
                 end
+                x=x+1
             end
+            x=0
+            y=y+1
         end
 
-        return dirObst
+        return false
+    end
+
+    # Renvoie true s'il y a collision entre l'obstacle (oX,oY)
+    # et le personnage en coordPx
+    def isHit?(coordOb, coordPl)
+        # Coordonnées de l'obstacle en pixels
+        oX = coordOb[0]
+        oY = coordOb[1]
+
+        # Coordonnées du personnage
+        x = coordPl[0].to_i
+        y = coordPl[1].to_i
+
+        rect1 = [x, y, Heros.SIZE[0], Heros.SIZE[1]]
+        rect2 = [oX, oY, CELLSIZE, CELLSIZE]
+    
+        puts "HitboxO : "
+        puts rect2
+
+        return ((rect1[0] < rect2[0] + rect2[2] && rect1[0] + rect1[2] > rect2[0]) &&
+                (rect1[1] < rect2[1] + rect2[3] && rect1[3] + rect1[1] > rect2[1])) 
     end
 
     # Récupérer une case aux coordonnées coord

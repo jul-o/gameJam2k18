@@ -60,12 +60,12 @@ class Personnage
         if @tourneVersDroite
           @tourneVersDroite = false
         end
-        @velocityX -= @velocity
+        @vX -= @velocity
       when Direction::RIGHT        
         if !@tourneVersDroite
           @tourneVersDroite = true
         end
-        @velocityX += @velocity
+        @vX += @velocity
     end
     # Ici : changer l'image par rapport à la direction
   end
@@ -77,32 +77,24 @@ class Personnage
     allObst = @map.obstacleAround(coord)
 
     # On ajoute la gravité (si le personnage ne saute pas)
-    @velocityY += @jumping ? 0 : GRAVITY_Y
+    @vY += @jumping ? 0 : GRAVITY_Y
 
     # On teste si le personnage peut tenir dans toutes les directions
-    # Haut
-    if (@velocityY<0) then
-
+    # Haut\Bas
+    if (@vY!=0) then
+      @vY = 0 if (@map.obstAt?([@x,@y+@vY]))
     end
-    # Bas
-    if (@velocityY>0) then
-      
-    end
-    # Droite
-    if (@velocityX>0) then
-      
-    end
-    # Gauche
-    if (@velocityX<0) then
-      
+    # Droite\Gauche
+    if (@vX!=0) then      
+      @vX = 0 if (@map.obstAt?([@x+@vX,@y]))
     end
 
     # et on calcule la nouvelle position du bolosse (si on ne sort pas du cadre)
-    @x += @velocityX if (0..(Game.WIDTH - @sizeX)) ===(@x + @velocityX)
-    @y += @velocityY if (0..(Game.HEIGHT - @sizeY))===(@y + @velocityY)
+    @x += @vX if (0..(Game.WIDTH - @sizeX)) ===(@x + @vX)
+    @y += @vY if (0..(Game.HEIGHT - @sizeY))===(@y + @vY)
 
-    @velocityX = 0
-    @velocityY *= 0.96
+    @vX = 0
+    @vY *= 0.96
   end
 
   # Fait la conversion coordpx du personnage => coordgrille
@@ -121,22 +113,4 @@ class Personnage
     return [x,y]
   end
 
-  # Renvoie true s'il y a collision entre l'obstacle (oX,oY)
-  # et le personnage
-  def isHit?(coord)
-    # Coordonnées de l'obstacle en pixels
-    oX = coord[0]*45
-    oY = coord[1]*45
-
-    rect1 = [@x .to_i, @y.to_i, @sizeX, @sizeY]
-    rect2 = [oX, oY, 45, 45]
-  
-    puts "HitboxP : "
-    puts rect1
-    puts "HitboxO : "
-    puts rect2
-
-    return ((rect1[0] < rect2[0] + rect2[2] && rect1[0] + rect1[2] > rect2[0]) &&
-            (rect1[1] < rect2[1] + rect2[3] && rect1[3] + rect1[1] > rect2[1])) 
-  end
 end
