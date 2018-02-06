@@ -32,6 +32,8 @@ class Game < Gosu::Window
     @heros.setDirection(Direction::LEFT) if Gosu::button_down?(Gosu::KbLeft)
     @heros.setDirection(Direction::RIGHT) if Gosu::button_down?(Gosu::KbRight)
     @heros.jump if Gosu::button_down?(Gosu::KbUp)
+
+    # Mise à jour des déplacements
     @heros.move
 
     close if Gosu::button_down?(Gosu::KbEscape)
@@ -44,6 +46,10 @@ class Game < Gosu::Window
 
   def self.HEIGHT
     @@HEIGHT
+  end
+
+  def self.CELLSIZE
+    @@CELLSIZE
   end
 
   def getMap

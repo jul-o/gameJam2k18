@@ -23,6 +23,7 @@ class Map
 
     # Renvoie une array des directions dans lesquelles se trouvent un obstacle
     # => [] si walou
+    # => [indiceDir, coordObst] si obstacle trouvé
     def obstacleAround(coord)
         # Directions haut, bas, droite, gauche
         dL = [[0,-1],[0,1], [1,0],[-1,0]]
@@ -34,7 +35,7 @@ class Map
         dL.each do |shift|
             testC = [coord[0]+shift[0], coord[1]+shift[1]]
             if (getCase(testC) == 1) then
-                dirObst << ind
+                dirObst << [ind,testC]
             end
             ind = ind+1
         end

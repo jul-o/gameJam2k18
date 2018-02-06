@@ -83,12 +83,13 @@ class Personnage
       allObst.each do |dirObst|
         # Pour chaque dir, si le menz a une vélocité dans la dir de l'obstacle
         # et qu'il est en contact avec la hitbox des obstacles => on annule la vélocité
-        if (isHit?(dirObst)) then
-          case dirObst
+        if (isHit?(dirObst[1])) then
+          case dirObst[0]
             when 0 # Haut
               @velocityY = 0 if @velocityY<0 
             when 1 # Bas
               @velocityY = 0 if @velocityY>0 
+              puts "basHit"
             when 2 # Droite
               @velocityX = 0 if @velocityX>0 
             when 3 # Gauche
@@ -106,7 +107,7 @@ class Personnage
     @velocityY *= 0.96
   end
 
-  # Fait la conversion coordpx => coordgrille
+  # Fait la conversion coordpx du personnage => coordgrille
   def pxToCoord  
       rx = (((@x.to_f+@sizeX)/Game.WIDTH)*Map.WX).to_i
       ry = (((@y.to_f+@sizeY)/Game.HEIGHT)*Map.HY).to_i
@@ -124,13 +125,13 @@ class Personnage
 
   # Renvoie true s'il y a collision entre l'obstacle (oX,oY)
   # et le personnage
-  def isHit?(dir)
-    # Coordonnées de l'obstacle
-    oX = dir[0] + pxToCoord[0]
-    oY = dir[1] + pxToCoord[1]
+  def isHit?(coord)
+    # Coordonnées de l'obstacle en pixels
+    oX = coord[0]*45
+    oY = coord[1]*45
 
-    rect1 = [@x, @y, @sizeX, @sizeY]
-    rect2 = coordToPx([oX,oY]) + [@sizeX, @sizeY]
+    rect1 = [@x .to_i, @y.to_i, @sizeX, @sizeY]
+    rect2 = [oX, oY, 45, 45]
   
     puts "HitboxP : "
     puts rect1

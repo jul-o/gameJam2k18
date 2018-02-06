@@ -11,7 +11,7 @@ class Heros < Personnage
   VELOCITY_H = 8
 
   def initialize map, x, y
-    @sizeX = 50
+    @sizeX = 37
     @sizeY = 50
 
     @velocityX = 0
