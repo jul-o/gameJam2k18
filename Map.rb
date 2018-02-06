@@ -55,7 +55,7 @@ class Map
             line.each do |cell|
                 if (cell==1) then
                     obstCoordPx = [x*CELLSIZE, y*CELLSIZE]
-                    return true if (isHit?(obstCoordPx, coordPx))    
+                    return true if (isHit?(obstCoordPx, coordPx))
                 end
                 x=x+1
             end

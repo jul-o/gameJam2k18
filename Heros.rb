@@ -1,4 +1,5 @@
 require_relative 'Personnage'
+require_relative 'Map'
 
 class Heros < Personnage
   attr_reader :img
@@ -31,15 +32,15 @@ class Heros < Personnage
   end
 
   def testJump
-    if @jumping        
-      @frameJump +=1      
+    if @jumping
+      @frameJump +=1
 
-      if @frameJump < NB_FRAME_JUMP/2     
+      if @frameJump < NB_FRAME_JUMP/2
         r = -(@frameJump - NB_FRAME_JUMP/2)/((NB_FRAME_JUMP.to_f/2))
-        @vY = -r*VELOCITY_H*2
-      elsif @frameJump < NB_FRAME_JUMP        
+        @vY = -r*VELOCITY_H*3
+      elsif @frameJump < NB_FRAME_JUMP
         r = (@frameJump - NB_FRAME_JUMP/2)/((NB_FRAME_JUMP.to_f/2))
-        @vY =  r*VELOCITY_H*2
+        @vY =  r*VELOCITY_H*3
       else
         @vY = 0
         @jumping = false

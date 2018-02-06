@@ -1,4 +1,6 @@
 require 'gosu'
 require_relative 'Game'
+require_relative 'Menu'
 
-a = Game.new
+z = Menu.new
+#a = Game.new
