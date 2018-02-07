@@ -81,7 +81,7 @@ class Menu < Gosu::Window
     if (mouse_x > @btn_quitter.getY && mouse_x < @btn_quitter.getY + @btn_quitter.getImg_Width && mouse_y > @btn_quitter.getY && mouse_y < @btn_quitter.getY + @btn_quitter.getImg_Height)
 
       if button_down?(MS_LEFT)
-        abort("REVENEZ BANDE DE FDP")
+        abort("REVENEZ MERDEUH")
       end
     end
 

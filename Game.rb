@@ -44,7 +44,7 @@ class Game < Gosu::Window
   end
 
   def draw
-    @bg.draw(0, 0, -1,@bgRatio,@bgRatio)
+    @bg.draw(0, 0, -1, @bgRatio, @bgRatio)
     @heros.draw
     @map.draw
     @caisse.draw
