@@ -165,4 +165,16 @@ class Map
     def self.INST
         return @@INSTANCE
     end
+    def self.coordToPx(coord)
+        x = (coord[0]*(Game.WIDTH/Map.WX.to_f)).to_i
+        y = (coord[1]*(Game.HEIGHT/Map.HY.to_f)).to_i
+
+        return [x,y]
+    end
+    def self.pxToCoord
+        rx = (((@x.to_f+@sizeX)/Game.WIDTH)*Map.WX).to_i
+        ry = (((@y.to_f+@sizeY)/Game.HEIGHT)*Map.HY).to_i
+
+        return [rx-1,ry-1]
+    end
 end

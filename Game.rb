@@ -2,6 +2,7 @@ require_relative 'Heros'
 require_relative 'Map'
 require_relative 'Mechant'
 require_relative 'Spawn'
+require_relative 'Caisse'
 
 class Game < Gosu::Window
   # @@FPS = 60
@@ -25,19 +26,22 @@ class Game < Gosu::Window
 
     @perdu = false
 
+    @caisse = Caisse.new 1,2, @map
+
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
 
     self.show
   end
 
   def initSpawns
-    [Spawn.new(8, 2, 20, @map)]
+    [Spawn.new(8, 0, @map)]
   end
 
   def draw
     @bg.draw(0, 0, -1)
     @heros.draw
     @map.draw
+    @caisse.draw
 
     # Si le joueur n'a pas perdu, on spawne des méchants
     if !@perdu then
@@ -71,13 +75,18 @@ class Game < Gosu::Window
       # On regarde si le héros est touché par un mechant
       if (perdu?)
         puts "AHAH PERDU MISKINE FDP"
-        @perdu = true
+        @perdu = false #true
       end
       
       testeBalleTouche
+      testeRamasseCaisse
     end
 
     close if Gosu::button_down?(Gosu::KbEscape)
+  end
+
+  def testeRamasseCaisse
+    
   end
 
   def testeBalleTouche

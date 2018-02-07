@@ -1,11 +1,10 @@
 class Spawn
-  def initialize x, y, nbMechants, map, intervalMin = 30, ennemyRate = 60
+  def initialize x, y, map, intervalMin = 30, ennemyRate = 60
     @x = x
     @y = y
-    coordPx = coordToPx [x, y]
+    coordPx = Map.coordToPx [x, y]
     @xPx = coordPx[0]
     @yPx = coordPx[1]
-    @nbMechantsRestants = nbMechants
     @map = map
     @img = Gosu::Image.new("resources/marioD.png")
     @intervalMin = intervalMin
@@ -34,12 +33,5 @@ class Spawn
       @intervalC += 1
       return 1
     end
-  end
-
-  def coordToPx(coord)
-    x = (coord[0]*(Game.WIDTH/Map.WX.to_f)).to_i
-    y = (coord[1]*(Game.HEIGHT/Map.HY.to_f)).to_i
-
-    return [x,y]
   end
 end

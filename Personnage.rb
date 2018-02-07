@@ -25,7 +25,7 @@ class Personnage
     @lastDir = Direction::STATIC
     
     # Calcul de la position en pixels du personnage
-    coordPx = coordToPx([x,y])
+    coordPx = Map.coordToPx([x,y])
     @x = coordPx[0]
     @y = coordPx[1]
 
@@ -109,12 +109,5 @@ class Personnage
       return [rx-1,ry-1]
   end
 
-  # Fait la conversion coordgrille => coordpx
-  def coordToPx(coord)     
-    x = (coord[0]*(Game.WIDTH/Map.WX.to_f)).to_i
-    y = (coord[1]*(Game.HEIGHT/Map.HY.to_f)).to_i
 
-    return [x,y]
   end
-
-end
