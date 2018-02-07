@@ -4,7 +4,7 @@ class Bouton
 
   def initialize(window, text, y, z)
     @window = window
-    @image = Image.new("resources/Fond-rouge-fonce.jpg")
+    @image = Image.new("resources/Fond-rouge.jpg")
     @imageHover = Image.new("resources/Fond-rouge.jpg")
     @text = Image.from_text(window, text, "resources/SIXTY.TTF", 40)
     @y = y

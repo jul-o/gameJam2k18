@@ -81,14 +81,14 @@ class Game < Gosu::Window
       # On regarde si le héros est touché par un mechant
       if (perdu?)
         puts "AHAH PERDU MISKINE FDP"
-        @perdu = false #true
+        @perdu = true
       end
       
       testeBalleTouche
       testeRamasseCaisse
     end
 
-    close if Gosu::button_down?(Gosu::KbEscape)
+    close if Gosu::button_down?(Gosu::KbEscape) || @perdu
   end
 
   def testeRamasseCaisse
