@@ -35,7 +35,7 @@ class Game < Gosu::Window
   end
 
   def draw
-    @bg.draw(0, 0, 0)
+    @bg.draw(0, 0, -1)
     @heros.draw
     @map.draw
 
@@ -62,6 +62,7 @@ class Game < Gosu::Window
       
       # Attaques
       @heros.shoot if Gosu::button_down?(Gosu::KbX)
+      @heros.switchWeapon if Gosu::button_down?(Gosu::KbS)
 
       # Mise à jour des déplacements
       @heros.move
@@ -89,11 +90,12 @@ class Game < Gosu::Window
         wM = mechant.sizeX
         hM = mechant.sizeY
 
-
         xB = bullet.x
         yB = bullet.y
-        wB = Projectile.SIZE[0]
-        hB = Projectile.SIZE[1]
+        wB = bullet.sizeR
+        hB = bullet.sizeR
+
+        puts "#{xM} - #{yM} - #{wM} - #{hM} - #{xB} - #{yB} - #{wB} - #{hB}"
 
         #test collision verticale
         collisionH = (xM + wM >= xB && xM <= xB || xM <= xB + wB && xM + wM >= xB + wB)

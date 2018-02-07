@@ -29,7 +29,7 @@ class Map
 
         @tilesImg = []
         @tiles.each do |fileI|
-            @tilesImg << Gosu::Image.new(fileI) if (fileI != -1)
+            @tilesImg << Gosu::Image.new(fileI, :tileable => true) if (fileI != -1)
         end
 
         # Définition du contenu de la map
@@ -120,7 +120,7 @@ class Map
 
     # Renvoie vrai s'il y a collision aux coordonnées pixel coord
     # entre le projectile et un obstacle
-    def obstAt_Project?(coordPx)
+    def obstAt_Project?(coordPx, sizePJ)
         # Pour chaque obstacle on vérifie les collisions
         x = 0
         y = 0
@@ -129,7 +129,7 @@ class Map
             line.each do |cell|
                 if (cell!=0) then
                     obstCoordPx = [x*CELLSIZE, y*CELLSIZE]
-                    return true if (isHit?(obstCoordPx, coordPx, Projectile.SIZE))    
+                    return true if (isHit?(obstCoordPx, coordPx, [sizePJ,sizePJ]))    
                 end
                 x=x+1
             end

@@ -1,13 +1,14 @@
 require_relative 'Projectile'
 
 # Types de gun
+# et définition de leurs projectiles
 module Guns
-    # Ind   :   0   -     1       -     2      -    3     -    4    -        5         -     6
-    # Forme : indice, spriteGauche, spriteDroit, projectile, radiusY, delaiRechargementMS, reculPx
+    # Ind   :   0   -     1       -     2      -    3     -    4    -        5         -     6      -          7         -     8   -   9   -    10
+    # Forme : indice, spriteGauche, spriteDroit, projectile, radiusY, delaiRechargementMS, reculPx,  rayon du projectile, vélocité, fadeOut, exploding
     VIEUX_FUSIL = [0, "resources/guns/vieuxFusilG.png",             "resources/guns/vieuxFusilD.png",
-                      "resources/guns/projectiles/vieuxFusil.png",  5, 1000, 5]
+                      "resources/guns/projectiles/vieuxFusil.png",  5, 1000, 5, 18, 20, true,  false]
     BAZOOKA     = [1, "resources/guns/bazookG.png",                 "resources/guns/bazookD.png",    
-                      "resources/guns/projectiles/bazooka.png",     0, 750, 8]
+                      "resources/guns/projectiles/bazooka.png",     0, 750, 8,  18, 30, false, true]
 end
 
 class Gun
@@ -25,13 +26,13 @@ class Gun
         # Création des images gun
         @images = []        
         @allGuns.each do |spFile|
-            @images << Gosu::Image.new(spFile[1])            
+            @images << Gosu::Image.new(spFile[1], :retro => true)            
         end
 
         # Chargement des projectiles
         @projectiles = []
         @allGuns.each do |spFile|
-            @projectiles << Gosu::Image.new(spFile[3])            
+            @projectiles << Gosu::Image.new(spFile[3], :retro => true)            
         end
 
         # Calcul des ratios x\y
@@ -56,7 +57,7 @@ class Gun
         offsetX = tourneDroite ? +SIZE_X : -SIZE_X
         offsetY = Heros.SIZE[1]/2
 
-        currentImg.draw pX+offsetX, pY+offsetY, 0, @ratioX, @ratioY
+        currentImg.draw pX+offsetX, pY+offsetY, 1, @ratioX, @ratioY
 
         # Dessin des projectiles
         @bullets.each do |key, bullet|
@@ -84,7 +85,9 @@ class Gun
                     id = @delayT                   
                     for i in 1..5 do
                         # On crée la balle et on l'ajoute au hash
-                        newBullet = Projectile.new self,id,pX+offsetX,pY+offsetY,tourneDroite,currentProject,@currentGun[4]
+                        newBullet = Projectile.new self,id,pX+offsetX,pY+offsetY,tourneDroite,
+                        currentProject,@currentGun[4],@currentGun[7],@currentGun[8],@currentGun[9],@currentGun[10]
+
                         @bullets[id] = newBullet
                         id = id+1
                     end
@@ -100,7 +103,9 @@ class Gun
                     id = @delayT
 
                     # On crée la balle et on l'ajoute au hash
-                    newBullet = Projectile.new self,id,pX+offsetX,pY+offsetY,tourneDroite,currentProject,@currentGun[4]
+                    newBullet = Projectile.new self,id,pX+offsetX,pY+offsetY,tourneDroite,
+                    currentProject,@currentGun[4],@currentGun[7],@currentGun[8],@currentGun[9],@currentGun[10]
+
                     @bullets[id] = newBullet
                 else
                     # On reset le compteur si on atteint 750ms

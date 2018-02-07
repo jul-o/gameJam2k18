@@ -17,8 +17,8 @@ class Personnage
   def initialize map, x, y, velocity, sizeX, sizeY, spriteGauche, spriteDroite
     # Création  des sprites gauche\droite
     @GRAVITY_Y = 2#*Game.FPS/60
-    @spD = Gosu::Image.new(spriteDroite)
-    @spG = Gosu::Image.new(spriteGauche)
+    @spD = Gosu::Image.new(spriteDroite, :retro => true)
+    @spG = Gosu::Image.new(spriteGauche, :retro => true)
 
     # Définition des attributs
     @map = map
@@ -50,7 +50,7 @@ class Personnage
     else
       img = @spG      
     end      
-    img.draw @x, @y, 0, @ratioX, @ratioY
+    img.draw @x, @y, 1, @ratioX, @ratioY
   end
 
   def setDirection(dir)
