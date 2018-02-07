@@ -1,14 +1,20 @@
 require_relative 'Personnage'
 
+# Définit les différents types de mobs
+# Format : sizeX, sizeY, spriteGauche, spriteDroit
+module AlienType
+  CANARD_BLEU = [35, 35, "resources/sprites/alienBD.png", "resources/sprites/alienBG.png"]
+end
+
 class Mechant < Personnage
   attr_reader :img
 
-  SPRITE_DROITE = "resources/alien-bleu-droit.jpg"
-  SPRITE_GAUCHE = "resources/alien-bleu-gauche.jpg"
+  SPRITE_GAUCHE = "resources/sprites/alienBG.png"
+  SPRITE_DROITE = "resources/sprites/alienBD.png"
 
   VELOCITY_M = 5
 
-  def initialize (map, x , y, size_x = 37, size_y = 50)
+  def initialize (map, x , y, size_x = 35, size_y = 50)
     @sizeX = size_x
     @sizeY = size_y
 

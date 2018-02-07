@@ -35,7 +35,7 @@ class Game < Gosu::Window
   end
 
   def draw
-    @bg.draw(0, 0, 0)
+    @bg.draw(0, 0, -1)
     @heros.draw
     @map.draw
 
@@ -62,6 +62,7 @@ class Game < Gosu::Window
       
       # Attaques
       @heros.shoot if Gosu::button_down?(Gosu::KbX)
+      @heros.switchWeapon if Gosu::button_down?(Gosu::KbS)
 
       # Mise à jour des déplacements
       @heros.move
