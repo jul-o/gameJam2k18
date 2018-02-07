@@ -2,44 +2,55 @@ require_relative 'Heros'
 require_relative 'Map'
 require_relative 'Mechant'
 require_relative 'Spawn'
+require_relative 'Caisse'
 
 class Game < Gosu::Window
-  @@FPS = 60
-  @@REFRESH_RATE = 1000/@@FPS
+  # @@FPS = 60
+  # @@REFRESH_RATE = 1000/@@FPS
 
   @@WIDTH, @@HEIGHT = 765, 627
-
+  @@INSTANCE = nil
+  
   # Dimensions map : 24x14
 
   def initialize
     @nom = "GameJam"
-    @bg = Gosu::Image.new("resources/bgcases_dup.png")
+    @@INSTANCE = self
 
     # Création de la map et du héros
     @map = Map.new
-    @heros = Heros.new @map, 5, 0
+    @heros = Heros.new @map, 1, 10
+    
+    # Fond d'écran
+    @bg = Gosu::Image.new("resources/bg.jpg", :retro=>true)
+    @bgRatio = @@WIDTH.to_f/@bg.width
+
     @mechants = Array.new
     @spawns = initSpawns
 
-    super @@WIDTH, @@HEIGHT, options = {:fullscreen => false, :update_interval => @@REFRESH_RATE}
-    caption = @NOM
+    @perdu = false
+
+    @caisse = Caisse.new 1,2, @map
+
+    super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
+
+    initialiseTexteArme
 
     self.show
-
-    @perdu = false
   end
 
   def initSpawns
-    [Spawn.new(2, 2, 20, @map)]
+    [Spawn.new(8, 0, @map)]
   end
 
   def draw
+    @bg.draw(0, 0, -1,@bgRatio,@bgRatio)
+    @heros.draw
+    @map.draw
+    @caisse.draw
 
-      fx = @@WIDTH.to_f/@bg.width.to_f
-      fy = @@HEIGHT.to_f/@bg.height.to_f
-      @bg.draw(0, 0, 0, fx, fy)
-      @heros.draw
-      if !@perdu
+    # Si le joueur n'a pas perdu, on spawne des méchants
+    if !@perdu then
       @spawns.each {|s|
         resSpawn = s.tick
         if !(resSpawn === 1)
@@ -50,39 +61,102 @@ class Game < Gosu::Window
         m.draw
       end
     end
+
+    # On affiche le nom de l'arme en haut a gauche
+    @listeArme[@indiceArmeCourante].draw(50,50,4,1,1,Gosu::Color.argb(255,255,255,255))
+
   end
 
   def update
-    if(!@perdu)
+    if(!@perdu) then
       # Déplacement du personnage
       @heros.setDirection(Direction::LEFT) if Gosu::button_down?(Gosu::KbLeft)
       @heros.setDirection(Direction::RIGHT) if Gosu::button_down?(Gosu::KbRight)
       @heros.jump if Gosu::button_down?(Gosu::KbUp)
+      
+      # Attaques
+      @heros.shoot if Gosu::button_down?(Gosu::KbX)
+      @indiceArmeCourante = @heros.switchWeapon if Gosu::button_down?(Gosu::KbS)
 
       # Mise à jour des déplacements
       @heros.move
       @mechants.each {|m| m.move}
 
       # On regarde si le héros est touché par un mechant
-      if (perdu?)
-        puts "AHAH PERDU MISKINE FDP"
-        @perdu = true
-      end
+      #if (perdu?)
+      #  @perdu = true
+      #end
+      
+      testeBalleTouche
+      testeRamasseCaisse
     end
 
     close if Gosu::button_down?(Gosu::KbEscape)
   end
 
-  #
-  #
-  #
-  #
+  def testeRamasseCaisse
+    xC = @caisse.xPx
+    yC = @caisse.yPx
+    wC = Caisse.SIZE_X
+    hC = Caisse.SIZE_Y
+
+    xH = @heros.x
+    yH = @heros.y
+    wH = @heros.sizeX
+    hH = @heros.sizeY
+
+    if isHit?([xH, yH], [xC, yC], [wH, hH], [wC, hC])
+      @heros.switchWeapon
+      @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
+    end
+  end
+
+  def testeBalleTouche
+    @mechants.each do |mechant|
+      @heros.gun.bullets.each do |key, bullet|
+        xM = mechant.x
+        yM = mechant.y
+        wM = mechant.sizeX
+        hM = mechant.sizeY
+
+        xB = bullet.pos[0]
+        yB = bullet.pos[1]
+        wB = bullet.sizeR
+        hB = bullet.sizeR
+
+        if isHit?([xM, yM], [xB,yB], [wM,hM], [wB,hB])
+          # On inflige les dégâts du projectile au mob touché
+          mechant.dealDMG bullet.degatsProj
+
+          # => disparition du projectile si il ne doit pas exploser   
+          if bullet.explode
+            # On bute tous les mobs autour de la zone
+            @mechants.each do |mechant|
+
+            end
+
+          else
+            @heros.gun.bullets.delete key
+          end
+          break
+        end
+      end
+    end
+  end
+
+  # Renvoie true s'il y a collision entre deux rectangles
+  # et l'élément
+  def isHit?(coordA, coordB, sizeA, sizeB)
+    rect1 = [coordA[0], coordA[1], sizeA[0], sizeA[1]]
+    rect2 = [coordB[0], coordB[1], sizeB[0], sizeB[1]]
+
+    return ((rect1[0] < rect2[0] + rect2[2] && rect1[0] + rect1[2] > rect2[0]) &&
+            (rect1[1] < rect2[1] + rect2[3] && rect1[3] + rect1[1] > rect2[1])) 
+  end
+
   # Vérifie si le héros est touché par un monstre ou non
   # ==> Vrai si en contact
   def perdu?
-    # Coordonnées de l'ennemi en pixels
-
-    touchai = false
     @mechants.each {|m|
       mX = m.x
       mY = m.y
@@ -94,15 +168,32 @@ class Game < Gosu::Window
       rect1 = [x, y, Heros.SIZE[0], Heros.SIZE[1]]
       rect2 = [mX, mY, m.sizeX, m.sizeY]
 
-      if ((rect1[0] < rect2[0] + rect2[2] && rect1[0] + rect1[2] > rect2[0]) &&
-          (rect1[1] < rect2[1] + rect2[3] && rect1[3] + rect1[1] > rect2[1]))
+      if testeCollisionPx rect1[0],rect1[1],rect1[2],rect1[3],rect2[0],rect2[1],rect2[2],rect2[3]
         return true
       end
     }
     return false
   end
 
-  # Getters
+
+  # Méthode externe pour supprimer un mob de la liste
+  def removeMob mob
+    @mechants.delete mob
+  end
+
+  def getMap
+    @map
+  end
+
+  def initialiseTexteArme
+    @listeArme = [Gosu::Image.from_text(self, "Fusil-à-pompe", "Arial", 20),
+                  Gosu::Image.from_text(self, "Bazooka", "Arial", 20),
+                  Gosu::Image.from_text(self, "Revolver", "Arial", 20),
+                  Gosu::Image.from_text(self, "Machine gun", "Arial", 20)]
+    @indiceArmeCourante = 0
+  end
+
+  # Getters statiques
   def self.WIDTH
     @@WIDTH
   end
@@ -111,16 +202,12 @@ class Game < Gosu::Window
     @@HEIGHT
   end
 
-  def self.FPS
-    @@FPS
-  end
-
   def self.CELLSIZE
     @@CELLSIZE
   end
 
-  def getMap
-    @map
+  def self.INSTANCE
+    @@INSTANCE
   end
 end
 

@@ -1,4 +1,3 @@
-
 module Direction
   STATIC = -1
   LEFT = [-1,0]
@@ -9,7 +8,7 @@ end
 
 class Personnage
   # Getter sur les attributs
-  attr_accessor :x, :y, :velocity, :sizeX, :sizeY
+  attr_accessor :x, :y, :velocity, :sizeX, :sizeY, :tourneVersDroite
 
   # Constantes de classe
   #GRAVITY_Y = 9*Game.FPS/60
@@ -17,8 +16,9 @@ class Personnage
   def initialize map, x, y, velocity, sizeX, sizeY, spriteGauche, spriteDroite
     # Création  des sprites gauche\droite
     @GRAVITY_Y = 2#*Game.FPS/60
-    @spD = Gosu::Image.new(spriteDroite)
-    @spG = Gosu::Image.new(spriteGauche)
+    
+    @spG = Gosu::Image.new(spriteGauche, :retro => true)
+    @spD = Gosu::Image.new(spriteDroite, :retro => true)
 
     # Définition des attributs
     @map = map
@@ -50,7 +50,7 @@ class Personnage
     else
       img = @spG      
     end      
-    img.draw @x, @y, 0, @ratioX, @ratioY
+    img.draw @x, @y, 1, @ratioX, @ratioY
   end
 
   def setDirection(dir)
@@ -74,20 +74,21 @@ class Personnage
   def move    
     coord = pxToCoord
 
-    # On récupère les obstacles autour du menz
-    allObst = @map.obstacleAround(coord)
-
-    # On ajoute la gravité (si le personnage ne saute pas)
-    @vY += @jumping ? 0 : @GRAVITY_Y
-
-    # On teste si le personnage peut tenir dans toutes les directions
-    # Haut\Bas
-    if (@vY!=0) then
-      @vY = 0 if (@map.obstAt?([@x,@y+@vY]))
-    end
-    # Droite\Gauche
+    # On teste si le personnage peut tenir à Droite\Gauche
     if (@vX!=0) then      
       @vX = 0 if (@map.obstAt?([@x+@vX,@y]))
+    end
+
+    # Gravité
+    @vY += 1.5
+    if !((0..(Game.HEIGHT - @sizeY)) ===(@y + @vY))
+      @vY = 0
+    end
+
+    if @vY > 0
+      arrondiN(@vY).times { if @map.obstAt?([@x,@y+1])
+                  then @vY = 0; @jumping = false
+                  else @y += 1 end }
     end
 
     # et on calcule la nouvelle position du bolosse (si on ne sort pas du cadre)
@@ -97,18 +98,19 @@ class Personnage
     else
       @vX = 0
     end
-    @y += @vY if (0..(Game.HEIGHT - @sizeY))===(@y + @vY)
 
-    # J'ai mis la réinitialisation dans la Heros.rb parce-que Mechant doit pas reset
-    #@vX = 0
-    @vY *= 0.96
+    # On réactive le jump
+    if (@y + @sizeY >= Game.HEIGHT)
+      @jumping = false
+    end
+
   end
 
   # Fait la conversion coordpx du personnage => coordgrille
   def pxToCoord
       rx = (((@x.to_f+@sizeX)/Game.WIDTH)*Map.WX).to_i
       ry = (((@y.to_f+@sizeY)/Game.HEIGHT)*Map.HY).to_i
-      
+  
       return [rx-1,ry-1]
   end
 
@@ -118,6 +120,10 @@ class Personnage
     y = (coord[1]*(Game.HEIGHT/Map.HY.to_f)).to_i
 
     return [x,y]
+  end
+
+  def arrondiN(i)
+    return (i-0.5).to_i
   end
 
 end
