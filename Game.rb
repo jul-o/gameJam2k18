@@ -9,7 +9,7 @@ class Game < Gosu::Window
   # @@REFRESH_RATE = 1000/@@FPS
 
   @@WIDTH, @@HEIGHT = 765, 627
-  @@INSANCE = nil
+  @@INSTANCE = nil
   
   # Dimensions map : 24x14
 
@@ -105,7 +105,7 @@ class Game < Gosu::Window
     wH = @heros.sizeX
     hH = @heros.sizeY
 
-    if testeCollisionPx xC, yC, wC, hC, xH, yH, wH, hH
+    if isHit?([xH, yH], [xC, yC], [wH, hH], [wC, hC])
       @heros.switchWeapon
       @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
     end
@@ -175,18 +175,6 @@ class Game < Gosu::Window
     return false
   end
 
-  # Getters
-  def self.WIDTH
-    @@WIDTH
-  end
-
-  def self.HEIGHT
-    @@HEIGHT
-  end
-
-  def self.CELLSIZE
-    @@CELLSIZE
-  end
 
   # Méthode externe pour supprimer un mob de la liste
   def removeMob mob
@@ -199,8 +187,27 @@ class Game < Gosu::Window
 
   def initialiseTexteArme
     @listeArme = [Gosu::Image.from_text(self, "Fusil-à-pompe", "Arial", 20),
-                  Gosu::Image.from_text(self, "BAZOOOKA", "Arial", 20)]
+                  Gosu::Image.from_text(self, "Bazooka", "Arial", 20),
+                  Gosu::Image.from_text(self, "Revolver", "Arial", 20),
+                  Gosu::Image.from_text(self, "Machine gun", "Arial", 20)]
     @indiceArmeCourante = 0
+  end
+
+  # Getters statiques
+  def self.WIDTH
+    @@WIDTH
+  end
+
+  def self.HEIGHT
+    @@HEIGHT
+  end
+
+  def self.CELLSIZE
+    @@CELLSIZE
+  end
+
+  def self.INSTANCE
+    @@INSTANCE
   end
 end
 

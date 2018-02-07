@@ -9,12 +9,10 @@ class Caisse
     @map = map
 
     while (map.getCase ([x,y])) != 0
-
       x = (rand * 15).to_i + 1
       y = (rand * 13).to_i + 1
-
     end
-    puts "#{x} - #{y}"
+  
     @x = x
     @y = y
     coordPx = Map.coordToPx([x, y])
@@ -34,13 +32,7 @@ class Caisse
       @yPx += 5
       @x = pxToCoord[0]
       @y = pxToCoord[1]
-      puts "    #{@x} - #{@y}"
     end
-
-  end
-
-  def ramassed #retourne un gun aléatoire
-
   end
 
   def pxToCoord
