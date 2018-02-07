@@ -42,7 +42,7 @@ class Menu < Gosu::Window
 
                                             Bon Chance...
 ")
-    
+
 
     @bg = Gosu::Image.new("resources/bg2.jpg")
     @curseur = Gosu::Image.new("resources/curseur.png")
