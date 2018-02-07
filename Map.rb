@@ -169,7 +169,7 @@ class Map
         x = (coord[0]*(Game.WIDTH/Map.WX.to_f)).to_i
         y = (coord[1]*(Game.HEIGHT/Map.HY.to_f)).to_i
 
-        return [x,y]
+        return [x-1,y-1]
     end
     def self.pxToCoord
         rx = (((@x.to_f+@sizeX)/Game.WIDTH)*Map.WX).to_i

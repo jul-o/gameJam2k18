@@ -1,4 +1,6 @@
 class Spawn
+  SIZE_X = 200
+  SIZE_Y = 100
   def initialize x, y, map, intervalMin = 30, ennemyRate = 60
     @x = x
     @y = y
@@ -6,14 +8,14 @@ class Spawn
     @xPx = coordPx[0]
     @yPx = coordPx[1]
     @map = map
-    @img = Gosu::Image.new("resources/marioD.png")
+    @img = Gosu::Image.new("resources/ovni.png")
     @intervalMin = intervalMin
     @intervalC = 0
     @ennemyRate = ennemyRate
   end
 
   def tick
-    @img.draw(@xPx, @yPx, 0, 0.1, 0.1)
+    @img.draw(@xPx -50, @yPx, 0, SIZE_X / @img.width, SIZE_Y / @img.height)
     return peutEtreMechant
   end
 

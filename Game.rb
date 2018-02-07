@@ -74,7 +74,7 @@ class Game < Gosu::Window
 
       # On regarde si le héros est touché par un mechant
       if (perdu?)
-        puts "AHAH PERDU MISKINE FDP"
+        #puts "AHAH PERDU MISKINE FDP"
         @perdu = false #true
       end
       
@@ -86,7 +86,20 @@ class Game < Gosu::Window
   end
 
   def testeRamasseCaisse
-    
+    xC = @caisse.xPx
+    yC = @caisse.yPx
+    wC = Caisse.SIZE_X
+    hC = Caisse.SIZE_Y
+
+    xH = @heros.x
+    yH = @heros.y
+    wH = @heros.sizeX
+    hH = @heros.sizeY
+
+    if testeCollisionPx xC, yC, wC, hC, xH, yH, wH, hH
+      @heros.switchWeapon
+      @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
+    end
   end
 
   def testeBalleTouche
@@ -106,10 +119,7 @@ class Game < Gosu::Window
 
 
         #test collision verticale
-        collisionH = (xM + wM >= xB && xM <= xB || xM <= xB + wB && xM + wM >= xB + wB)
-        collisionV = (yM + hM >= yB && yM <= yB || yM <= yB + hB && yM + hM >= yB + hB)
-
-        if collisionH && collisionV
+        if testeCollisionPx xM, yM, wM, hM, xB, yB, wB, hB
           @mechants.delete mechant
           @heros.gun.bullets.delete key
           break
@@ -132,8 +142,7 @@ class Game < Gosu::Window
       rect1 = [x, y, Heros.SIZE[0], Heros.SIZE[1]]
       rect2 = [mX, mY, m.sizeX, m.sizeY]
 
-      if ((rect1[0] < rect2[0] + rect2[2] && rect1[0] + rect1[2] > rect2[0]) &&
-          (rect1[1] < rect2[1] + rect2[3] && rect1[3] + rect1[1] > rect2[1]))
+      if testeCollisionPx rect1[0],rect1[1],rect1[2],rect1[3],rect2[0],rect2[1],rect2[2],rect2[3]
         return true
       end
     }
@@ -159,6 +168,12 @@ class Game < Gosu::Window
 
   def getMap
     @map
+  end
+  def testeCollisionPx x1, y1, w1, h1, x2, y2, w2, h2
+    collisionH = (x1 + w1 >= x2 && x1 <= x2 || x1 <= x2 + w2 && x1 + w1 >= x2 + w2)
+    collisionV = (y1 + h1 >= y2 && y1 <= y2 || y1 <= y2 + h2 && y1 + h1 >= y2 + h2)
+
+    return collisionH && collisionV
   end
 end
 

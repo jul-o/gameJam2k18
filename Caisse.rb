@@ -3,8 +3,18 @@ class Caisse
   SIZE_X = 50
   SIZE_Y = 50
 
+  attr_reader :xPx, :yPx
+
   def initialize x, y, map
     @map = map
+
+    while (map.getCase ([x,y])) != 0
+
+      x = (rand * 15).to_i + 1
+      y = (rand * 13).to_i + 1
+
+    end
+    puts "#{x} - #{y}"
     @x = x
     @y = y
     coordPx = Map.coordToPx([x, y])
@@ -24,6 +34,7 @@ class Caisse
       @yPx += 5
       @x = pxToCoord[0]
       @y = pxToCoord[1]
+      puts "    #{@x} - #{@y}"
     end
 
   end
@@ -33,9 +44,17 @@ class Caisse
   end
 
   def pxToCoord
-    rx = (((@xPx.to_f+SIZE_X)/Game.WIDTH)*Map.WX).to_i
+    rx = (((@xPx.to_f+SIZE_X)/Game.WIDTH)*Map.WX).to_i - 1
     ry = (((@yPx.to_f+SIZE_Y)/Game.HEIGHT)*Map.HY).to_i
 
     return [rx,ry]
+  end
+
+  def self.SIZE_X
+    SIZE_X
+  end
+
+  def self.SIZE_Y
+    SIZE_Y
   end
 end
