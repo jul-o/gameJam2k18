@@ -1,3 +1,5 @@
+require_relative 'Fumee'
+
 class Explosion
 
     # Constantes de classe
@@ -43,7 +45,11 @@ class Explosion
         # Animation terminée
         if (@currentR*2 >= MAX_D) then
             # L'effet doit être détruit : on appelle le projectile père
-            @pereProj.deleteParticle
+            # @pereProj.deleteParticle
+            # On lance l'animation fumée si il n'y en a pas déjà une
+            if (@fumee.nil?)
+                @fumee = Fumee.new @x, @y, self
+            end
         else
             # On augmente le rayon jusqu'à atteindre END_RADIUS
             #       tout en diminuant le channel alpha
@@ -62,8 +68,16 @@ class Explosion
         end
     end
 
+    def deleteParticle
+        @pereProj.deleteParticle
+    end
+
     def draw
-        @img.draw @x,@y,0,@ratio,@ratio,Gosu::Color.new(@alpha,@colorFilter,@colorFilter,@colorFilter)
+        if (@fumee.nil?)
+            @img.draw @x,@y,0,@ratio,@ratio,Gosu::Color.new(@alpha,@colorFilter,@colorFilter,@colorFilter)
+        else
+            @fumee.draw
+        end
     end
 
     def self.MAX_D
