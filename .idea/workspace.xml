@@ -2,29 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f6981fe-23e9-4175-b6bb-497b4f10feba" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/guns/dartgunD.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/guns/dartgunG.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/guns/machineGunD.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/guns/machineGunG.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/guns/projectiles/machineGun.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/guns/projectiles/revolver.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/guns/revolverD.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/guns/revolverG.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/ChevalierD1.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/ChevalierD2.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/ChevalierG1.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/ChevalierG2.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Caisse.rb" afterPath="$PROJECT_DIR$/Caisse.rb" />
-      <change beforePath="$PROJECT_DIR$/Game.rb" afterPath="$PROJECT_DIR$/Game.rb" />
-      <change beforePath="$PROJECT_DIR$/Gun.rb" afterPath="$PROJECT_DIR$/Gun.rb" />
-      <change beforePath="$PROJECT_DIR$/Map.rb" afterPath="$PROJECT_DIR$/Map.rb" />
-      <change beforePath="$PROJECT_DIR$/Mechant.rb" afterPath="$PROJECT_DIR$/Mechant.rb" />
-      <change beforePath="$PROJECT_DIR$/Personnage.rb" afterPath="$PROJECT_DIR$/Personnage.rb" />
-      <change beforePath="$PROJECT_DIR$/Projectile.rb" afterPath="$PROJECT_DIR$/Projectile.rb" />
-      <change beforePath="$PROJECT_DIR$/Spawn.rb" afterPath="$PROJECT_DIR$/Spawn.rb" />
-      <change beforePath="$PROJECT_DIR$/particles/Explosion.rb" afterPath="$PROJECT_DIR$/particles/Explosion.rb" />
-      <change beforePath="$PROJECT_DIR$/resources/bg.jpg" afterPath="$PROJECT_DIR$/resources/bg.jpg" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -42,7 +20,7 @@
     <SUITE FILE_PATH="coverage/gameJam2k18@Main__2_.coverage" NAME="Main (2) Coverage Results" MODIFIED="1517931020349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
     <SUITE FILE_PATH="coverage/gameJam2k18@Main__3_.coverage" NAME="Main (3) Coverage Results" MODIFIED="1517952100216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
     <SUITE FILE_PATH="coverage/gameJam2k18@Heros.coverage" NAME="Heros Coverage Results" MODIFIED="1518008624752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
-    <SUITE FILE_PATH="coverage/gameJam2k18@Main.coverage" NAME="Main Coverage Results" MODIFIED="1518012989116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
+    <SUITE FILE_PATH="coverage/gameJam2k18@Main.coverage" NAME="Main Coverage Results" MODIFIED="1518013048263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
     <SUITE FILE_PATH="coverage/gameJam2k18@main.coverage" NAME="main Coverage Results" MODIFIED="1517827314936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
   </component>
   <component name="FileEditorManager">
@@ -361,7 +339,7 @@
       <workItem from="1517997203280" duration="7024000" />
       <workItem from="1518007012814" duration="1712000" />
       <workItem from="1518008774675" duration="1980000" />
-      <workItem from="1518011269340" duration="769000" />
+      <workItem from="1518011269340" duration="1099000" />
     </task>
     <task id="LOCAL-00001" summary="debut caisse">
       <created>1517913945044</created>
@@ -388,7 +366,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57495000" />
+    <option name="totallyTimeSpent" value="57825000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="683" y="0" width="1366" height="732" extended-state="6" />
