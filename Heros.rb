@@ -4,6 +4,10 @@ require_relative 'Gun'
 class Heros < Personnage
   attr_reader :img, :gun
 
+  # Intensité initiale du jump
+  # (Il montera de GRAVITY_JUMP + GRAVITY_JUMP-1 + ... + 1 pixels)
+  GRAVITY_JUMP = -25
+
   # Constantes de classe
   NB_FRAME_JUMP = 30
 
@@ -37,29 +41,13 @@ class Heros < Personnage
       @vX -= @tourneVersDroite ? @gun.getPullBack : -@gun.getPullBack
     end
     @gun.draw @x,@y,@tourneVersDroite
-    testJump
-  end
-
-  def testJump
-    if @jumping
-      @frameJump +=1      
-
-      if @frameJump < NB_FRAME_JUMP/2
-        r = -(@frameJump - NB_FRAME_JUMP/2)/((NB_FRAME_JUMP.to_f/2))
-        @vY = -r*VELOCITY_H*3
-      elsif @frameJump < NB_FRAME_JUMP        
-        r = (@frameJump - NB_FRAME_JUMP/2)/((NB_FRAME_JUMP.to_f/2))
-        @vY =  r*VELOCITY_H*3
-      else
-        @vY = 0
-        @jumping = false
-        @frameJump = 0
-      end
-    end
   end
 
   def jump
-    @jumping = true
+    if !@jumping
+      @jumping = true
+      @vY = GRAVITY_JUMP
+    end
   end
 
   # Tir du héros
@@ -79,5 +67,9 @@ class Heros < Personnage
   def move
     super
     @vX = 0
+    # Saut
+    if @vY < 0
+      (arrondiN(-@vY)).times { if @map.obstAt?([@x,@y-1]) then @vY = 0 else @y -= 1 end }
+    end
   end
 end
