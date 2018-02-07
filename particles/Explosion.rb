@@ -5,7 +5,7 @@ class Explosion
     BASE_D = 60
     
     # Diamètre maximal
-    MAX_D = 800
+    MAX_D = 350
 
     # Delta d'agrandissement du rayon
     DELTA_R = 9
@@ -64,7 +64,6 @@ class Explosion
 
     def draw
         @img.draw @x,@y,0,@ratio,@ratio,Gosu::Color.new(@alpha,@colorFilter,@colorFilter,@colorFilter)
-        puts "rayon : #{@currentR}"
     end
 
     def self.MAX_D

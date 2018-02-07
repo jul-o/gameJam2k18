@@ -25,7 +25,7 @@ class Projectile
         @sizeR = sizeR
 
         # Calcul des ratios x\y
-        @ratioX = @sizeR.to_f/15
+        @ratioX = @sizeR.to_f/@spriteT.width
 
         # Vélocité courante
         @vX = @velocity
@@ -132,10 +132,12 @@ class Projectile
     # Fait exploser un projectile => renvoie vrai si la particule est sensée exploser
     def explode
         if @exploding
+            return true if @particleMode
+
             @particleMode = true
             
             # On crée une particule animée aux coordonnées courantes de la collision
-            @particle = Explosion.new(@x,@y,self)
+            @particle = Explosion.new(@x,@y,self)            
 
             return true
         else

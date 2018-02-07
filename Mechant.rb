@@ -4,7 +4,7 @@ require_relative 'Personnage'
 # Format :      0  -   1  -      2      -     3      -    4   -    5
 #             sizeX, sizeY, spriteGauche, spriteDroit, pvMax,   vélocité
 module AlienType
-  CANARD_BLEU = [35, 50, "resources/sprites/alienBD.png", "resources/sprites/alienBG.png",10,5]
+  CANARD_BLEU = [35, 50, "resources/sprites/alienBD.png", "resources/sprites/alienBG.png",30,5]
 
   # Variables pratiques
   NBMOBS = 1

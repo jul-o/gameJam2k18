@@ -3,12 +3,23 @@ require_relative 'Projectile'
 # Types de gun
 # et définition de leurs projectiles
 module Guns
-    # Ind   :   0   -     1       -     2      -    3     -    4    -        5         -     6      -          7         -     8   -   9   -    10     -    11   -
-    # Forme : indice, spriteGauche, spriteDroit, projectile, radiusY, delaiRechargementMS, reculPx,  rayon du projectile, vélocité, fadeOut, exploding, degatsProj
+    # Ind   :   0   -     1       -     2       
+    # Forme : indice, spriteGauche, spriteDroit
+    #-    3     -    4    -        5         -     6     
+    # projectile, radiusY, delaiRechargementMS, reculPx, 
+    # -          7         -     8   -   9   -    10     -    11   -
+    # rayon du projectile, vélocité, fadeOut, exploding, degatsProj
+
     VIEUX_FUSIL = [0, "resources/guns/vieuxFusilG.png",             "resources/guns/vieuxFusilD.png",
-                      "resources/guns/projectiles/vieuxFusil.png",  5, 1000, 5, 18, 20, true, false,10]
+                      "resources/guns/projectiles/vieuxFusil.png",  5, 1000, 5, 18, 20, true,  false,  10]
     BAZOOKA     = [1, "resources/guns/bazookG.png",                 "resources/guns/bazookD.png",    
-                      "resources/guns/projectiles/bazooka.png",     0, 750, 8,  18, 30, false, true,100]
+                      "resources/guns/projectiles/bazooka.png",     0, 750,  8, 18, 30, false, true,  100]
+    REVOLVER    = [2, "resources/guns/revolverG.png",               "resources/guns/revolverD.png",
+                      "resources/guns/projectiles/revolver.png",    0, 600,  6, 20, 25, false, false, 100]
+    MACHINE_GUN = [3, "resources/guns/machineGunG.png",             "resources/guns/machineGunD.png",
+                      "resources/guns/projectiles/machineGun.png",  7,  10,  7, 15, 18, false, false,  10]
+    # DART_GUN    = [3, "resources/guns/machineGunG.png",             "resources/guns/machineGunD.png",
+    #                 "resources/guns/projectiles/machineGun.png",  7,  10,  7, 15, 18, false, false,  10]
 end
 
 class Gun
@@ -16,12 +27,12 @@ class Gun
     # Constantes de classe
     SIZE_X = 30
     SIZE_Y = 7
-    NB_WEAPONS = 2
+    NB_WEAPONS = 4
 
     attr_reader :bullets
 
     def initialize
-        @allGuns = [Guns::VIEUX_FUSIL, Guns::BAZOOKA]
+        @allGuns = [Guns::VIEUX_FUSIL, Guns::BAZOOKA, Guns::REVOLVER, Guns::MACHINE_GUN]
 
         # Création des images gun
         @images = []        
@@ -112,7 +123,37 @@ class Gun
                 else
                     # On reset le compteur si on atteint 750ms
                     @delayT = 0 if (Gosu.milliseconds - @delayT >= @currentGun[5])
-                end   
+                end             
+            when 2 # REVOLVER
+                if (@delayT == 0) then
+                    @delayT = Gosu.milliseconds 
+
+                    id = @delayT
+
+                    # On crée la balle et on l'ajoute au hash
+                    newBullet = Projectile.new self,id,pX+offsetX,pY+offsetY,tourneDroite,
+                    currentProject,@currentGun[4],@currentGun[7],@currentGun[8],
+                    @currentGun[9],@currentGun[10],@currentGun[11]
+
+                    @bullets[id] = newBullet
+                else
+                    @delayT = 0 if (Gosu.milliseconds - @delayT >= @currentGun[5])
+                end          
+            when 3 # MACHINE GUN
+                if (@delayT == 0) then
+                    @delayT = Gosu.milliseconds 
+
+                    id = @delayT
+
+                    # On crée la balle et on l'ajoute au hash
+                    newBullet = Projectile.new self,id,pX+offsetX,pY+offsetY,tourneDroite,
+                    currentProject,@currentGun[4],@currentGun[7],@currentGun[8],
+                    @currentGun[9],@currentGun[10],@currentGun[11]
+
+                    @bullets[id] = newBullet
+                else
+                    @delayT = 0 if (Gosu.milliseconds - @delayT >= @currentGun[5])
+                end 
         end
     end
 

@@ -21,7 +21,9 @@ class Game < Gosu::Window
     @heros = Heros.new @map, 1, 10
     
     # Fond d'écran
-    @bg = Gosu::Image.new("resources/bg.jpg")
+    @bg = Gosu::Image.new("resources/bg.jpg", :retro=>true)
+    @bgRatio = @@WIDTH.to_f/@bg.width
+
     @mechants = Array.new
     @spawns = initSpawns
 
@@ -37,7 +39,7 @@ class Game < Gosu::Window
   end
 
   def draw
-    @bg.draw(0, 0, -1)
+    @bg.draw(0, 0, -1,@bgRatio,@bgRatio)
     @heros.draw
     @map.draw
 
@@ -71,9 +73,9 @@ class Game < Gosu::Window
       @mechants.each {|m| m.move}
 
       # On regarde si le héros est touché par un mechant
-      if (perdu?)
-        @perdu = true
-      end
+      #if (perdu?)
+      #  @perdu = true
+      #end
       
       testeBalleTouche
     end
@@ -82,9 +84,7 @@ class Game < Gosu::Window
   end
 
   def testeBalleTouche
-
     @mechants.each do |mechant|
-
       @heros.gun.bullets.each do |key, bullet|
         xM = mechant.x
         yM = mechant.y
@@ -96,20 +96,34 @@ class Game < Gosu::Window
         wB = bullet.sizeR
         hB = bullet.sizeR
 
-        #test collision verticale
-        collisionH = (xM + wM >= xB && xM <= xB || xM <= xB + wB && xM + wM >= xB + wB)
-        collisionV = (yM + hM >= yB && yM <= yB || yM <= yB + hB && yM + hM >= yB + hB)
-
-        if collisionH && collisionV
+        if isHit?([xM, yM], [xB,yB], [wM,hM], [wB,hB])
           # On inflige les dégâts du projectile au mob touché
           mechant.dealDMG bullet.degatsProj
 
-          # => disparition du projectile si il ne doit pas exploser          
-          @heros.gun.bullets.delete key if !bullet.explode
+          # => disparition du projectile si il ne doit pas exploser   
+          if bullet.explode
+            # On bute tous les mobs autour de la zone
+            @mechants.each do |mechant|
+
+            end
+
+          else
+            @heros.gun.bullets.delete key
+          end
           break
         end
       end
     end
+  end
+
+  # Renvoie true s'il y a collision entre deux rectangles
+  # et l'élément
+  def isHit?(coordA, coordB, sizeA, sizeB)
+    rect1 = [coordA[0], coordA[1], sizeA[0], sizeA[1]]
+    rect2 = [coordB[0], coordB[1], sizeB[0], sizeB[1]]
+
+    return ((rect1[0] < rect2[0] + rect2[2] && rect1[0] + rect1[2] > rect2[0]) &&
+            (rect1[1] < rect2[1] + rect2[3] && rect1[3] + rect1[1] > rect2[1])) 
   end
 
   # Vérifie si le héros est touché par un monstre ou non
