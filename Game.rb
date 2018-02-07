@@ -104,7 +104,6 @@ class Game < Gosu::Window
         wB = bullet.sizeR
         hB = bullet.sizeR
 
-        puts "#{xM} - #{yM} - #{wM} - #{hM} - #{xB} - #{yB} - #{wB} - #{hB}"
 
         #test collision verticale
         collisionH = (xM + wM >= xB && xM <= xB || xM <= xB + wB && xM + wM >= xB + wB)
