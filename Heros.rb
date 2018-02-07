@@ -61,7 +61,7 @@ class Heros < Personnage
     while (@gun.allGuns[nb][0] == @gun.currentGun[0])
       nb = (rand*Gun.NB_WEAPONS).to_i-1
     end
-    @gun.s'etWeapon(n'b)
+    @gun.setWeapon(nb)
   end
 
   def self.SIZE
