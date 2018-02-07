@@ -75,17 +75,21 @@ class Personnage
   def move    
     coord = pxToCoord
 
-    # On ajoute la gravité (si le personnage ne saute pas)
-    @vY += @jumping ? 0 : @GRAVITY_Y
-
-    # On teste si le personnage peut tenir dans toutes les directions
-    # Haut\Bas
-    if (@vY!=0) then
-      @vY = 0 if (@map.obstAt?([@x,@y+@vY]))
-    end
-    # Droite\Gauche
+    # On teste si le personnage peut tenir à Droite\Gauche
     if (@vX!=0) then      
       @vX = 0 if (@map.obstAt?([@x+@vX,@y]))
+    end
+
+    # Gravité
+    @vY += 1.5
+    if !((0..(Game.HEIGHT - @sizeY)) ===(@y + @vY))
+      @vY = 0
+    end
+
+    if @vY > 0
+      arrondiN(@vY).times { if @map.obstAt?([@x,@y+1])
+                  then @vY = 0; @jumping = false
+                  else @y += 1 end }
     end
 
     # et on calcule la nouvelle position du bolosse (si on ne sort pas du cadre)
@@ -95,11 +99,12 @@ class Personnage
     else
       @vX = 0
     end
-    @y += @vY if (0..(Game.HEIGHT - @sizeY))===(@y + @vY)
 
-    # J'ai mis la réinitialisation dans la Heros.rb parce-que Mechant doit pas reset
-    #@vX = 0
-    @vY *= 0.96
+    # On réactive le jump
+    if (@y + @sizeY >= Game.HEIGHT)
+      @jumping = false
+    end
+
   end
 
   # Fait la conversion coordpx du personnage => coordgrille
@@ -116,6 +121,10 @@ class Personnage
     y = (coord[1]*(Game.HEIGHT/Map.HY.to_f)).to_i
 
     return [x,y]
+  end
+
+  def arrondiN(i)
+    return (i-0.5).to_i
   end
 
 end
