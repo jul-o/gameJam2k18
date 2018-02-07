@@ -3,7 +3,7 @@ require_relative 'particles/Explosion.rb'
 class Projectile
     attr_reader :x, :y
     
-    def initialize gun,id,x,y,tourneDroite,sprite,rY,sizeR,velocity,fadeOut,exploding
+    def initialize gun,id,x,y,tourneDroite,sprite,rY,sizeR,velocity,fadeOut,exploding,degatsProj
 
         # rY => radius de projection des balles
         @vY = rand(-rY..rY)
@@ -25,7 +25,7 @@ class Projectile
         @sizeR = sizeR
 
         # Calcul des ratios x\y
-        @ratioX = @sizeR.to_f/15
+        @ratioX = @sizeR.to_f/@spriteT.width
 
         # Vélocité courante
         @vX = @velocity
@@ -45,6 +45,9 @@ class Projectile
         # Explosion à la fin ?
         @exploding = exploding
         @particleMode = false
+
+        # Dégâts du projectile
+        @degatsProj = degatsProj
     end
 
     def draw
@@ -81,10 +84,8 @@ class Projectile
             @vY = 0
 
             if (@exploding) then
-                @particleMode = true
-
-                # On crée une particule animée aux coordonnées courantes de la collision
-                @particle = Explosion.new(@x,@y,self)
+                # On fait exploser la particule
+                explode
             else         
                 @gun.deleteProj(@id)
             end
@@ -105,10 +106,42 @@ class Projectile
     # On détruit le projectile, et par la même la particule
     def deleteParticle
         @gun.deleteProj(@id)  
-        puts "deded"      
     end
 
     def sizeR
-        @sizeR
+        if @particleMode
+            Explosion.MAX_D
+        else
+            @sizeR
+        end
+    end
+
+    def pos
+        if @particleMode
+            [@particle.x,@particle.y]
+        else
+            [@x,@y]
+        end
+    end
+
+    # Renvoie les degats du projectile
+    def degatsProj
+        @degatsProj
+    end
+
+    # Fait exploser un projectile => renvoie vrai si la particule est sensée exploser
+    def explode
+        if @exploding
+            return true if @particleMode
+
+            @particleMode = true
+            
+            # On crée une particule animée aux coordonnées courantes de la collision
+            @particle = Explosion.new(@x,@y,self)            
+
+            return true
+        else
+            return false
+        end
     end
 end

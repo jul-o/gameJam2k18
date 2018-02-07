@@ -9,18 +9,22 @@ class Game < Gosu::Window
   # @@REFRESH_RATE = 1000/@@FPS
 
   @@WIDTH, @@HEIGHT = 765, 627
-
+  @@INSTANCE = nil
+  
   # Dimensions map : 24x14
 
   def initialize
     @nom = "GameJam"
+    @@INSTANCE = self
 
     # Création de la map et du héros
     @map = Map.new
     @heros = Heros.new @map, 1, 10
     
     # Fond d'écran
-    @bg = Gosu::Image.new("resources/bg.jpg")
+    @bg = Gosu::Image.new("resources/bg.jpg", :retro=>true)
+    @bgRatio = @@WIDTH.to_f/@bg.width
+
     @mechants = Array.new
     @spawns = initSpawns
 
@@ -40,7 +44,7 @@ class Game < Gosu::Window
   end
 
   def draw
-    @bg.draw(0, 0, -1)
+    @bg.draw(0, 0, -1,@bgRatio,@bgRatio)
     @heros.draw
     @map.draw
     @caisse.draw
@@ -79,16 +83,15 @@ class Game < Gosu::Window
       @mechants.each {|m| m.move}
 
       # On regarde si le héros est touché par un mechant
-      if (perdu?)
-        puts "AHAH PERDU MISKINE FDP"
-        @perdu = true
-      end
+      #if (perdu?)
+      #  @perdu = true
+      #end
       
       testeBalleTouche
       testeRamasseCaisse
     end
 
-    close if Gosu::button_down?(Gosu::KbEscape) || @perdu
+    close if Gosu::button_down?(Gosu::KbEscape)
   end
 
   def testeRamasseCaisse
@@ -102,36 +105,53 @@ class Game < Gosu::Window
     wH = @heros.sizeX
     hH = @heros.sizeY
 
-    if testeCollisionPx xC, yC, wC, hC, xH, yH, wH, hH
+    if isHit?([xH, yH], [xC, yC], [wH, hH], [wC, hC])
       @heros.switchWeapon
       @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
     end
   end
 
   def testeBalleTouche
-
     @mechants.each do |mechant|
-
       @heros.gun.bullets.each do |key, bullet|
         xM = mechant.x
         yM = mechant.y
         wM = mechant.sizeX
         hM = mechant.sizeY
 
-        xB = bullet.x
-        yB = bullet.y
+        xB = bullet.pos[0]
+        yB = bullet.pos[1]
         wB = bullet.sizeR
         hB = bullet.sizeR
 
+        if isHit?([xM, yM], [xB,yB], [wM,hM], [wB,hB])
+          # On inflige les dégâts du projectile au mob touché
+          mechant.dealDMG bullet.degatsProj
 
-        #test collision verticale
-        if testeCollisionPx xM, yM, wM, hM, xB, yB, wB, hB
-          @mechants.delete mechant
-          @heros.gun.bullets.delete key
+          # => disparition du projectile si il ne doit pas exploser   
+          if bullet.explode
+            # On bute tous les mobs autour de la zone
+            @mechants.each do |mechant|
+
+            end
+
+          else
+            @heros.gun.bullets.delete key
+          end
           break
         end
       end
     end
+  end
+
+  # Renvoie true s'il y a collision entre deux rectangles
+  # et l'élément
+  def isHit?(coordA, coordB, sizeA, sizeB)
+    rect1 = [coordA[0], coordA[1], sizeA[0], sizeA[1]]
+    rect2 = [coordB[0], coordB[1], sizeB[0], sizeB[1]]
+
+    return ((rect1[0] < rect2[0] + rect2[2] && rect1[0] + rect1[2] > rect2[0]) &&
+            (rect1[1] < rect2[1] + rect2[3] && rect1[3] + rect1[1] > rect2[1])) 
   end
 
   # Vérifie si le héros est touché par un monstre ou non
@@ -155,7 +175,25 @@ class Game < Gosu::Window
     return false
   end
 
-  # Getters
+
+  # Méthode externe pour supprimer un mob de la liste
+  def removeMob mob
+    @mechants.delete mob
+  end
+
+  def getMap
+    @map
+  end
+
+  def initialiseTexteArme
+    @listeArme = [Gosu::Image.from_text(self, "Fusil-à-pompe", "Arial", 20),
+                  Gosu::Image.from_text(self, "Bazooka", "Arial", 20),
+                  Gosu::Image.from_text(self, "Revolver", "Arial", 20),
+                  Gosu::Image.from_text(self, "Machine gun", "Arial", 20)]
+    @indiceArmeCourante = 0
+  end
+
+  # Getters statiques
   def self.WIDTH
     @@WIDTH
   end
@@ -164,33 +202,12 @@ class Game < Gosu::Window
     @@HEIGHT
   end
 
-  # def self.FPS
-  #   @@FPS
-  # end
-
   def self.CELLSIZE
     @@CELLSIZE
   end
 
-  def getMap
-    @map
-  end
-  def testeCollisionPx x1, y1, w1, h1, x2, y2, w2, h2
-    collisionH = (x1 + w1 >= x2 && x1 <= x2 || x1 <= x2 + w2 && x1 + w1 >= x2 + w2)
-    collisionV = (y1 + h1 >= y2 && y1 <= y2 || y1 <= y2 + h2 && y1 + h1 >= y2 + h2)
-
-    oui = (x1 < x2 + w2 &&
-        x1 + w1 > x2 &&
-        y1 < y2 + h2 &&
-        h1 + y1 > y2)
-
-    return collisionH && collisionV
-  end
-
-  def initialiseTexteArme
-    @listeArme = [Gosu::Image.from_text(self, "Fusil-à-pompe", "Arial", 20),
-                  Gosu::Image.from_text(self, "BAZOOOKA", "Arial", 20)]
-    @indiceArmeCourante = 0
+  def self.INSTANCE
+    @@INSTANCE
   end
 end
 

@@ -23,7 +23,7 @@ class Spawn
     if(@intervalC >= @intervalMin)
       if (rand*@ennemyRate).to_i == 1
         @intervalC = 0
-        mechant = Mechant.new @map, @x, @y
+        mechant = Mechant.new AlienType.RND,@map, @x, @y 
         if((rand * 2).to_i == 0)
           mechant.tourner
         end

@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f6981fe-23e9-4175-b6bb-497b4f10feba" name="Default" comment="debut caisse">
+    <list default="true" id="4f6981fe-23e9-4175-b6bb-497b4f10feba" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/guns/dartgunD.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/guns/dartgunG.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/guns/machineGunD.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/guns/machineGunG.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/guns/projectiles/machineGun.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/guns/projectiles/revolver.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/guns/revolverD.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/guns/revolverG.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/ChevalierD1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/ChevalierD2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/ChevalierG1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/ChevalierG2.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Caisse.rb" afterPath="$PROJECT_DIR$/Caisse.rb" />
+      <change beforePath="$PROJECT_DIR$/Game.rb" afterPath="$PROJECT_DIR$/Game.rb" />
+      <change beforePath="$PROJECT_DIR$/Gun.rb" afterPath="$PROJECT_DIR$/Gun.rb" />
+      <change beforePath="$PROJECT_DIR$/Map.rb" afterPath="$PROJECT_DIR$/Map.rb" />
+      <change beforePath="$PROJECT_DIR$/Mechant.rb" afterPath="$PROJECT_DIR$/Mechant.rb" />
+      <change beforePath="$PROJECT_DIR$/Personnage.rb" afterPath="$PROJECT_DIR$/Personnage.rb" />
+      <change beforePath="$PROJECT_DIR$/Projectile.rb" afterPath="$PROJECT_DIR$/Projectile.rb" />
+      <change beforePath="$PROJECT_DIR$/Spawn.rb" afterPath="$PROJECT_DIR$/Spawn.rb" />
+      <change beforePath="$PROJECT_DIR$/particles/Explosion.rb" afterPath="$PROJECT_DIR$/particles/Explosion.rb" />
+      <change beforePath="$PROJECT_DIR$/resources/bg.jpg" afterPath="$PROJECT_DIR$/resources/bg.jpg" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,7 +42,7 @@
     <SUITE FILE_PATH="coverage/gameJam2k18@Main__2_.coverage" NAME="Main (2) Coverage Results" MODIFIED="1517931020349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
     <SUITE FILE_PATH="coverage/gameJam2k18@Main__3_.coverage" NAME="Main (3) Coverage Results" MODIFIED="1517952100216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
     <SUITE FILE_PATH="coverage/gameJam2k18@Heros.coverage" NAME="Heros Coverage Results" MODIFIED="1518008624752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
-    <SUITE FILE_PATH="coverage/gameJam2k18@Main.coverage" NAME="Main Coverage Results" MODIFIED="1518011143008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
+    <SUITE FILE_PATH="coverage/gameJam2k18@Main.coverage" NAME="Main Coverage Results" MODIFIED="1518012989116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
     <SUITE FILE_PATH="coverage/gameJam2k18@main.coverage" NAME="main Coverage Results" MODIFIED="1517827314936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
   </component>
   <component name="FileEditorManager">
@@ -28,8 +50,8 @@
       <file leaf-file-name="Game.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Game.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1530">
-              <caret line="90" column="57" lean-forward="false" selection-start-line="90" selection-start-column="57" selection-end-line="90" selection-end-column="57" />
+            <state relative-caret-position="1581">
+              <caret line="93" column="47" lean-forward="false" selection-start-line="93" selection-start-column="47" selection-end-line="93" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -48,8 +70,8 @@
       <file leaf-file-name="Main.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Main.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="12" lean-forward="false" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+            <state relative-caret-position="85">
+              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -58,9 +80,13 @@
       <file leaf-file-name="Caisse.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Caisse.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
-              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="799">
+              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+              <folding>
+                <marker date="1518012974180" expanded="true" signature="665:806" ph=" ... end" />
+                <marker date="1518012974180" expanded="true" signature="825:842" ph=" ... end" />
+                <marker date="1518012974180" expanded="true" signature="861:878" ph=" ... end" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -335,7 +361,7 @@
       <workItem from="1517997203280" duration="7024000" />
       <workItem from="1518007012814" duration="1712000" />
       <workItem from="1518008774675" duration="1980000" />
-      <workItem from="1518011269340" duration="713000" />
+      <workItem from="1518011269340" duration="769000" />
     </task>
     <task id="LOCAL-00001" summary="debut caisse">
       <created>1517913945044</created>
@@ -351,11 +377,18 @@
       <option name="project" value="LOCAL" />
       <updated>1518012889336</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="debut caisse">
+      <created>1518012962096</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1518012962096</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57439000" />
+    <option name="totallyTimeSpent" value="57495000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="683" y="0" width="1366" height="732" extended-state="6" />
@@ -367,7 +400,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20948012" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30428135" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30428135" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -709,9 +742,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Caisse.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="799">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding>
+            <marker date="1518012974180" expanded="true" signature="665:806" ph=" ... end" />
+            <marker date="1518012974180" expanded="true" signature="825:842" ph=" ... end" />
+            <marker date="1518012974180" expanded="true" signature="861:878" ph=" ... end" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -733,16 +770,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Game.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="90" column="57" lean-forward="false" selection-start-line="90" selection-start-column="57" selection-end-line="90" selection-end-column="57" />
+        <state relative-caret-position="1581">
+          <caret line="93" column="47" lean-forward="false" selection-start-line="93" selection-start-column="47" selection-end-line="93" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Main.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="12" lean-forward="false" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
