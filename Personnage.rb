@@ -17,8 +17,9 @@ class Personnage
   def initialize map, x, y, velocity, sizeX, sizeY, spriteGauche, spriteDroite
     # Création  des sprites gauche\droite
     @GRAVITY_Y = 2#*Game.FPS/60
-    @spD = Gosu::Image.new(spriteDroite, :retro => true)
+    
     @spG = Gosu::Image.new(spriteGauche, :retro => true)
+    @spD = Gosu::Image.new(spriteDroite, :retro => true)
 
     # Définition des attributs
     @map = map

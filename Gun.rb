@@ -3,12 +3,12 @@ require_relative 'Projectile'
 # Types de gun
 # et définition de leurs projectiles
 module Guns
-    # Ind   :   0   -     1       -     2      -    3     -    4    -        5         -     6      -          7         -     8   -   9   -    10
-    # Forme : indice, spriteGauche, spriteDroit, projectile, radiusY, delaiRechargementMS, reculPx,  rayon du projectile, vélocité, fadeOut, exploding
+    # Ind   :   0   -     1       -     2      -    3     -    4    -        5         -     6      -          7         -     8   -   9   -    10     -    11   -
+    # Forme : indice, spriteGauche, spriteDroit, projectile, radiusY, delaiRechargementMS, reculPx,  rayon du projectile, vélocité, fadeOut, exploding, degatsProj
     VIEUX_FUSIL = [0, "resources/guns/vieuxFusilG.png",             "resources/guns/vieuxFusilD.png",
-                      "resources/guns/projectiles/vieuxFusil.png",  5, 1000, 5, 18, 20, true,  false]
+                      "resources/guns/projectiles/vieuxFusil.png",  5, 1000, 5, 18, 20, true, false,10]
     BAZOOKA     = [1, "resources/guns/bazookG.png",                 "resources/guns/bazookD.png",    
-                      "resources/guns/projectiles/bazooka.png",     0, 750, 8,  18, 30, false, true]
+                      "resources/guns/projectiles/bazooka.png",     0, 750, 8,  18, 30, false, true,100]
 end
 
 class Gun
@@ -86,7 +86,8 @@ class Gun
                     for i in 1..5 do
                         # On crée la balle et on l'ajoute au hash
                         newBullet = Projectile.new self,id,pX+offsetX,pY+offsetY,tourneDroite,
-                        currentProject,@currentGun[4],@currentGun[7],@currentGun[8],@currentGun[9],@currentGun[10]
+                        currentProject,@currentGun[4],@currentGun[7],@currentGun[8],
+                        @currentGun[9],@currentGun[10],@currentGun[11]
 
                         @bullets[id] = newBullet
                         id = id+1
@@ -104,7 +105,8 @@ class Gun
 
                     # On crée la balle et on l'ajoute au hash
                     newBullet = Projectile.new self,id,pX+offsetX,pY+offsetY,tourneDroite,
-                    currentProject,@currentGun[4],@currentGun[7],@currentGun[8],@currentGun[9],@currentGun[10]
+                    currentProject,@currentGun[4],@currentGun[7],@currentGun[8],
+                    @currentGun[9],@currentGun[10],@currentGun[11]
 
                     @bullets[id] = newBullet
                 else

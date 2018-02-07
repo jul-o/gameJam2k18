@@ -8,11 +8,13 @@ class Game < Gosu::Window
   # @@REFRESH_RATE = 1000/@@FPS
 
   @@WIDTH, @@HEIGHT = 765, 627
-
+  @@INSANCE = nil
+  
   # Dimensions map : 24x14
 
   def initialize
     @nom = "GameJam"
+    @@INSTANCE = self
 
     # Création de la map et du héros
     @map = Map.new
@@ -70,7 +72,6 @@ class Game < Gosu::Window
 
       # On regarde si le héros est touché par un mechant
       if (perdu?)
-        puts "AHAH PERDU MISKINE FDP"
         @perdu = true
       end
       
@@ -90,20 +91,21 @@ class Game < Gosu::Window
         wM = mechant.sizeX
         hM = mechant.sizeY
 
-        xB = bullet.x
-        yB = bullet.y
+        xB = bullet.pos[0]
+        yB = bullet.pos[1]
         wB = bullet.sizeR
         hB = bullet.sizeR
-
-        puts "#{xM} - #{yM} - #{wM} - #{hM} - #{xB} - #{yB} - #{wB} - #{hB}"
 
         #test collision verticale
         collisionH = (xM + wM >= xB && xM <= xB || xM <= xB + wB && xM + wM >= xB + wB)
         collisionV = (yM + hM >= yB && yM <= yB || yM <= yB + hB && yM + hM >= yB + hB)
 
         if collisionH && collisionV
-          @mechants.delete mechant
-          @heros.gun.bullets.delete key
+          # On inflige les dégâts du projectile au mob touché
+          mechant.dealDMG bullet.degatsProj
+
+          # => disparition du projectile si il ne doit pas exploser          
+          @heros.gun.bullets.delete key if !bullet.explode
           break
         end
       end
@@ -141,16 +143,21 @@ class Game < Gosu::Window
     @@HEIGHT
   end
 
-  # def self.FPS
-  #   @@FPS
-  # end
-
   def self.CELLSIZE
     @@CELLSIZE
   end
 
+  # Méthode externe pour supprimer un mob de la liste
+  def removeMob mob
+    @mechants.delete mob
+  end
+
   def getMap
     @map
+  end
+
+  def self.INSTANCE
+    @@INSTANCE
   end
 end
 

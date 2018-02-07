@@ -5,10 +5,12 @@ class Explosion
     BASE_D = 60
     
     # Diamètre maximal
-    MAX_D = 250
+    MAX_D = 800
 
     # Delta d'agrandissement du rayon
     DELTA_R = 9
+
+    attr_reader :x,:y
 
     def initialize cX,cY,pereProj
         # Centre de l'explosion
@@ -63,5 +65,9 @@ class Explosion
     def draw
         @img.draw @x,@y,0,@ratio,@ratio,Gosu::Color.new(@alpha,@colorFilter,@colorFilter,@colorFilter)
         puts "rayon : #{@currentR}"
+    end
+
+    def self.MAX_D
+        MAX_D
     end
 end
