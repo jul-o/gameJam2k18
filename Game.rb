@@ -74,7 +74,7 @@ class Game < Gosu::Window
 
       # On regarde si le héros est touché par un mechant
       if (perdu?)
-        #puts "AHAH PERDU MISKINE FDP"
+        puts "AHAH PERDU MISKINE FDP"
         @perdu = false #true
       end
       
@@ -172,6 +172,11 @@ class Game < Gosu::Window
   def testeCollisionPx x1, y1, w1, h1, x2, y2, w2, h2
     collisionH = (x1 + w1 >= x2 && x1 <= x2 || x1 <= x2 + w2 && x1 + w1 >= x2 + w2)
     collisionV = (y1 + h1 >= y2 && y1 <= y2 || y1 <= y2 + h2 && y1 + h1 >= y2 + h2)
+
+    oui = (x1 < x2 + w2 &&
+        x1 + w1 > x2 &&
+        y1 < y2 + h2 &&
+        h1 + y1 > y2)
 
     return collisionH && collisionV
   end
