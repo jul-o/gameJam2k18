@@ -2,7 +2,7 @@ require_relative 'Personnage'
 require_relative 'Gun'
 
 class Heros < Personnage
-  attr_reader :img
+  attr_reader :img, :gun
 
   # Constantes de classe
   NB_FRAME_JUMP = 30

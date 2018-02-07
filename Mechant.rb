@@ -43,4 +43,11 @@ class Mechant < Personnage
       end
     end
   end
+
+  def tourner
+    @tourneVersDroite = !@tourneVersDroite
+    @vX = -@vX
+  end
+
+
 end

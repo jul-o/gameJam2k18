@@ -1,8 +1,10 @@
 require_relative 'particles/Explosion.rb'
 
 class Projectile
-
+    attr_reader :x, :y
+    
     def initialize gun,id,x,y,tourneDroite,sprite,rY,sizeR,velocity,fadeOut,exploding
+
         # rY => radius de projection des balles
         @vY = rand(-rY..rY)
 

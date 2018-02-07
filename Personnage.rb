@@ -9,7 +9,7 @@ end
 
 class Personnage
   # Getter sur les attributs
-  attr_accessor :x, :y, :velocity, :sizeX, :sizeY
+  attr_accessor :x, :y, :velocity, :sizeX, :sizeY, :tourneVersDroite
 
   # Constantes de classe
   #GRAVITY_Y = 9*Game.FPS/60
