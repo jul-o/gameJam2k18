@@ -90,11 +90,12 @@ class Game < Gosu::Window
         wM = mechant.sizeX
         hM = mechant.sizeY
 
-
         xB = bullet.x
         yB = bullet.y
-        wB = Projectile.SIZE[0]
-        hB = Projectile.SIZE[1]
+        wB = bullet.sizeR
+        hB = bullet.sizeR
+
+        puts "#{xM} - #{yM} - #{wM} - #{hM} - #{xB} - #{yB} - #{wB} - #{hB}"
 
         #test collision verticale
         collisionH = (xM + wM >= xB && xM <= xB || xM <= xB + wB && xM + wM >= xB + wB)

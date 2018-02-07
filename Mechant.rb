@@ -7,7 +7,6 @@ module AlienType
 end
 
 class Mechant < Personnage
-  attr_reader :img
 
   SPRITE_GAUCHE = "resources/sprites/alienBG.png"
   SPRITE_DROITE = "resources/sprites/alienBD.png"

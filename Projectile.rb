@@ -108,7 +108,7 @@ class Projectile
         puts "deded"      
     end
 
-    def self.SIZE
-        [@sizeR, @sizeR]
+    def sizeR
+        @sizeR
     end
 end
