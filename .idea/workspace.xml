@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4f6981fe-23e9-4175-b6bb-497b4f10feba" name="Default" comment="frf">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Bouton.rb" afterPath="$PROJECT_DIR$/Bouton.rb" />
-      <change beforePath="$PROJECT_DIR$/Cquoi.rb" afterPath="$PROJECT_DIR$/Cquoi.rb" />
-      <change beforePath="$PROJECT_DIR$/Credits.rb" afterPath="$PROJECT_DIR$/Credits.rb" />
-      <change beforePath="$PROJECT_DIR$/Main.rb" afterPath="$PROJECT_DIR$/Main.rb" />
-      <change beforePath="$PROJECT_DIR$/Menu.rb" afterPath="$PROJECT_DIR$/Menu.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,7 +17,7 @@
     <SUITE FILE_PATH="coverage/gameJam2k18@main.coverage" NAME="main Coverage Results" MODIFIED="1517827314936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
     <SUITE FILE_PATH="coverage/gameJam2k18N@Main__1_.coverage" NAME="Main (1) Coverage Results" MODIFIED="1517916983910" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
     <SUITE FILE_PATH="coverage/gameJam2k18@Main__1_.coverage" NAME="Main (1) Coverage Results" MODIFIED="1517913860138" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
-    <SUITE FILE_PATH="coverage/gameJam2k18@Main__2_.coverage" NAME="Main (2) Coverage Results" MODIFIED="1518018056096" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
+    <SUITE FILE_PATH="coverage/gameJam2k18@Main__2_.coverage" NAME="Main (2) Coverage Results" MODIFIED="1518018328462" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
     <SUITE FILE_PATH="coverage/gameJam2k18@personnage.coverage" NAME="personnage Coverage Results" MODIFIED="1517834552959" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/personnages" MODULE_NAME="gameJam2k18" />
   </component>
   <component name="FileEditorManager">
@@ -40,8 +35,8 @@
       <file leaf-file-name="Menu.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Menu.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="112" column="10" lean-forward="false" selection-start-line="112" selection-start-column="10" selection-end-line="112" selection-end-column="10" />
+            <state relative-caret-position="366">
+              <caret line="95" column="0" lean-forward="true" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -332,7 +327,7 @@
       <workItem from="1517916978780" duration="26000" />
       <workItem from="1517917327750" duration="11541000" />
       <workItem from="1517932637567" duration="72000" />
-      <workItem from="1517990212246" duration="22571000" />
+      <workItem from="1517990212246" duration="22622000" />
     </task>
     <task id="LOCAL-00001" summary="debut caisse">
       <created>1517913945044</created>
@@ -394,7 +389,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57506000" />
+    <option name="totallyTimeSpent" value="57557000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1027" width="1680" height="962" extended-state="0" />
@@ -777,8 +772,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Menu.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="112" column="10" lean-forward="false" selection-start-line="112" selection-start-column="10" selection-end-line="112" selection-end-column="10" />
+        <state relative-caret-position="366">
+          <caret line="95" column="0" lean-forward="true" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
           <folding />
         </state>
       </provider>
