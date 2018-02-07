@@ -30,6 +30,8 @@ class Game < Gosu::Window
 
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
 
+    initialiseTexteArme
+
     self.show
   end
 
@@ -55,6 +57,10 @@ class Game < Gosu::Window
         m.draw
       end
     end
+
+    # On affiche le nom de l'arme en haut a gauche
+    @listeArme[@indiceArmeCourante].draw(50,50,4,1,1,Gosu::Color.argb(255,255,255,255))
+
   end
 
   def update
@@ -66,7 +72,7 @@ class Game < Gosu::Window
       
       # Attaques
       @heros.shoot if Gosu::button_down?(Gosu::KbX)
-      @heros.switchWeapon if Gosu::button_down?(Gosu::KbS)
+      @indiceArmeCourante = @heros.switchWeapon if Gosu::button_down?(Gosu::KbS)
 
       # Mise à jour des déplacements
       @heros.move
@@ -179,6 +185,12 @@ class Game < Gosu::Window
         h1 + y1 > y2)
 
     return collisionH && collisionV
+  end
+
+  def initialiseTexteArme
+    @listeArme = [Gosu::Image.from_text(self, "Fusil-à-pompe", "Arial", 20),
+                  Gosu::Image.from_text(self, "BAZOOOKA", "Arial", 20)]
+    @indiceArmeCourante = 0
   end
 end
 

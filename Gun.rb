@@ -132,6 +132,7 @@ class Gun
     # Définit l'arme utilisée par le personnage
     def setWeapon(indice)
         @currentGun = @allGuns[indice]
+        return indice
     end
 
     # Renvoie true si l'arme vient d'être tirée
