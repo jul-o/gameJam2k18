@@ -83,12 +83,15 @@ class Game < Gosu::Window
       @mechants.each {|m| m.move}
 
       # On regarde si le héros est touché par un mechant
-      #if (perdu?)
-      #  @perdu = true
-      #end
+      if (perdu?)
+        @perdu = true
+      end
       
       testeBalleTouche
       testeRamasseCaisse
+    else
+      $ETAT = $ETAT_PERDU
+      close
     end
 
     close if Gosu::button_down?(Gosu::KbEscape)
@@ -168,7 +171,7 @@ class Game < Gosu::Window
       rect1 = [x, y, Heros.SIZE[0], Heros.SIZE[1]]
       rect2 = [mX, mY, m.sizeX, m.sizeY]
 
-      if testeCollisionPx rect1[0],rect1[1],rect1[2],rect1[3],rect2[0],rect2[1],rect2[2],rect2[3]
+      if isHit?([rect1[0],rect1[1]],[rect2[0],rect2[1]],[rect1[2],rect1[3]],[rect2[2],rect2[3]])
         return true
       end
     }

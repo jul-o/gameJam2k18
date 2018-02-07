@@ -61,7 +61,6 @@ class Menu < Gosu::Window
 
     if (mouse_x > @btn_jouer.getY && mouse_x < @btn_jouer.getY + @btn_jouer.getImg_Width && mouse_y > @btn_jouer.getY && mouse_y < @btn_jouer.getY + @btn_jouer.getImg_Height)
       if button_down?(MS_LEFT)
-        a = Game.new
       end
     end
 
@@ -79,9 +78,8 @@ class Menu < Gosu::Window
     end
 
     if (mouse_x > @btn_quitter.getY && mouse_x < @btn_quitter.getY + @btn_quitter.getImg_Width && mouse_y > @btn_quitter.getY && mouse_y < @btn_quitter.getY + @btn_quitter.getImg_Height)
-
       if button_down?(MS_LEFT)
-        abort("REVENEZ MERDEUH")
+        exit
       end
     end
 
