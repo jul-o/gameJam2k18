@@ -29,7 +29,7 @@ class Gun
     SIZE_Y = 7
     NB_WEAPONS = 4
 
-    attr_reader :bullets
+    attr_reader :bullets, :allGuns, :currentGun
 
     def initialize
         @allGuns = [Guns::VIEUX_FUSIL, Guns::BAZOOKA, Guns::REVOLVER, Guns::MACHINE_GUN]
@@ -175,6 +175,7 @@ class Gun
     # Définit l'arme utilisée par le personnage
     def setWeapon(indice)
         @currentGun = @allGuns[indice]
+        return indice
     end
 
     # Renvoie true si l'arme vient d'être tirée

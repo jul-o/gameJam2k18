@@ -2,6 +2,7 @@ require_relative 'Heros'
 require_relative 'Map'
 require_relative 'Mechant'
 require_relative 'Spawn'
+require_relative 'Caisse'
 
 class Game < Gosu::Window
   # @@FPS = 60
@@ -29,19 +30,24 @@ class Game < Gosu::Window
 
     @perdu = false
 
+    @caisse = Caisse.new 1,2, @map
+
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
+
+    initialiseTexteArme
 
     self.show
   end
 
   def initSpawns
-    [Spawn.new(8, 2, 20, @map)]
+    [Spawn.new(8, 0, @map)]
   end
 
   def draw
     @bg.draw(0, 0, -1,@bgRatio,@bgRatio)
     @heros.draw
     @map.draw
+    @caisse.draw
 
     # Si le joueur n'a pas perdu, on spawne des méchants
     if !@perdu then
@@ -55,6 +61,10 @@ class Game < Gosu::Window
         m.draw
       end
     end
+
+    # On affiche le nom de l'arme en haut a gauche
+    @listeArme[@indiceArmeCourante].draw(50,50,4,1,1,Gosu::Color.argb(255,255,255,255))
+
   end
 
   def update
@@ -66,7 +76,7 @@ class Game < Gosu::Window
       
       # Attaques
       @heros.shoot if Gosu::button_down?(Gosu::KbX)
-      @heros.switchWeapon if Gosu::button_down?(Gosu::KbS)
+      @indiceArmeCourante = @heros.switchWeapon if Gosu::button_down?(Gosu::KbS)
 
       # Mise à jour des déplacements
       @heros.move
@@ -78,9 +88,27 @@ class Game < Gosu::Window
       #end
       
       testeBalleTouche
+      testeRamasseCaisse
     end
 
     close if Gosu::button_down?(Gosu::KbEscape)
+  end
+
+  def testeRamasseCaisse
+    xC = @caisse.xPx
+    yC = @caisse.yPx
+    wC = Caisse.SIZE_X
+    hC = Caisse.SIZE_Y
+
+    xH = @heros.x
+    yH = @heros.y
+    wH = @heros.sizeX
+    hH = @heros.sizeY
+
+    if testeCollisionPx xC, yC, wC, hC, xH, yH, wH, hH
+      @heros.switchWeapon
+      @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
+    end
   end
 
   def testeBalleTouche
@@ -140,8 +168,7 @@ class Game < Gosu::Window
       rect1 = [x, y, Heros.SIZE[0], Heros.SIZE[1]]
       rect2 = [mX, mY, m.sizeX, m.sizeY]
 
-      if ((rect1[0] < rect2[0] + rect2[2] && rect1[0] + rect1[2] > rect2[0]) &&
-          (rect1[1] < rect2[1] + rect2[3] && rect1[3] + rect1[1] > rect2[1]))
+      if testeCollisionPx rect1[0],rect1[1],rect1[2],rect1[3],rect2[0],rect2[1],rect2[2],rect2[3]
         return true
       end
     }
@@ -170,8 +197,10 @@ class Game < Gosu::Window
     @map
   end
 
-  def self.INSTANCE
-    @@INSTANCE
+  def initialiseTexteArme
+    @listeArme = [Gosu::Image.from_text(self, "Fusil-à-pompe", "Arial", 20),
+                  Gosu::Image.from_text(self, "BAZOOOKA", "Arial", 20)]
+    @indiceArmeCourante = 0
   end
 end
 

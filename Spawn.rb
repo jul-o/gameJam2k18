@@ -1,20 +1,21 @@
 class Spawn
-  def initialize x, y, nbMechants, map, intervalMin = 30, ennemyRate = 60
+  SIZE_X = 200
+  SIZE_Y = 100
+  def initialize x, y, map, intervalMin = 30, ennemyRate = 60
     @x = x
     @y = y
-    coordPx = coordToPx [x, y]
+    coordPx = Map.coordToPx [x, y]
     @xPx = coordPx[0]
     @yPx = coordPx[1]
-    @nbMechantsRestants = nbMechants
     @map = map
-    @img = Gosu::Image.new("resources/marioD.png")
+    @img = Gosu::Image.new("resources/ovni.png")
     @intervalMin = intervalMin
     @intervalC = 0
     @ennemyRate = ennemyRate
   end
 
   def tick
-    @img.draw(@xPx, @yPx, 0, 0.1, 0.1)
+    @img.draw(@xPx -50, @yPx, 0, SIZE_X / @img.width, SIZE_Y / @img.height)
     return peutEtreMechant
   end
 
@@ -34,12 +35,5 @@ class Spawn
       @intervalC += 1
       return 1
     end
-  end
-
-  def coordToPx(coord)
-    x = (coord[0]*(Game.WIDTH/Map.WX.to_f)).to_i
-    y = (coord[1]*(Game.HEIGHT/Map.HY.to_f)).to_i
-
-    return [x,y]
   end
 end

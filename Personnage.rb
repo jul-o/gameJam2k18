@@ -1,4 +1,3 @@
-
 module Direction
   STATIC = -1
   LEFT = [-1,0]
