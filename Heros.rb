@@ -57,7 +57,7 @@ class Heros < Personnage
 
   # Experimental : changer d'arme
   def switchWeapon
-    @gun.setWeapon(rand(0..Gun.NB_WEAPONS-1))
+    return @gun.setWeapon(rand(0..Gun.NB_WEAPONS-1))
   end
 
   def self.SIZE
