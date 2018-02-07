@@ -86,6 +86,7 @@ class Menu < Gosu::Window
     end
     if @btn_quitter.isClick
       @bool_quitter = true
+      #abort("REVIENS")
     end
     if @btn_retour.isClick
       @bool_jouer = false
@@ -95,10 +96,6 @@ class Menu < Gosu::Window
     end
 
     puts "#{@bool_jouer} #{@bool_quitter} #{@bool_cQuoi} #{@bool_credit} #{@bool_menu} "
-    #puts @bool_credit
-    #puts @bool_menu
-    #puts @bool_quitter
-    #puts @bool_jouer
 
     if @bool_credit
       credit
@@ -110,7 +107,6 @@ class Menu < Gosu::Window
       menu
     elsif @bool_quitter
       abort("REVIENS")
-      exit
     end
 
   end
