@@ -72,7 +72,10 @@ class Mechant < Personnage
   ID_SON_MORT_BOSS = 6
   ID_SON_SPAWN_MONSTRE_NORMAUX = 0
 
-  def initialize (typeMob, map, x , y)
+  def initialize (typeMob, map, x , y, game)
+    @game = game
+    @accelere = false
+    @typePers = typeMob[6]
     @velocity = typeMob[5]
     @sizeX = typeMob[0]
     @sizeY = typeMob[1]
@@ -127,10 +130,17 @@ class Mechant < Personnage
       @mobDying = true
       # Game.INSTANCE.removeMob self
 
+      if isDead && @typePers == TYPE_BOSS && !@accelere
+          puts @typePers
+          @game.accelerer
+          @accelere = true
+      end
+
       if @typePers == TYPE_BOSS
         Son.INST.playSon(ID_SON_MORT_BOSS)
       end
     end
+
 
     # On lance l'animation de clignotement du mob
     blink

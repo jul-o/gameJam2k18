@@ -61,7 +61,7 @@ class Spawn
 
         if (rand*@ennemyRate).to_i == 1
           @intervalC = 0
-          mechant = Mechant.new AlienType.RND,@map, @x, @y
+          mechant = Mechant.new AlienType.RND,@map, @x, @y, @game
           if((rand * 2).to_i == 0)
             mechant.tourner
           end
@@ -74,11 +74,7 @@ class Spawn
 
     if @bossWait && @tabMechants.empty?
       @bossWait = false
-      mechant = Mechant.new AlienType.RND_BOSS,@map, @x, @y
-      AlienType::ALLMOBS.each {|m|
-        m[5] += 1
-      }
-      @game.framesTextVitesse = 90
+      mechant = Mechant.new AlienType.RND_BOSS,@map, @x, @y, @game
       if((rand * 2).to_i == 0)
         mechant.tourner
       end

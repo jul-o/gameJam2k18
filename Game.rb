@@ -140,7 +140,7 @@ class Game < Gosu::Window
 
 
     if @framesTextVitesse != 0 && @framesTextBoss == 0
-      puts @framesTextVitesse
+      #puts @framesTextVitesse
       @imageTextVitesse.draw(self.width/2 - @imageTextVitesse.width/2,self.height/2 - @imageTextVitesse.height/2 - 50,1,1,1,Color.argb(255*@framesTextVitesse/60, 255, 255, 255))
       Gosu::draw_rect(0,self.height/2 - @imageTextVitesse.height/2 - 75,self.width,100,Gosu::Color.new(150*@framesTextVitesse/60,0,0,0))
 
@@ -242,6 +242,8 @@ end
 
     close if Gosu::button_down?(Gosu::KbEscape)
   end
+
+
 
   def testeRamasseCaisse
     xC = @caisse.xPx
@@ -359,6 +361,13 @@ end
                   Gosu::Image.from_text("REVOLVER",   22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center),
                   Gosu::Image.from_text("MACHINEGUN", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)]
     @indiceArmeCourante = 0
+  end
+
+  def accelerer
+    AlienType::ALLMOBS.each {|m|
+      m[5] += 1
+    }
+    @framesTextVitesse = 90
   end
 
   # Getters statiques
