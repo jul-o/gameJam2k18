@@ -84,7 +84,7 @@ class Gun
     # Réalise l'animation de shoot du gun
     def shoot pX,pY,tourneDroite
         # Calcul des offsets
-        offsetX = tourneDroite ? +SIZE_X : -SIZE_X
+        offsetX = tourneDroite ? +SIZE_X+20 : -SIZE_X+20
         offsetY = Heros.SIZE[1]/2
 
         # Comportement différent selon le gun équipé
