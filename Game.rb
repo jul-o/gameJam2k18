@@ -99,8 +99,11 @@ end
 
   def bossInstanciated
     @mechants.each {|mechant|
-
+      if mechant.typePers == TYPE_BOSS
+        return true
+      end
     }
+    return false
   end
 
   def update
