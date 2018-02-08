@@ -3,7 +3,7 @@ require_relative 'particles/Explosion.rb'
 class Projectile
     attr_reader :x, :y
     
-    def initialize gun,id,x,y,tourneDroite,sprite,rY,sizeR,velocity,fadeOut,exploding,degatsProj
+    def initialize gun,id,x,y,tourneDroite,sprite,rY,sizeR,velocity,fadeOut,exploding,degatsProj, distTravel = 0, timeImo = 0
 
         # rY => radius de projection des balles
         @vY = rand(-rY..rY)
@@ -11,6 +11,10 @@ class Projectile
         # Coordonnées du projectile
         @x = x
         @y = y
+        @xSpawn = x
+        @ySpawn = y
+        @distTravel = distTravel
+        @timeImo = timeImo
 
         @tourneDroite = tourneDroite
         @gun = gun
@@ -75,7 +79,10 @@ class Projectile
             )
         ) or (
             (@map.obstAt_Project?([@x,@vY+@y],@sizeR)) or (!((0..(Game.HEIGHT - @sizeR))===(@y + @vY)))
-            ) then
+        ) or (
+            (distanceMaxParcourue && timeImoFini)
+        )
+        then
 
             # L'animation doit être terminée !
             # On fait une explosion stylée si l'option est activée, sinon on en finit.
@@ -89,6 +96,12 @@ class Projectile
             else         
                 @gun.deleteProj(@id)
             end
+        elsif (distanceMaxParcourue)
+            @velocity = 0
+            @vX = 0
+            @vY = 0
+            @timeImo -= 1
+            @alpha *= 0.6
         end
 
         if @tourneDroite then
@@ -101,6 +114,15 @@ class Projectile
 
         # On met à jour l'alpha du projectile, si l'option est activée
         @alpha *= 0.9 if (@fadeOut) 
+    end
+
+    def timeImoFini
+        return @timeImo == 0
+    end
+
+    def distanceMaxParcourue
+        distParcourue = (Math.sqrt((@x - @xSpawn).abs) + Math.sqrt((@y - @ySpawn).abs))
+        return (@distTravel != 0 && distParcourue > @distTravel)
     end
 
     # On détruit le projectile, et par la même la particule

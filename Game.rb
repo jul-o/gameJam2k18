@@ -3,6 +3,7 @@ require_relative 'Map'
 require_relative 'Mechant'
 require_relative 'Spawn'
 require_relative 'Caisse'
+require_relative 'Perdu'
 
 class Game < Gosu::Window
   # @@FPS = 60
@@ -28,7 +29,7 @@ class Game < Gosu::Window
     @mechants = Array.new
     @spawns = initSpawns
 
-    @perdu = false
+    @bool_perdu = false
 
     @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
 
@@ -50,7 +51,7 @@ class Game < Gosu::Window
     @caisse.draw
 
     # Si le joueur n'a pas perdu, on spawne des méchants
-    if !@perdu then
+    if !@bool_perdu then
       @spawns.each {|s|
         resSpawn = s.tick
         if !(resSpawn === 1)
@@ -68,7 +69,7 @@ class Game < Gosu::Window
   end
 
   def update
-    if(!@perdu) then
+    if(!@bool_perdu) then
       # Déplacement du personnage
       @heros.setDirection(Direction::LEFT) if Gosu::button_down?(Gosu::KbLeft)
       @heros.setDirection(Direction::RIGHT) if Gosu::button_down?(Gosu::KbRight)
@@ -121,7 +122,6 @@ class Game < Gosu::Window
     if isHit?([xH, yH], [xC, yC], [wH, hH], [wC, hC])
       # Changement de l'arme du héros et actualisation de l'arme courante
       @indiceArmeCourante = @heros.switchWeapon
-      puts @indiceArmeCourante
       @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
     end
   end
