@@ -11,6 +11,14 @@ module Tiles
     BRIQUE_MOUSSE1 = "resources/tileset/briqueMousse1.png"    #  9
     BRIQUE_MOUSSE2 = "resources/tileset/briqueMousse2.png"    # 10
     BLOC_BOIS1     = "resources/tileset/blocBois1.png"        # 11
+    BLOC_LISSE     = "resources/tileset/blocLisse.png"        # 12
+    BLOC_BRIQUE1   = "resources/tileset/blocBrique1.png"      # 13 
+    BLOC_BRIQUE2   = "resources/tileset/blocBrique2.png"      # 14
+    BLOC_BRIQUE3   = "resources/tileset/blocBrique3.png"      # 15
+    BLOC_BRIQUE4   = "resources/tileset/blocBrique4.png"      # 16 
+    BLOC_BRIQUE5   = "resources/tileset/blocBrique5.png"      # 17
+    BLOC_BRIQUE6   = "resources/tileset/blocBrique6.png"      # 18
+    BLOC_BRIQUE7   = "resources/tileset/blocBrique7.png"      # 19
 end
 
 class Map
@@ -25,7 +33,9 @@ class Map
         # Définition des éléments visuels
         @tiles = [Tiles::VIDE,          Tiles::BLOC_PIERRE1,   Tiles::BLOC_PIERRE2,   Tiles::BLOC_PIERRE3,
                   Tiles::BLOC_PIERRE4,  Tiles::BLOC_PIERRE5,   Tiles::BLOC_PIERRE6,   Tiles::BRIQUE_GRISE1,
-                  Tiles::BRIQUE_GRISE2, Tiles::BRIQUE_MOUSSE1, Tiles::BRIQUE_MOUSSE2, Tiles::BLOC_BOIS1 ]
+                  Tiles::BRIQUE_GRISE2, Tiles::BRIQUE_MOUSSE1, Tiles::BRIQUE_MOUSSE2, Tiles::BLOC_BOIS1,
+                  Tiles::BLOC_LISSE,    Tiles::BLOC_BRIQUE1,   Tiles::BLOC_BRIQUE2,   Tiles::BLOC_BRIQUE3,                
+                  Tiles::BLOC_BRIQUE4,  Tiles::BLOC_BRIQUE5,   Tiles::BLOC_BRIQUE6,   Tiles::BLOC_BRIQUE7]
 
         @tilesImg = []
         @tiles.each do |fileI|
@@ -33,24 +43,20 @@ class Map
         end
 
         # Définition du contenu de la map
-        @viewGrid = [[11,11,11,11,11,11,0,0,0,0,0,11,11,11,11,11,11],
-                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
-                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
-                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
-                     [11,0,0,0,0,0,8,8,8,8,8,0,0,0,0,0,11],
-                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
-                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
-                     [11,8,8,8,8,0,0,0,0,0,0,0,8,8,8,8,11],
-                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
-                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
-                     [11,0,0,0,0,0,8,8,8,8,8,0,0,0,0,0,11],
-                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
-                     [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11],
-                     [4,5,6,3,4,3,6,5,3,4,6,3,4,4,5,6,3]]
-
-        # Calcul des ratios x\y
-        @ratioX = CELLSIZE.to_f/@tilesImg[0].width.to_f
-        @ratioY = CELLSIZE.to_f/@tilesImg[0].height.to_f  
+        @viewGrid = [[17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16],
+                     [14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15],
+                     [15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14],
+                     [14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17],
+                     [17,0,0,0,0,0,8,8,8,8,8,0,0,0,0,0,14],
+                     [16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15],
+                     [15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16],
+                     [14,8,8,8,8,0,0,0,0,0,0,0,8,8,8,8,17],
+                     [17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14],
+                     [14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15],
+                     [15,0,0,0,0,0,8,8,8,8,8,0,0,0,0,0,14],
+                     [14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17],
+                     [17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14],
+                     [12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12]]
 
         @@INSTANCE = self
     end
@@ -63,7 +69,11 @@ class Map
         @viewGrid.each do |line|
             #offSet = 0
             line.each do |cell|
-                @tilesImg[cell-1].draw x*CELLSIZE,y*CELLSIZE, 0, @ratioX, @ratioY if cell!=0
+                # Calcul des ratios x\y
+                ratioX = CELLSIZE.to_f/@tilesImg[cell-1].width.to_f
+                ratioY = CELLSIZE.to_f/@tilesImg[cell-1].height.to_f  
+
+                @tilesImg[cell-1].draw x*CELLSIZE,y*CELLSIZE, 0, ratioX, ratioY if cell!=0
                 x=x+1
                 #offSet+=5
             end

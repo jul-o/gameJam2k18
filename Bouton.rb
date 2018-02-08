@@ -6,7 +6,7 @@ class Bouton
     @window = window
     @image = Image.new("resources/Fond-rouge-fonce.jpg")
     @imageHover = Image.new("resources/Fond-rouge.jpg")
-    @text = Image.from_text(window, text, "resources/SIXTY.TTF", 40)
+    @text = Image.from_text(text, 40, :font => "resources/SIXTY.TTF")
     @y = y
     @z = z
   end

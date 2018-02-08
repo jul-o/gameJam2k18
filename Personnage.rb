@@ -12,13 +12,31 @@ class Personnage
 
   # Constantes de classe
   #GRAVITY_Y = 9*Game.FPS/60
+  #?=
+  DUREE_ANIMATION_COMPLETE_MS = 300
+  #?=
 
   def initialize map, x, y, velocity, sizeX, sizeY, spriteGauche, spriteDroite
     # Création  des sprites gauche\droite
     @GRAVITY_Y = 2#*Game.FPS/60
-    
-    @spG = Gosu::Image.new(spriteGauche, :retro => true)
-    @spD = Gosu::Image.new(spriteDroite, :retro => true)
+
+    #?=
+    @spD = Array.new
+    spriteDroite.each do |sp|
+      @spD.push(Gosu::Image.new(sp, :retro => true))
+    end
+    @spG = Array.new
+    spriteGauche.each do |sp|
+      @spG.push(Gosu::Image.new(sp, :retro => true))
+    end
+
+    # Attributs pour animation
+    @indiceSpriteCourant = 0
+    @NBSPRITE = spriteGauche.length
+    @dateMajSprite = 0.0
+
+    @vX = 0.0
+    #?=
 
     # Définition des attributs
     @map = map
@@ -35,23 +53,42 @@ class Personnage
     @velocity = velocity#*Game.FPS/60
 
     # Calcul des ratios x\y
-    @ratioX = @sizeX.to_f/@spD.width.to_f
-    @ratioY = @sizeY.to_f/@spD.height.to_f  
+    @ratioX = @sizeX.to_f/@spD[0].width.to_f
+    @ratioY = @sizeY.to_f/@spD[0].height.to_f
 
     # Booléens
     @tourneVersDroite = true
     @jumping = false
   end
 
+  #?=
   # Dessin de l'image courante
   def draw
     if @tourneVersDroite then
-      img = @spD
+      img = @spD[@indiceSpriteCourant]
     else
-      img = @spG      
-    end      
+      img = @spG[@indiceSpriteCourant]
+    end
     img.draw @x, @y, 1, @ratioX, @ratioY
   end
+
+  def update
+    if (@vX != 0.0)
+      if (Gosu.milliseconds > @dateMajSprite + DUREE_ANIMATION_COMPLETE_MS/@NBSPRITE)
+        indiceSpriteSuivant
+        @dateMajSprite = Gosu.milliseconds
+      end
+    end
+  end
+
+  def indiceSpriteSuivant
+    if (@indiceSpriteCourant == @NBSPRITE-1)
+      @indiceSpriteCourant = 0
+    else
+      @indiceSpriteCourant += 1
+    end
+  end
+  #?=
 
   def setDirection(dir)
     @lastDir = dir

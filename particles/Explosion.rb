@@ -23,6 +23,9 @@ class Explosion
         @x = cX
         @y = cY
 
+        # Point de collision
+        @collX, @collY = cX,cY
+
         # Rayon courant
         @currentR = BASE_D/2
 
@@ -45,11 +48,7 @@ class Explosion
         # Animation terminée
         if (@currentR*2 >= MAX_D) then
             # L'effet doit être détruit : on appelle le projectile père
-            # @pereProj.deleteParticle
-            # On lance l'animation fumée si il n'y en a pas déjà une
-            if (@fumee.nil?)
-                @fumee = Fumee.new @x, @y, self
-            end
+            @pereProj.deleteParticle
         else
             # On augmente le rayon jusqu'à atteindre END_RADIUS
             #       tout en diminuant le channel alpha
@@ -73,11 +72,7 @@ class Explosion
     end
 
     def draw
-        if (@fumee.nil?)
-            @img.draw @x,@y,0,@ratio,@ratio,Gosu::Color.new(@alpha,@colorFilter,@colorFilter,@colorFilter)
-        else
-            @fumee.draw
-        end
+        @img.draw @x,@y,0,@ratio,@ratio,Gosu::Color.new(@alpha,@colorFilter,@colorFilter,@colorFilter)
     end
 
     def self.MAX_D
