@@ -81,9 +81,7 @@ class Personnage
     
     # Animation de mort du mob
     @mobDying = false
-    @dyingAnimMax = [150, 150]
-    @dyingAnimVal = [5, 5]
-    @dyingAnimMin = [5,5]
+    @dyingAlpha = 255
   end
 
   #?=
@@ -104,7 +102,7 @@ class Personnage
     end
 
     if @mobDying then
-      img.draw @x, @y - @sizeY + 50, 1, @ratioX, @ratioY
+      img.draw @x, @y - @sizeY + 50, 1, @ratioX, @ratioY, Gosu::Color.new(@dyingAlpha,255,255,255)
     else
       img.draw @x, @y - @sizeY + 50, 1, @ratioX, @ratioY     
     end
@@ -130,7 +128,19 @@ class Personnage
         end
       end
     end
+    
+    # Animation de mort
+    if (@mobDying) then
+      @dyingAlpha -= 10
+      if (@dyingAlpha <= 10) then
+        # On supprime le sprite
+        Game.INSTANCE.removeMob self
+      end
 
+      # On annule vX et vY
+      @vX = 0
+      @vY = 0
+    end
   end
 
   def indiceSpriteSuivant
