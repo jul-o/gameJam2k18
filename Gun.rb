@@ -7,17 +7,17 @@ module Guns
     # Forme : indice, spriteGauche, spriteDroit
     #-    3     -    4    -        5         -     6     
     # projectile, radiusY, delaiRechargementMS, reculPx, 
-    # -          7         -     8   -   9   -    10     -    11   -
-    # rayon du projectile, vélocité, fadeOut, exploding, degatsProj
+    # -          7         -     8   -   9   -    10     -    11   -     12
+    # rayon du projectile, vélocité, fadeOut, exploding, degatsProj,  shakeForce
 
     VIEUX_FUSIL = [0, "resources/guns/vieuxFusilG.png",             "resources/guns/vieuxFusilD.png",
-                      "resources/guns/projectiles/vieuxFusil.png",  5, 500, 5, 18, 20, false,  false,  20]
+                      "resources/guns/projectiles/vieuxFusil.png",  5, 500, 5, 18, 20, false,  false,  20, 7]
     BAZOOKA     = [1, "resources/guns/bazookG.png",                 "resources/guns/bazookD.png",    
-                      "resources/guns/projectiles/bazooka.png",     0, 1500,  8, 18, 30, false, true,  20]
+                      "resources/guns/projectiles/bazooka.png",     0, 1500,  8, 18, 30, false, true,  20, 13]
     REVOLVER    = [2, "resources/guns/revolverG.png",               "resources/guns/revolverD.png",
-                      "resources/guns/projectiles/revolver.png",    0, 500,  6, 20, 25, false, false, 100]
+                      "resources/guns/projectiles/revolver.png",    0, 500,  6, 20, 25, false, false, 100, 5]
     MACHINE_GUN = [3, "resources/guns/machineGunG.png",             "resources/guns/machineGunD.png",
-                      "resources/guns/projectiles/machineGun.png",  7,  10,  7, 15, 18, false, false,  10]
+                      "resources/guns/projectiles/machineGun.png",  7,  10,  7, 15, 18, false, false,  10, 6]
     # DART_GUN    = [3, "resources/guns/machineGunG.png",             "resources/guns/machineGunD.png",
     #                 "resources/guns/projectiles/machineGun.png",  7,  10,  7, 15, 18, false, false,  10]
 end
@@ -103,6 +103,8 @@ class Gun
                         @bullets[id] = newBullet
                         id = id+1
                     end
+
+                    Game.INSTANCE.shake(@currentGun[12],@currentGun[12])
                 else
                     # On reset le compteur si on atteint la seconde
                     @delayT = 0 if (Gosu.milliseconds - @delayT >= @currentGun[5])
@@ -120,6 +122,8 @@ class Gun
                     @currentGun[9],@currentGun[10],@currentGun[11]
 
                     @bullets[id] = newBullet
+
+                    Game.INSTANCE.shake(@currentGun[12],@currentGun[12])
                 else
                     # On reset le compteur si on atteint 750ms
                     @delayT = 0 if (Gosu.milliseconds - @delayT >= @currentGun[5])
@@ -136,6 +140,8 @@ class Gun
                     @currentGun[9],@currentGun[10],@currentGun[11]
 
                     @bullets[id] = newBullet
+
+                    Game.INSTANCE.shake(@currentGun[12],@currentGun[12])
                 else
                     @delayT = 0 if (Gosu.milliseconds - @delayT >= @currentGun[5])
                 end          
@@ -151,6 +157,8 @@ class Gun
                     @currentGun[9],@currentGun[10],@currentGun[11], 200
 
                     @bullets[id] = newBullet
+
+                    Game.INSTANCE.shake(@currentGun[12],@currentGun[12])
                 else
                     @delayT = 0 if (Gosu.milliseconds - @delayT >= @currentGun[5])
                 end 

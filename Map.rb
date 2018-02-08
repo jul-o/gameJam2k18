@@ -65,7 +65,7 @@ class Map
     end
 
     # Dessin de la map
-    def draw
+    def draw shakeX,shakeY
         x = 0
         y = 0
 
@@ -76,7 +76,7 @@ class Map
                 ratioX = CELLSIZE.to_f/@tilesImg[cell-1].width.to_f
                 ratioY = CELLSIZE.to_f/@tilesImg[cell-1].height.to_f  
 
-                @tilesImg[cell-1].draw x*CELLSIZE,y*CELLSIZE, 0, ratioX, ratioY if cell!=0
+                @tilesImg[cell-1].draw x*CELLSIZE+shakeX,y*CELLSIZE+shakeY, 0, ratioX, ratioY if cell!=0
                 x=x+1
                 #offSet+=5
             end

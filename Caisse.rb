@@ -25,16 +25,16 @@ class Caisse
     @img2 = Gosu::Image.new(SPRITE2, :retro => true)
   end
 
-  def draw
+  def draw shakeX, shakeY
     if @frameCligno < 30
-      @img1.draw(@xPx, @yPx, 0, SIZE_X/@img1.width, SIZE_Y/@img1.height)
-      @img2.draw(@xPx, @yPx, 0, SIZE_X/@img2.width, SIZE_Y/@img2.height, Gosu::Color.new(0,0,0,0))
+      @img1.draw(@xPx+shakeX, @yPx+shakeY, 0, SIZE_X/@img1.width, SIZE_Y/@img1.height)
+      @img2.draw(@xPx+shakeX, @yPx+shakeY, 0, SIZE_X/@img2.width, SIZE_Y/@img2.height, Gosu::Color.new(0,0,0,0))
     elsif @frameCligno < 60
-      @img1.draw(@xPx, @yPx, 0, SIZE_X/@img1.width, SIZE_Y/@img1.height, Gosu::Color.new(0,0,0,0))
-      @img2.draw(@xPx, @yPx, 0, SIZE_X/@img2.width, SIZE_Y/@img2.height)
+      @img1.draw(@xPx+shakeX, @yPx+shakeY, 0, SIZE_X/@img1.width, SIZE_Y/@img1.height, Gosu::Color.new(0,0,0,0))
+      @img2.draw(@xPx+shakeX, @yPx+shakeY, 0, SIZE_X/@img2.width, SIZE_Y/@img2.height)
     else
-      @img1.draw(@xPx, @yPx, 0, SIZE_X/@img1.width, SIZE_Y/@img1.height, Gosu::Color.new(0,0,0,0))
-      @img2.draw(@xPx, @yPx, 0, SIZE_X/@img2.width, SIZE_Y/@img2.height)
+      @img1.draw(@xPx+shakeX, @yPx+shakeY, 0, SIZE_X/@img1.width, SIZE_Y/@img1.height, Gosu::Color.new(0,0,0,0))
+      @img2.draw(@xPx+shakeX, @yPx+shakeY, 0, SIZE_X/@img2.width, SIZE_Y/@img2.height)
       @frameCligno = 0
     end
     @frameCligno += 1

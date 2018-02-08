@@ -14,7 +14,9 @@ class Game < Gosu::Window
 
   NB_FRAMES_TEXT_BOSS = 90
 
-  #
+  # Temps de l'effet de secousse
+  SHAKE_FREQ = 50
+  SHAKE_DURATION = 100
   
   # Dimensions map : 24x14
 
@@ -38,9 +40,6 @@ class Game < Gosu::Window
 
     @mechants = Array.new
     @spawns = initSpawns
-    AlienType::ALLMOBS.each {|m|
-      m[5] = m[7]
-    }
 
     # Nombre de caisses récupérées
     @nbCaisses = 0
@@ -54,7 +53,7 @@ class Game < Gosu::Window
     @nbCaisses = 0
     @apBossed = false
     @caissesBoss = [2]
-    @bossTousLesCaisses = 5
+    @bossTousLesCaisses = 10
     @imageTextBoss = Gosu::Image.from_text("Il arrive...", 50, :font => "resources/SIXTY.ttf")
     #@imageFondTexteBoss = Gosu::Image()
 
@@ -63,6 +62,14 @@ class Game < Gosu::Window
 
     initialiseTexteArme
 
+    # Shake X\Y
+    @shakeX,@shakeY,@shakingDate,@shakeStartDate = 0,0,0,0
+    @shakeVal = []
+    @shakeBool = [1,-1]
+    @shaking = false
+
+    self.shake(10,10)
+  
     #self.show
   end
 
@@ -72,6 +79,10 @@ class Game < Gosu::Window
 
   def draw
     # Dessin des éléments principaux de l'écran
+    @bg.draw(@shakeX, @shakeY, -1, @bgRatio, @bgRatio)
+    @heros.draw @shakeX, @shakeY
+    @map.draw @shakeX, @shakeY
+    @caisse.draw @shakeX, @shakeY
 
     @imageEtoiles.draw(@xEtoiles,0,-2, self.width.to_f/@imageEtoiles.width.to_f, self.height.to_f/@imageEtoiles.height.to_f)
     @imageEtoiles2.draw(@xEtoiles2,0,-2, self.width.to_f/@imageEtoiles.width.to_f, self.height.to_f/@imageEtoiles.height.to_f)
@@ -88,13 +99,6 @@ class Game < Gosu::Window
       @xEtoiles2 = -self.width
     end
 
-
-    @bg.draw(0, 0, -1, @bgRatio, @bgRatio)
-    @heros.draw
-    @map.draw
-    @caisse.draw
-
-
     # Si le joueur n'a pas perdu, on spawne des méchants
     @caissesBoss.each {|n|
       if @nbCaisses == n && !@apBossed
@@ -103,7 +107,6 @@ class Game < Gosu::Window
         @apBossed = true
         @framesTextBoss = NB_FRAMES_TEXT_BOSS
         @caissesBoss.delete n
-
       end
     }
     if @nbCaisses%@bossTousLesCaisses == 0 && @nbCaisses != 0 && !@apBossed
@@ -128,14 +131,14 @@ class Game < Gosu::Window
         end
       }
       @mechants.each do |m|
-        m.draw
+        m.draw @shakeX, @shakeY
       end
     end
 
     # On affiche le nom de l'arme en haut a gauche
-    @listeArme[@indiceArmeCourante].draw(60,16,4,1,1,Gosu::Color.argb(255,255,255,255))
+    @listeArme[@indiceArmeCourante].draw(@shakeX+60,@shakeY+16,4,1,1,Gosu::Color.argb(255,255,255,255))
 
-    @texteNbCaisse.draw(550,16,4,1,1,Gosu::Color.argb(255,255,255,255))
+    @texteNbCaisse.draw(@shakeX+550,@shakeY+16,4,1,1,Gosu::Color.argb(255,255,255,255))
 end
 
   def bossInstanciated
@@ -147,6 +150,10 @@ end
   end
 
   def update
+    # Si le joueur a perdu, on prend son manteau et on s'en va
+    if @perdu && !@shaking then
+    end
+
     if(!@perdu) then
       # Déplacement du personnage
       @heros.setDirection(Direction::LEFT) if Gosu::button_down?(Gosu::KbLeft)
@@ -172,15 +179,37 @@ end
       # On regarde si le héros est touché par un mechant
       if (perdu?)
         @perdu = true
-        sleep 1
+        shake(10,10)      
         close
-        $perdu = Perdu.new
+        $perdu = Perdu.new  
       end
       
       testeBalleTouche
       testeRamasseCaisse
 
       supprimeMort
+
+      # Animation de shaking
+      if @shaking then
+        # Si l'animation est finie on prend son manteau et on s'en va
+        if (Gosu.milliseconds - @shakeStartDate >= SHAKE_DURATION) then
+          @shaking = false
+          @shakeX = 0
+          @shakeY = 0
+
+        else
+          if (Gosu.milliseconds - @shakingDate >= SHAKE_FREQ) then
+            @shakeX = rand(1..@shakeVal[0])*@shakeBool[0]
+            @shakeY = rand(1..@shakeVal[1])*@shakeBool[1]
+            
+            # On inverse le shake pour la fois d'après
+            @shakeBool[0] *= -1
+            @shakeBool[1] *= -1
+
+            @shakingDate = Gosu.milliseconds
+          end
+        end
+      end
     else
       $ETAT = $ETAT_PERDU
       close
@@ -280,10 +309,19 @@ end
     end
   end
 
+  # Lance l'animation de shaking
+  def shake(x,y)
+    if !@shaking then
+      @shaking = true
+      @shakeVal = [x,y]
+      @shakingDate = Gosu.milliseconds - SHAKE_FREQ
+      @shakeStartDate = Gosu.milliseconds
+    end
+  end
+
   # Méthode externe pour supprimer un mob de la liste
   def removeMob mob
     @mechants.delete mob
-    puts "mobSupp"
   end
 
   def getMap
