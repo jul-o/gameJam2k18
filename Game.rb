@@ -99,7 +99,7 @@ end
 
   def bossInstanciated
     @mechants.each {|mechant|
-      
+
     }
   end
 
