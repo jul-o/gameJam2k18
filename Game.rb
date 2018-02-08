@@ -50,7 +50,8 @@ class Game < Gosu::Window
 
     @nbCaisses = 0
     @apBossed = false
-    @caissesBoss = [2,5,10,15]
+    @caissesBoss = [2]
+    @bossTousLesCaisses = 5
     @imageTextBoss = Gosu::Image.from_text("Il arrive...", 50, :font => "resources/SIXTY.ttf")
     #@imageFondTexteBoss = Gosu::Image()
 
@@ -101,6 +102,12 @@ class Game < Gosu::Window
         @caissesBoss.delete n
       end
     }
+    if @nbCaisses%@bossTousLesCaisses == 0 && @nbCaisses != 0 && !@apBossed
+
+      @spawns[0].apBoss
+      @apBossed = true
+      @framesTextBoss = NB_FRAMES_TEXT_BOSS
+    end
 
     if @framesTextBoss != 0
       @imageTextBoss.draw(self.width/2 - @imageTextBoss.width/2,self.height/2 - @imageTextBoss.height/2 - 50,1,1,1,Color.argb(255*@framesTextBoss/60, 255, 255, 255))

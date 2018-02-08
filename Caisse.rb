@@ -1,5 +1,6 @@
 class Caisse
-  SPRITE = "resources/caisse-bleue.gif"
+  SPRITE1 = "resources/caisse-bleue.gif"
+  SPRITE2 = "resources/caisse-rouge.gif"
   SIZE_X = 50
   SIZE_Y = 50
 
@@ -18,12 +19,25 @@ class Caisse
     coordPx = Map.coordToPx([x, y])
     @xPx = coordPx[0]
     @yPx = coordPx[1]
+    @frameCligno = 0
 
-    @img = Gosu::Image.new(SPRITE, :retro => true)
+    @img1 = Gosu::Image.new(SPRITE1, :retro => true)
+    @img2 = Gosu::Image.new(SPRITE2, :retro => true)
   end
 
   def draw
-    @img.draw(@xPx, @yPx, 0, SIZE_X/@img.width, SIZE_Y/@img.height)
+    if @frameCligno < 30
+      @img1.draw(@xPx, @yPx, 0, SIZE_X/@img1.width, SIZE_Y/@img1.height)
+      @img2.draw(@xPx, @yPx, 0, SIZE_X/@img2.width, SIZE_Y/@img2.height, Gosu::Color.new(0,0,0,0))
+    elsif @frameCligno < 60
+      @img1.draw(@xPx, @yPx, 0, SIZE_X/@img1.width, SIZE_Y/@img1.height, Gosu::Color.new(0,0,0,0))
+      @img2.draw(@xPx, @yPx, 0, SIZE_X/@img2.width, SIZE_Y/@img2.height)
+    else
+      @img1.draw(@xPx, @yPx, 0, SIZE_X/@img1.width, SIZE_Y/@img1.height, Gosu::Color.new(0,0,0,0))
+      @img2.draw(@xPx, @yPx, 0, SIZE_X/@img2.width, SIZE_Y/@img2.height)
+      @frameCligno = 0
+    end
+    @frameCligno += 1
     deplacer
   end
 
