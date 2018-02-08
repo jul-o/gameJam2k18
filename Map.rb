@@ -10,7 +10,7 @@ module Tiles
     BRIQUE_GRISE2  = "resources/tileset/briqueGrise2.png"     #  8
     BRIQUE_MOUSSE1 = "resources/tileset/briqueMousse1.png"    #  9
     BRIQUE_MOUSSE2 = "resources/tileset/briqueMousse2.png"    # 10
-    BLOC_BOIS1     = "resources/tileset/blocBois1.png"        # 11
+    BLOC_BOIS1     = "resources/tileset/blocMarches.png"      # 11
     BLOC_LISSE     = "resources/tileset/blocLisse.png"        # 12
     BLOC_BRIQUE1   = "resources/tileset/blocBrique1.png"      # 13 
     BLOC_BRIQUE2   = "resources/tileset/blocBrique2.png"      # 14

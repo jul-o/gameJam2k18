@@ -41,7 +41,7 @@ class Explosion
         @ratio = 1
 
         # Filtre RGB de base
-        @colorFilter = 255
+        @colorFilter = [255,255,255]
     end
 
     def update
@@ -59,7 +59,7 @@ class Explosion
             @ratio = @currentR.to_f/(BASE_D/2)
 
             # On assombrit l'image si on est à la moitié de l'animation
-            @colorFilter = 0 if (@currentR*2 >= MAX_D/2)
+            @colorFilter = [118,238,0] if (@currentR*2 >= MAX_D/2)
 
             # On met à jour la position du cercle
             @x -= DELTA_R
@@ -72,7 +72,7 @@ class Explosion
     end
 
     def draw
-        @img.draw @x,@y,0,@ratio,@ratio,Gosu::Color.new(@alpha,@colorFilter,@colorFilter,@colorFilter)
+        @img.draw @x,@y,0,@ratio,@ratio,Gosu::Color.new(@alpha,@colorFilter[0],@colorFilter[1],@colorFilter[2])
     end
 
     def self.MAX_D
