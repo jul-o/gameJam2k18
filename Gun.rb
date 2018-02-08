@@ -15,7 +15,7 @@ module Guns
     BAZOOKA     = [1, "resources/guns/bazookG.png",                 "resources/guns/bazookD.png",    
                       "resources/guns/projectiles/bazooka.png",     0, 750,  8, 18, 30, false, true,  100]
     REVOLVER    = [2, "resources/guns/revolverG.png",               "resources/guns/revolverD.png",
-                      "resources/guns/projectiles/revolver.png",    0, 600,  6, 20, 25, false, false, 100]
+                      "resources/guns/projectiles/revolver.png",    0, 300,  6, 20, 25, false, false, 100]
     MACHINE_GUN = [3, "resources/guns/machineGunG.png",             "resources/guns/machineGunD.png",
                       "resources/guns/projectiles/machineGun.png",  7,  10,  7, 15, 18, false, false,  10]
     # DART_GUN    = [3, "resources/guns/machineGunG.png",             "resources/guns/machineGunD.png",
