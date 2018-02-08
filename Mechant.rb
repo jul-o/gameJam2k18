@@ -107,8 +107,8 @@ class Mechant < Personnage
 
     # Si le mob est mort après l'attaque, on lance l'animation de mort
     if isDead then
-      #@mobDying = true
-      Game.INSTANCE.removeMob self
+      @mobDying = true
+      # Game.INSTANCE.removeMob self
       # Pour l'instant il ne fait que disaparaître => à faire
     end
 
