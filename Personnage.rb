@@ -78,6 +78,10 @@ class Personnage
     # Mob ou non
     @typePers = typePers
     @escaped = false
+    
+    # Animation de mort du mob
+    @mobDying = false
+    @dyingAngle = 0
   end
 
   #?=
@@ -96,7 +100,14 @@ class Personnage
         img = @spG[@indiceSpriteCourant]
       end
     end
-    img.draw @x, @y - @sizeY + 50, 1, @ratioX, @ratioY
+
+    if @mobDying then
+      # img.draw @x, @y - @sizeY + 50, 1, @ratioX, @ratioY
+      #draw_rot(x, y, z, angle, center_x = 0.5, center_y = 0.5, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default) ⇒ void 
+      img.draw_rot @x, @y, @dyingAngle, @x, @y
+    else
+      img.draw @x, @y - @sizeY + 50, 1, @ratioX, @ratioY     
+    end
   end
 
   def update
@@ -111,12 +122,18 @@ class Personnage
     if (@blinking) then
       if (Gosu.milliseconds > @blinkT + BLINK_DURATION) then
         @blinkNow = false
+        @blinking = false
       else
         if (Gosu.milliseconds > @blinkDelay + BLINK_FREQ) then
           @blinkNow = !@blinkNow
           @blinkDelay = Gosu.milliseconds
         end
       end
+    end
+
+    # Effet de rotation
+    if(@mobDying) then
+      @dyingAngle += 10
     end
   end
 
