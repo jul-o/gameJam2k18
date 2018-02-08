@@ -11,6 +11,8 @@ class Game < Gosu::Window
   @@WIDTH, @@HEIGHT = 765, 627
   @@INSTANCE = nil
 
+  NB_FRAMES_TEXT_BOSS = 90
+
   #
   
   # Dimensions map : 24x14
@@ -32,7 +34,7 @@ class Game < Gosu::Window
 
     # Nombre de caisses récupérées
     @nbCaisses = 0
-    @texteNbCaisse = Gosu::Image.from_text("0", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
+    @texteNbCaisse = Gosu::Image.from_text("SCORE : 0", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
 
     @perdu = false
 
@@ -41,8 +43,11 @@ class Game < Gosu::Window
     @nbCaisses = 0
     @apBossed = false
     @caissesBoss = [2,5,10,15]
+    @imageTextBoss = Gosu::Image.from_text("Il arrive...", 50, :font => "resources/SIXTY.ttf")
+    #@imageFondTexteBoss = Gosu::Image()
 
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
+    @framesTextBoss = 0
 
     initialiseTexteArme
 
@@ -61,11 +66,18 @@ class Game < Gosu::Window
 
     # Si le joueur n'a pas perdu, on spawne des méchants
     @caissesBoss.each {|n|
-      if @nbCaisses == n && !@apBossed
+      if @nbCaisses == n && !@apBossed && !bossInstanciated
         @spawns[0].apBoss
         @apBossed = true
+        @framesTextBoss = NB_FRAMES_TEXT_BOSS
+        @caissesBoss.delete n
       end
     }
+
+    if @framesTextBoss != 0
+      @imageTextBoss.draw(self.width/2 - @imageTextBoss.width/2,self.height/2 - @imageTextBoss.height/2 - 50,1,1,1,Color.argb(255, 255, 255, 255))
+      @framesTextBoss -= 1
+    end
 
     if !@perdu then
       @spawns.each {|s|
@@ -82,8 +94,14 @@ class Game < Gosu::Window
     # On affiche le nom de l'arme en haut a gauche
     @listeArme[@indiceArmeCourante].draw(60,16,4,1,1,Gosu::Color.argb(255,255,255,255))
 
-    @texteNbCaisse.draw(500,16,4,1,1,Gosu::Color.argb(255,255,255,255))
+    @texteNbCaisse.draw(550,16,4,1,1,Gosu::Color.argb(255,255,255,255))
 end
+
+  def bossInstanciated
+    @mechants.each {|mechant|
+
+    }
+  end
 
   def update
     if(!@perdu) then
@@ -141,12 +159,12 @@ end
     if isHit?([xH, yH], [xC, yC], [wH, hH], [wC, hC])
       # Changement de l'arme du héros et actualisation de l'arme courante
       @indiceArmeCourante = @heros.switchWeapon
-      puts @indiceArmeCourante
+      #puts @indiceArmeCourante
       @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
       @nbCaisses += 1
 
       @apBossed = false
-      @texteNbCaisse = Gosu::Image.from_text("#{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
+      @texteNbCaisse = Gosu::Image.from_text("SCORE : #{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
 
     end
   end
@@ -211,7 +229,7 @@ end
       if (m.isEscaped)
         @mechants.delete(m)
         @nbCaisses = @nbCaisses-1
-        @texteNbCaisse = Gosu::Image.from_text("#{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
+        @texteNbCaisse = Gosu::Image.from_text("SCORE : #{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
       end
     end
   end
@@ -219,6 +237,7 @@ end
   # Méthode externe pour supprimer un mob de la liste
   def removeMob mob
     @mechants.delete mob
+    puts "mobSupp"
   end
 
   def getMap
