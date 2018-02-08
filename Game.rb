@@ -136,6 +136,7 @@ end
       # On regarde si le héros est touché par un mechant
       if (perdu?)
         @perdu = true
+        sleep 1
         close
         #$menu = Menu.new
         $perdu = Perdu.new
