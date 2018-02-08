@@ -11,7 +11,7 @@ module Guns
     # rayon du projectile, vélocité, fadeOut, exploding, degatsProj
 
     VIEUX_FUSIL = [0, "resources/guns/vieuxFusilG.png",             "resources/guns/vieuxFusilD.png",
-                      "resources/guns/projectiles/vieuxFusil.png",  5, 1000, 5, 18, 20, true,  false,  10]
+                      "resources/guns/projectiles/vieuxFusil.png",  5, 1000, 5, 18, 20, false,  false,  20]
     BAZOOKA     = [1, "resources/guns/bazookG.png",                 "resources/guns/bazookD.png",    
                       "resources/guns/projectiles/bazooka.png",     0, 750,  8, 18, 30, false, true,  100]
     REVOLVER    = [2, "resources/guns/revolverG.png",               "resources/guns/revolverD.png",
@@ -98,7 +98,7 @@ class Gun
                         # On crée la balle et on l'ajoute au hash
                         newBullet = Projectile.new self,id,pX+offsetX,pY+offsetY,tourneDroite,
                         currentProject,@currentGun[4],@currentGun[7],@currentGun[8],
-                        @currentGun[9],@currentGun[10],@currentGun[11]
+                        @currentGun[9],@currentGun[10],@currentGun[11], 15, 10
 
                         @bullets[id] = newBullet
                         id = id+1
@@ -148,7 +148,7 @@ class Gun
                     # On crée la balle et on l'ajoute au hash
                     newBullet = Projectile.new self,id,pX+offsetX,pY+offsetY,tourneDroite,
                     currentProject,@currentGun[4],@currentGun[7],@currentGun[8],
-                    @currentGun[9],@currentGun[10],@currentGun[11]
+                    @currentGun[9],@currentGun[10],@currentGun[11], 200
 
                     @bullets[id] = newBullet
                 else
