@@ -22,8 +22,10 @@ class Spawn
   end
 
   def peutEtreMechant
+    @intervalC += 1
     if(@intervalC >= @intervalMin)
       if (!@bossWait)
+
         if (rand*@ennemyRate).to_i == 1
           @intervalC = 0
           mechant = Mechant.new AlienType.RND,@map, @x, @y
@@ -31,26 +33,25 @@ class Spawn
             mechant.tourner
           end
           return mechant
-        else
-          return 1
         end
-      elsif @tabMechants.empty?
-          @bossWait = false
-          mechant = Mechant.new AlienType.RND_BOSS,@map, @x, @y
-          if((rand * 2).to_i == 0)
-            mechant.tourner
-          end
-          puts mechant
-          return mechant
-      else
-        return 1
+
       end
 
+    end
 
-      else
-        @intervalC += 1
-        return 1
+    if @bossWait && @tabMechants.empty?
+      @bossWait = false
+      mechant = Mechant.new AlienType.RND_BOSS,@map, @x, @y
+      if((rand * 2).to_i == 0)
+        mechant.tourner
       end
+      #puts mechant
+      return mechant
+    end
+
+    return 1
+
+
   end
 
   def apBoss
