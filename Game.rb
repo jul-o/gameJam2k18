@@ -66,7 +66,8 @@ class Game < Gosu::Window
 
     # Si le joueur n'a pas perdu, on spawne des méchants
     @caissesBoss.each {|n|
-      if @nbCaisses == n && !@apBossed && !bossInstanciated
+      if @nbCaisses == n && !@apBossed
+
         @spawns[0].apBoss
         @apBossed = true
         @framesTextBoss = NB_FRAMES_TEXT_BOSS
