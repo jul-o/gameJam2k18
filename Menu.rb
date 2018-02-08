@@ -84,7 +84,7 @@ class Menu < Gosu::Window
       @bool_cQuoi = false
       @bool_credit = false
 
-      sleep 0.1
+      sleep 0.2
     end
     if @btn_credit.isClick
       @bool_quitter = false

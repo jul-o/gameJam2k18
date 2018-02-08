@@ -122,7 +122,6 @@ class Projectile
 
     def distanceMaxParcourue
         distParcourue = (Math.sqrt((@x - @xSpawn).abs) + Math.sqrt((@y - @ySpawn).abs))
-        puts "#{@distTravel} - #{distParcourue}"
         return (@distTravel != 0 && distParcourue > @distTravel)
     end
 

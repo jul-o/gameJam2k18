@@ -69,7 +69,7 @@ class Personnage
     else
       img = @spG[@indiceSpriteCourant]
     end
-    img.draw @x, @y, 1, @ratioX, @ratioY
+    img.draw @x, @y - @sizeY + 50, 1, @ratioX, @ratioY
   end
 
   def update
