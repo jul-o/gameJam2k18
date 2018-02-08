@@ -3,6 +3,8 @@ require_relative 'particles/Explosion.rb'
 class Projectile
     attr_reader :x, :y
     
+    ID_SON_EXPLOSION = 5
+
     def initialize gun,id,x,y,tourneDroite,sprite,rY,sizeR,velocity,fadeOut,exploding,degatsProj, distTravel = 0, timeImo = 0
 
         # rY => radius de projection des balles
@@ -157,7 +159,10 @@ class Projectile
             return true if @particleMode
 
             @particleMode = true
-            
+
+            # Son explosion
+            Son.INST.playSon(ID_SON_EXPLOSION)
+                        
             # On crée une particule animée aux coordonnées courantes de la collision
             @particle = Explosion.new(@x,@y,self)            
 

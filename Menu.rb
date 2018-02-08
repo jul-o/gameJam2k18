@@ -9,7 +9,7 @@ class Menu < Gosu::Window
   @@HEIGHT = 700
 
   def initialize
-    @nom = "Menu NOMDUJEU"
+    @nom = "Castle Invaders"
 
     # Définition des boutons
     @btn_jouer = Bouton.new(self, "Jouer", 280, 0)

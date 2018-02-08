@@ -4,6 +4,7 @@ require_relative 'Mechant'
 require_relative 'Spawn'
 require_relative 'Caisse'
 require_relative 'Perdu'
+require_relative 'Son'
 
 class Game < Gosu::Window
 
@@ -16,6 +17,8 @@ class Game < Gosu::Window
 
   NB_FRAMES_TEXT_BOSS = 90
 
+  ID_SON_GONG = 7
+
   # Temps de l'effet de secousse
   SHAKE_FREQ = 50
   SHAKE_DURATION = 100
@@ -23,7 +26,7 @@ class Game < Gosu::Window
   # Dimensions map : 24x14
 
   def initialize
-    @nom = "GameJam"
+    @nom = "Castle Invaders"
     @@INSTANCE = self
 
     # Création de la map et du héros
@@ -77,7 +80,9 @@ class Game < Gosu::Window
     @shaking = false
 
     self.shake(10,10)
-  
+
+    # On initialise tous les sons
+    Son.INST
     #self.show
   end
 
@@ -115,6 +120,7 @@ class Game < Gosu::Window
         @apBossed = true
         @framesTextBoss = NB_FRAMES_TEXT_BOSS
         @caissesBoss.delete n
+        Son.INST.playSon(ID_SON_GONG)
       end
     }
     if @nbCaisses%@bossTousLesCaisses == 0 && @nbCaisses != 0 && !@apBossed
@@ -122,6 +128,7 @@ class Game < Gosu::Window
       @spawns[0].apBoss
       @apBossed = true
       @framesTextBoss = NB_FRAMES_TEXT_BOSS
+      Son.INST.playSon(ID_SON_GONG)
     end
 
     if @framesTextBoss != 0
