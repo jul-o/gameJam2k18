@@ -32,7 +32,7 @@ class Game < Gosu::Window
 
     # Nombre de caisses récupérées
     @nbCaisses = 0
-    @texteNbCaisse = Gosu::Image.from_text("0", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
+    @texteNbCaisse = Gosu::Image.from_text("SCORE : 0", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
 
     @perdu = false
 
@@ -82,7 +82,7 @@ class Game < Gosu::Window
     # On affiche le nom de l'arme en haut a gauche
     @listeArme[@indiceArmeCourante].draw(60,16,4,1,1,Gosu::Color.argb(255,255,255,255))
 
-    @texteNbCaisse.draw(500,16,4,1,1,Gosu::Color.argb(255,255,255,255))
+    @texteNbCaisse.draw(550,16,4,1,1,Gosu::Color.argb(255,255,255,255))
 end
 
   def update
@@ -146,7 +146,7 @@ end
       @nbCaisses += 1
 
       @apBossed = false
-      @texteNbCaisse = Gosu::Image.from_text("#{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
+      @texteNbCaisse = Gosu::Image.from_text("SCORE : #{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
 
     end
   end
@@ -211,7 +211,7 @@ end
       if (m.isEscaped)
         @mechants.delete(m)
         @nbCaisses = @nbCaisses-1
-        @texteNbCaisse = Gosu::Image.from_text("#{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
+        @texteNbCaisse = Gosu::Image.from_text("SCORE : #{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
       end
     end
   end
@@ -219,6 +219,7 @@ end
   # Méthode externe pour supprimer un mob de la liste
   def removeMob mob
     @mechants.delete mob
+    puts "mobSupp"
   end
 
   def getMap

@@ -50,8 +50,7 @@ module AlienType
   def self.RND_BOSS
     ALLMOBS[rand (NBMOBS..NBBOSSES - 1 + NBMOBS)]
   end
-  # Animation de mort du mob
-  @mobDying = false
+
 end
 
 class Mechant < Personnage
