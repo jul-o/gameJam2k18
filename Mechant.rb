@@ -88,8 +88,8 @@ class Mechant < Personnage
     super map, x, y, @vX, @sizeX, @sizeY, @spriteG, @spriteD, typeMob[6]
   end
 
-  def draw
-    super
+  def draw shakex, shakeY
+    super shakex, shakeY
   end
 
   def move

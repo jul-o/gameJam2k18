@@ -86,7 +86,7 @@ class Personnage
 
   #?=
   # Dessin de l'image courante
-  def draw
+  def draw shakeX,shakeY
     if @blinkNow then
       if @tourneVersDroite then
         img = @blinkSPD[@indiceSpriteCourant]
@@ -102,9 +102,9 @@ class Personnage
     end
 
     if @mobDying then
-      img.draw @x, @y - @sizeY + 50, 1, @ratioX, @ratioY, Gosu::Color.new(@dyingAlpha,255,255,255)
+      img.draw @x+shakeX, @y+shakeY - @sizeY + 50, 1, @ratioX, @ratioY, Gosu::Color.new(@dyingAlpha,255,255,255)
     else
-      img.draw @x, @y - @sizeY + 50, 1, @ratioX, @ratioY     
+      img.draw @x+shakeX, @y+shakeY - @sizeY + 50, 1, @ratioX, @ratioY     
     end
   end
 

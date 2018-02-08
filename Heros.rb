@@ -39,14 +39,14 @@ class Heros < Personnage
     super map, x, y, VELOCITY_H, @sizeX, @sizeY, EtatSprite::COURSE_GAUCHE, EtatSprite::COURSE_DROIT, TYPE_HEROS
   end
 
-  def draw
+  def draw shakeX,shakeY
     super
 
     # Ajout d'un recul après le tir
     if @gun.pullBack then
       @vX -= @tourneVersDroite ? @gun.getPullBack : -@gun.getPullBack
     end
-    @gun.draw @x,@y,@tourneVersDroite
+    @gun.draw @x+shakeX,@y+shakeY,@tourneVersDroite
   end
 
   def jump
