@@ -3,7 +3,7 @@ include Gosu
 require_relative 'Bouton'
 require_relative 'Menu'
 
-class Cquoi < Window
+class Perdu < Window
 
 
   # Dimension fenêtre du menu
@@ -12,16 +12,12 @@ class Cquoi < Window
 
   def initialize
     @text = Image.from_text(self,"
-                                   Castle Invaders est un Die 'N Retry.
-
-          Le principe est de ramasser les caisses afin de passer
-                a un niveau superieur tout en evitant de mourir.
-            Pour ce faire, des armes sont disponibles dans ces
-                dernieres pour que vous puissiez vous défendre.
 
 
-                                                  Bonne chance chevalier !","resources/retroComputer.ttf", 36)
+                    VOUS AVEZ PERDU ESPECE DE MAUVAIS
 
+
+","resources/retroComputer.ttf", 40)
     @bg = Image.new("resources/bg2.jpg")
     @curseur = Image.new("resources/curseur.png")
 
@@ -52,5 +48,4 @@ class Cquoi < Window
     @curseur.draw(mouse_x ,mouse_y, 30)
     @bg.draw(0, 0, -10)
   end
-
 end

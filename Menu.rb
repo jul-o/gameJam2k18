@@ -26,34 +26,8 @@ class Menu < Gosu::Window
     @bool_credit = false
     @bool_cQuoi = false
     @bool_quitter = false
+    @bool_retour = false
     @bool_menu = true
-
-    # Définition du crédit
-    @credit = Credits.new(self, "Chef de projet : X
-    Codeurs : Nathan Boulanger
-                  Habib Slim
-                  Jules Sang
-                  Leo Schmuck
-    Designer en chef : Vincent de Jonge
-    Aides-Designer : Leo Schmuck
-                           Habib Slim
-
-    Copyright
-")
-
-
-    # Définition du cQuoi
-    @cquoi = Cquoi.new(self, "
-                                          NOMDUJEU est un Die 'N Retry.
-
-                            Le principe est de ramasser les caisses afin de passer
-                            à un niveau superieur tout en evitant de mourir.
-                            Pour ce faire, des armes sont disponibles dans ces
-                            dernieres pour que vous puissiez vous défendre.
-
-
-                                            Bon Chance...
-")
 
 
     @bg = Gosu::Image.new("resources/bg2.jpg")
@@ -65,26 +39,36 @@ class Menu < Gosu::Window
   end
 
   def update
-
-
     if @bool_jouer
       close
       $game = Game.new.show
-
-    elsif @bool_quitter
+    end
+    if @bool_quitter
       exit
+    end
+    if @bool_cQuoi
+      close
+      $cQuoi = Cquoi.new.show
+    end
+    if @bool_retour
+      close
+      $menu = Menu.new.show
+    end
+    if @bool_credit
+      close
+      $credit = Credits.new.show
     end
   end
 
   def draw
     if @btn_jouer.isClick
       @bool_quitter = false
-      @bool_jouer = true
       @bool_menu = false
       @bool_cQuoi = false
       @bool_credit = false
+      @bool_jouer = true
 
-      sleep 1
+      sleep 0.1
     end
     if @btn_credit.isClick
       @bool_quitter = false
@@ -104,39 +88,19 @@ class Menu < Gosu::Window
       @bool_quitter = true
     end
     if @btn_retour.isClick
-      @bool_jouer = false
-      @bool_credit = false
       @bool_cQuoi = false
-      @bool_menu = true
+      @bool_credit = false
+      @bool_retour = true
     end
 
     if @bool_menu
       menu
-    elsif @bool_credit
-      credit
-    elsif @bool_cQuoi
-      cQuoi
     end
-
-    #puts "#{@bool_jouer} #{@bool_quitter} #{@bool_cQuoi} #{@bool_credit} #{@bool_menu} "
-    #puts @bool_credit
-    #puts @bool_menu
-    #puts @bool_quitter
-    #puts @bool_jouer
-
-
-
-  end
-  def cQuoi
-    fond
-    @cquoi.draw
-    @btn_retour.draw
   end
 
-  def credit
-    fond
-    @credit.draw
-    @btn_retour.draw
+  def fond
+    @curseur.draw(mouse_x ,mouse_y, 30)
+    @bg.draw(0, 0, -10)
   end
 
   def menu
@@ -145,10 +109,5 @@ class Menu < Gosu::Window
     @btn_credit.draw
     @btn_cQuoi.draw
     @btn_quitter.draw
-  end
-
-  def fond
-    @curseur.draw(mouse_x ,mouse_y, 30)
-    @bg.draw(0, 0, -10)
   end
 end
