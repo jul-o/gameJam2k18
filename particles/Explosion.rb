@@ -1,3 +1,5 @@
+require_relative 'Fumee'
+
 class Explosion
 
     # Constantes de classe
@@ -20,6 +22,9 @@ class Explosion
         # Coordonnées de la particule
         @x = cX
         @y = cY
+
+        # Point de collision
+        @collX, @collY = cX,cY
 
         # Rayon courant
         @currentR = BASE_D/2
@@ -60,6 +65,10 @@ class Explosion
             @x -= DELTA_R
             @y -= DELTA_R
         end
+    end
+
+    def deleteParticle
+        @pereProj.deleteParticle
     end
 
     def draw

@@ -14,8 +14,8 @@ class Heros < Personnage
   SIZE_X = 37
   SIZE_Y = 50
 
-  SPRITE_GAUCHE = "resources/marioG.png"
-  SPRITE_DROITE = "resources/marioD.png"
+  SPRITE_GAUCHE = ["resources/sprites/ChevalierG1.png","resources/sprites/ChevalierG2.png"]
+  SPRITE_DROITE = ["resources/sprites/ChevalierD1.png","resources/sprites/ChevalierD2.png"]
 
   VELOCITY_H = 8
 
@@ -57,11 +57,13 @@ class Heros < Personnage
 
   # Experimental : changer d'arme
   def switchWeapon
-    nb = (rand*Gun.NB_WEAPONS).to_i-1
+    nb = rand(1..Gun.NB_WEAPONS-1)
     while (@gun.allGuns[nb][0] == @gun.currentGun[0])
-      nb = (rand*Gun.NB_WEAPONS).to_i-1
+      nb = rand(1..Gun.NB_WEAPONS-1)
     end
     @gun.setWeapon(nb)
+
+    return nb
   end
 
   def self.SIZE
