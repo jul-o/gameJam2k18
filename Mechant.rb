@@ -69,6 +69,9 @@ class Mechant < Personnage
   # VELOCITY_M = 5
   attr_reader :estBoss
 
+  ID_SON_MORT_BOSS = 6
+  ID_SON_SPAWN_MONSTRE_NORMAUX = 0
+
   def initialize (typeMob, map, x , y)
     @velocity = typeMob[5]
     @sizeX = typeMob[0]
@@ -85,6 +88,9 @@ class Mechant < Personnage
 
     @frameJump = 0
 
+    # Bruit spawn
+    Son.INST.playSon(ID_SON_SPAWN_MONSTRE_NORMAUX)
+    
     super map, x, y, @vX, @sizeX, @sizeY, @spriteG, @spriteD, typeMob[6]
   end
 
@@ -120,7 +126,10 @@ class Mechant < Personnage
     if isDead then
       @mobDying = true
       # Game.INSTANCE.removeMob self
-      # Pour l'instant il ne fait que disaparaître => à faire
+
+      if @typePers == TYPE_BOSS
+        Son.INST.playSon(ID_SON_MORT_BOSS)
+      end
     end
 
     # On lance l'animation de clignotement du mob
