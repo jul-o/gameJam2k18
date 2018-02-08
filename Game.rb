@@ -3,7 +3,6 @@ require_relative 'Map'
 require_relative 'Mechant'
 require_relative 'Spawn'
 require_relative 'Caisse'
-require_relative 'Perdu'
 
 class Game < Gosu::Window
   # @@FPS = 60
@@ -11,6 +10,8 @@ class Game < Gosu::Window
 
   @@WIDTH, @@HEIGHT = 765, 627
   @@INSTANCE = nil
+
+  #
   
   # Dimensions map : 24x14
 
@@ -29,9 +30,17 @@ class Game < Gosu::Window
     @mechants = Array.new
     @spawns = initSpawns
 
-    @bool_perdu = false
+    # Nombre de caisses récupérées
+    @nbCaisses = 0
+    @texteNbCaisse = Gosu::Image.from_text("0", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
+
+    @perdu = false
 
     @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
+
+    @nbCaisses = 0
+    @apBossed = false
+    @caissesBoss = [2,5,10,15]
 
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
 
@@ -41,7 +50,7 @@ class Game < Gosu::Window
   end
 
   def initSpawns
-    [Spawn.new(8, 0, @map)]
+    [Spawn.new(8, 0, @map, @mechants)]
   end
 
   def draw
@@ -51,7 +60,14 @@ class Game < Gosu::Window
     @caisse.draw
 
     # Si le joueur n'a pas perdu, on spawne des méchants
-    if !@bool_perdu then
+    @caissesBoss.each {|n|
+      if @nbCaisses == n && !@apBossed
+        @spawns[0].apBoss
+        @apBossed = true
+      end
+    }
+
+    if !@perdu then
       @spawns.each {|s|
         resSpawn = s.tick
         if !(resSpawn === 1)
@@ -66,10 +82,11 @@ class Game < Gosu::Window
     # On affiche le nom de l'arme en haut a gauche
     @listeArme[@indiceArmeCourante].draw(60,16,4,1,1,Gosu::Color.argb(255,255,255,255))
 
-  end
+    @texteNbCaisse.draw(500,16,4,1,1,Gosu::Color.argb(255,255,255,255))
+end
 
   def update
-    if(!@bool_perdu) then
+    if(!@perdu) then
       # Déplacement du personnage
       @heros.setDirection(Direction::LEFT) if Gosu::button_down?(Gosu::KbLeft)
       @heros.setDirection(Direction::RIGHT) if Gosu::button_down?(Gosu::KbRight)
@@ -93,15 +110,15 @@ class Game < Gosu::Window
 
       # On regarde si le héros est touché par un mechant
       if (perdu?)
-        sleep 1
-        @bool_perdu = true
-        close
-        # $menu = Menu.new
-        $perdu = Perdu.new
+        #@perdu = true
+        #close
+        #$menu = Menu.new
       end
       
       testeBalleTouche
       testeRamasseCaisse
+
+      supprimeMort
     else
       $ETAT = $ETAT_PERDU
       close
@@ -126,6 +143,11 @@ class Game < Gosu::Window
       @indiceArmeCourante = @heros.switchWeapon
       puts @indiceArmeCourante
       @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
+      @nbCaisses += 1
+
+      @apBossed = false
+      @texteNbCaisse = Gosu::Image.from_text("#{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
+
     end
   end
 
@@ -175,13 +197,23 @@ class Game < Gosu::Window
       y = @heros.y
 
       rect1 = [x, y, Heros.SIZE[0], Heros.SIZE[1]]
-      rect2 = [mX, mY, m.sizeX, m.sizeY]
+      rect2 = [mX, mY - m.sizeY + 50, m.sizeX, m.sizeY]
 
       if isHit?([rect1[0],rect1[1]],[rect2[0],rect2[1]],[rect1[2],rect1[3]],[rect2[2],rect2[3]])
         return true
       end
     }
     return false
+  end
+
+  def supprimeMort
+    @mechants.each do |m|
+      if (m.isEscaped)
+        @mechants.delete(m)
+        @nbCaisses = @nbCaisses-1
+        @texteNbCaisse = Gosu::Image.from_text("#{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
+      end
+    end
   end
 
   # Méthode externe pour supprimer un mob de la liste
@@ -218,4 +250,3 @@ class Game < Gosu::Window
     @@INSTANCE
   end
 end
-

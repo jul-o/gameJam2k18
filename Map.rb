@@ -28,6 +28,9 @@ class Map
 
     @@INSTANCE = nil
 
+    # A ENLEVER QUAND ON AURA LE SPRITE
+    BLOC_SORTIE = 11
+
     def initialize
 
         # Définition des éléments visuels
@@ -56,7 +59,7 @@ class Map
                      [15,0,0,0,0,0,8,8,8,8,8,0,0,0,0,0,14],
                      [14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17],
                      [17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14],
-                     [12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12]]
+                     [12,12,12,12,12,12,12,12,11,12,12,12,12,12,12,12,12]]
 
         @@INSTANCE = self
     end
@@ -105,25 +108,27 @@ class Map
     # Collision du personnage
     # ==========================================================
     # Renvoie vrai s'il y a collison aux coordonnées pixel coord
-    def obstAt?(coordPx)
+    def obstAt?(coordPx, typePers =  0)
         # Pour chaque obstacle on vérifie les collisions
         x = 0
         y = 0
 
         @viewGrid.each do |line|
             line.each do |cell|
+              if !(typePers == 1 && cell == BLOC_SORTIE)
                 if (cell!=0) then
                     obstCoordPx = [x*CELLSIZE, y*CELLSIZE]
-                    return true if (isHit?(obstCoordPx, coordPx, Heros.SIZE))    
+                    return true if (isHit?(obstCoordPx, coordPx, Heros.SIZE))
                 end
-                x=x+1
+              end
+              x=x+1
             end
             x=0
             y=y+1
         end
-
         return false
     end
+
 
     # Collision des projectiles
     # ===============================================
