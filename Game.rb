@@ -32,7 +32,7 @@ class Game < Gosu::Window
 
     @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
 
-    super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
+    super @@WIDTH, @@HEIGHT, options = {:fullscreen => true}
 
     initialiseTexteArme
 
