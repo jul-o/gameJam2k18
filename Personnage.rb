@@ -14,6 +14,8 @@ class Personnage
   #GRAVITY_Y = 9*Game.FPS/60
   #?=
   DUREE_ANIMATION_COMPLETE_MS = 300
+  BLINK_FREQ = 75
+  BLINK_DURATION = 500
   #?=
 
   def initialize map, x, y, velocity, sizeX, sizeY, spriteGauche, spriteDroite
@@ -29,6 +31,10 @@ class Personnage
     spriteGauche.each do |sp|
       @spG.push(Gosu::Image.new(sp, :retro => true))
     end
+    
+    # Génère une liste de sprite "blink"
+    @blinkSPD = BlinkEffect.blink @spD
+    @blinkSPG = BlinkEffect.blink @spG
 
     # Attributs pour animation
     @indiceSpriteCourant = 0
@@ -59,15 +65,28 @@ class Personnage
     # Booléens
     @tourneVersDroite = true
     @jumping = false
+
+    # Blinking
+    @blinking,@blinkNow = false,false
+    @blinkT, @blinkDelay = 0
+    # --
   end
 
   #?=
   # Dessin de l'image courante
   def draw
-    if @tourneVersDroite then
-      img = @spD[@indiceSpriteCourant]
+    if @blinkNow then
+      if @tourneVersDroite then
+        img = @blinkSPD[@indiceSpriteCourant]
+      else
+        img = @blinkSPG[@indiceSpriteCourant]
+      end
     else
-      img = @spG[@indiceSpriteCourant]
+      if @tourneVersDroite then
+        img = @spD[@indiceSpriteCourant]
+      else
+        img = @spG[@indiceSpriteCourant]
+      end
     end
     img.draw @x, @y, 1, @ratioX, @ratioY
   end
@@ -77,6 +96,18 @@ class Personnage
       if (Gosu.milliseconds > @dateMajSprite + DUREE_ANIMATION_COMPLETE_MS/@NBSPRITE)
         indiceSpriteSuivant
         @dateMajSprite = Gosu.milliseconds
+      end
+    end
+
+    # Clignotement
+    if (@blinking) then
+      if (Gosu.milliseconds > @blinkT + BLINK_DURATION) then
+        @blinkNow = false
+      else
+        if (Gosu.milliseconds > @blinkDelay + BLINK_FREQ) then
+          @blinkNow = !@blinkNow
+          @blinkDelay = Gosu.milliseconds
+        end
       end
     end
   end
@@ -161,6 +192,18 @@ class Personnage
 
   def arrondiN(i)
     return (i-0.5).to_i
+  end
+
+  def blink
+    # Démarre l'animation de clignotement après la réception de dégâts
+    if (!@blinking) then
+      # On initialise les booléens
+      @blinking = true
+
+      # On initialise les timers
+      @blinkT = Gosu.milliseconds
+      @blinkDelay = @blinkT
+    end
   end
 
 end

@@ -91,11 +91,11 @@ class Game < Gosu::Window
       @mechants.each {|m| m.update}
 
       # On regarde si le héros est touché par un mechant
-      if (perdu?)
-        @perdu = true
-        close
-        $menu = Menu.new
-      end
+      # if (perdu?)
+      #   @perdu = true
+      #   close
+      #   $menu = Menu.new
+      # end
       
       testeBalleTouche
       testeRamasseCaisse

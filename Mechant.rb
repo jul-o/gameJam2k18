@@ -1,4 +1,5 @@
 require_relative 'Personnage'
+require_relative 'particles/BlinkEffect'
 
 # Définit les différents types de mobs
 # Format :      0  -   1  -      2      -     3      -    4   -    5
@@ -42,11 +43,8 @@ class Mechant < Personnage
     @sizeX = typeMob[0]
     @sizeY = typeMob[1]
 
-    #?=
-    # SUPPRIMER CES 2 LIGNES
     @spriteD = typeMob[2]
     @spriteG = typeMob[3]
-    #?=
 
     @pV = typeMob[4]
 
@@ -55,9 +53,7 @@ class Mechant < Personnage
 
     @frameJump = 0
 
-    #?=
     super map, x, y, @vX, @sizeX, @sizeY, @spriteG, @spriteD
-    #?=
   end
 
   def draw
@@ -93,6 +89,9 @@ class Mechant < Personnage
       Game.INSTANCE.removeMob self
       # Pour l'instant il ne fait que disaparaître => à faire
     end
+
+    # On lance l'animation de clignotement du mob
+    blink
   end
 
   def isDead
