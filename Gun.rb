@@ -4,20 +4,19 @@ require_relative 'Projectile'
 # et définition de leurs projectiles
 module Guns
     # Ind   :   0   -     1       -     2       
-    # Forme : indice, spriteGauche, spriteDroit
+    # Forme : indice, spriteDroit, spriteGauche
     #-    3     -    4    -        5         -     6     
     # projectile, radiusY, delaiRechargementMS, reculPx, 
     # -          7         -     8   -   9   -    10     -    11   -     12      -  13
     # rayon du projectile, vélocité, fadeOut, exploding, degatsProj,  shakeForce   idSon
-
-    VIEUX_FUSIL = [0, "resources/guns/vieuxFusilG.png",             "resources/guns/vieuxFusilD.png",
-                      "resources/guns/projectiles/vieuxFusil.png",  5, 500, 5, 18, 20, false,  false,  60, 7,  4]
-    BAZOOKA     = [1, "resources/guns/bazookG.png",                 "resources/guns/bazookD.png",
-                      "resources/guns/projectiles/bazooka.png",     0, 1500,  8, 18, 30, false, true,  20, 20, 3] #sf 13
-    REVOLVER    = [2, "resources/guns/revolverG.png",               "resources/guns/revolverD.png",
-                      "resources/guns/projectiles/revolver.png",    0, 650,  6, 20, 25, false, false, 101, 5,  2]
-    MACHINE_GUN = [3, "resources/guns/machineGunG.png",             "resources/guns/machineGunD.png",
-                      "resources/guns/projectiles/machineGun.png",  7,  15x,  7, 15, 18, false, false,  15, 6,  1]
+    VIEUX_FUSIL = [0, "resources/guns/gunsD/shotgun.png",          "resources/guns/gunsG/shotgun.png",
+                      "resources/guns/projectiles/vieuxFusil.png",  5, 500, 5, 18, 20, false,  false,  30, 7,  4]
+    BAZOOKA     = [1, "resources/guns/gunsD/bazooka.png",          "resources/guns/gunsG/bazooka.png",
+                      "resources/guns/projectiles/bazooka.png",     0, 1500,  8, 18, 30, false, true,  15, 13, 3]
+    REVOLVER    = [2, "resources/guns/gunsD/revolver.png",         "resources/guns/gunsG/revolver.png",
+                      "resources/guns/projectiles/revolver.png",    0, 500,  6, 20, 25, false, false, 100, 5,  2]
+    MACHINE_GUN = [3, "resources/guns/gunsD/minigun.png",          "resources/guns/gunsG/minigun.png",
+                      "resources/guns/projectiles/machineGun.png",  7,  10,  7, 15, 18, false, false,  15, 6,  1]
     # DART_GUN    = [3, "resources/guns/machineGunG.png",             "resources/guns/machineGunD.png",
     #                 "resources/guns/projectiles/machineGun.png",  7,  10,  7, 15, 18, false, false,  10]
 end
@@ -25,8 +24,8 @@ end
 class Gun
 
     # Constantes de classe
-    SIZE_X = 30
-    SIZE_Y = 7
+    SIZE_X = 20
+    SIZE_Y = 9
     NB_WEAPONS = 4
 
     attr_reader :bullets, :allGuns, :currentGun
@@ -37,7 +36,8 @@ class Gun
         # Création des images gun
         @images = []        
         @allGuns.each do |spFile|
-            @images << Gosu::Image.new(spFile[1], :retro => true)            
+            # Création du sprite droite\gauche
+            @images << [Gosu::Image.new(spFile[1], :retro => true), Gosu::Image.new(spFile[2], :retro => true)]
         end
 
         # Chargement des projectiles
@@ -47,8 +47,8 @@ class Gun
         end
 
         # Calcul des ratios x\y
-        @ratioX = SIZE_X.to_f/210
-        @ratioY = SIZE_Y.to_f/50
+        @ratioX = 3
+        @ratioY = 3   
 
         # Gun courant
         @currentGun = Guns::VIEUX_FUSIL
@@ -66,9 +66,9 @@ class Gun
     def draw pX,pY,tourneDroite
         # Calcul des offsets
         offsetX = tourneDroite ? +SIZE_X : -SIZE_X
-        offsetY = Heros.SIZE[1]/2
+        offsetY = Heros.SIZE[1]/2 - 15 
 
-        currentImg.draw pX+offsetX, pY+offsetY, 1, @ratioX, @ratioY
+        currentImg(tourneDroite).draw pX+offsetX, pY+offsetY, 1, @ratioX, @ratioY
 
         # Dessin des projectiles
         @bullets.each do |key, bullet|
@@ -183,8 +183,8 @@ class Gun
     end
 
     # Renvoie l'image du gun courant
-    def currentImg
-        @images[@currentGun[0]]
+    def currentImg tournerDroit
+        @images[currentGun[0]][tournerDroit ? 0 : 1]
     end
 
     # Renvoie le sprite du projectile courant
