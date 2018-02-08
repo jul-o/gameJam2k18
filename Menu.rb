@@ -12,10 +12,10 @@ class Menu < Gosu::Window
     @nom = "Menu NOMDUJEU"
 
     # Définition des boutons
-    @btn_jouer = Bouton.new(self, "Jouer", 180, 0)
-    @btn_credit = Bouton.new(self, "Credits", 180 + 120, 0)
-    @btn_cQuoi = Bouton.new(self, "C QUOI ?", 300 + 120, 0)
-    @btn_quitter = Bouton.new(self, "Quitter", 420 + 120, 0, "resources/porte.png")
+    @btn_jouer = Bouton.new(self, "Jouer", 280, 0)
+    @btn_credit = Bouton.new(self, "Credits", 350 + 20, 0)
+    @btn_cQuoi = Bouton.new(self, "C QUOI ?", 440 + 20, 0)
+    @btn_quitter = Bouton.new(self, "Quitter", 530 + 20, 0, "resources/porte.png")
 
     # Bouton retour pour les pages crédits et cQuoi
     @btn_retour = Bouton.new(self, "Retour", 550, 7)

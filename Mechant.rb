@@ -35,7 +35,7 @@ module AlienType
                               "resources/sprites/slime/slimeG3.png",
                               "resources/sprites/slime/slimeG4.png",
                               "resources/sprites/slime/slimeG5.png",
-                              "resources/sprites/slime/slimeG6.png"], 200, 3, TYPE_BOSS]
+                              "resources/sprites/slime/slimeG6.png"], 500, 3, TYPE_BOSS]
 
   # Variables pratiques
   NBMOBS = 4
@@ -107,8 +107,8 @@ class Mechant < Personnage
 
     # Si le mob est mort après l'attaque, on lance l'animation de mort
     if isDead then
-      @mobDying = true
-      # Game.INSTANCE.removeMob self
+      # @mobDying = true
+      Game.INSTANCE.removeMob self
       # Pour l'instant il ne fait que disaparaître => à faire
     end
 
