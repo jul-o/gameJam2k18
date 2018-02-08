@@ -64,11 +64,27 @@ class Menu < Gosu::Window
     self.show
   end
 
-  def draw
+  def update
 
+
+    if @bool_jouer
+      close
+      $game = Game.new.show
+
+    elsif @bool_quitter
+      exit
+    end
+  end
+
+  def draw
     if @btn_jouer.isClick
-      @bool_menu = false
+      @bool_quitter = false
       @bool_jouer = true
+      @bool_menu = false
+      @bool_cQuoi = false
+      @bool_credit = false
+
+      sleep 1
     end
     if @btn_credit.isClick
       @bool_quitter = false
@@ -86,7 +102,6 @@ class Menu < Gosu::Window
     end
     if @btn_quitter.isClick
       @bool_quitter = true
-      #abort("REVIENS")
     end
     if @btn_retour.isClick
       @bool_jouer = false
@@ -95,23 +110,23 @@ class Menu < Gosu::Window
       @bool_menu = true
     end
 
-    puts "#{@bool_jouer} #{@bool_quitter} #{@bool_cQuoi} #{@bool_credit} #{@bool_menu} "
-
-    if @bool_credit
+    if @bool_menu
+      menu
+    elsif @bool_credit
       credit
     elsif @bool_cQuoi
       cQuoi
-    elsif @bool_jouer
-      a = Game.new
-    elsif @bool_menu
-      menu
-    elsif @bool_quitter
-      abort("REVIENS")
     end
 
+    #puts "#{@bool_jouer} #{@bool_quitter} #{@bool_cQuoi} #{@bool_credit} #{@bool_menu} "
+    #puts @bool_credit
+    #puts @bool_menu
+    #puts @bool_quitter
+    #puts @bool_jouer
+
+
+
   end
-
-
   def cQuoi
     fond
     @cquoi.draw
