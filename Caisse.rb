@@ -8,7 +8,7 @@ class Caisse
   def initialize x, y, map
     @map = map
 
-    while (map.getCase ([x,y])) != 0
+    while (map.getCase ([x,y])) != 0 || y < 4
       x = (rand * 15).to_i + 1
       y = (rand * 13).to_i + 1
     end

@@ -11,11 +11,11 @@ module Guns
     # rayon du projectile, vélocité, fadeOut, exploding, degatsProj
 
     VIEUX_FUSIL = [0, "resources/guns/vieuxFusilG.png",             "resources/guns/vieuxFusilD.png",
-                      "resources/guns/projectiles/vieuxFusil.png",  5, 1000, 5, 18, 20, false,  false,  20]
+                      "resources/guns/projectiles/vieuxFusil.png",  5, 500, 5, 18, 20, false,  false,  20]
     BAZOOKA     = [1, "resources/guns/bazookG.png",                 "resources/guns/bazookD.png",    
-                      "resources/guns/projectiles/bazooka.png",     0, 750,  8, 18, 30, false, true,  100]
+                      "resources/guns/projectiles/bazooka.png",     0, 1500,  8, 18, 30, false, true,  100]
     REVOLVER    = [2, "resources/guns/revolverG.png",               "resources/guns/revolverD.png",
-                      "resources/guns/projectiles/revolver.png",    0, 300,  6, 20, 25, false, false, 100]
+                      "resources/guns/projectiles/revolver.png",    0, 500,  6, 20, 25, false, false, 100]
     MACHINE_GUN = [3, "resources/guns/machineGunG.png",             "resources/guns/machineGunD.png",
                       "resources/guns/projectiles/machineGun.png",  7,  10,  7, 15, 18, false, false,  10]
     # DART_GUN    = [3, "resources/guns/machineGunG.png",             "resources/guns/machineGunD.png",

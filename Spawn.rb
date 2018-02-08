@@ -40,7 +40,7 @@ class Spawn
           if((rand * 2).to_i == 0)
             mechant.tourner
           end
-          puts mechant
+          #puts mechant
           return mechant
       else
         return 1
