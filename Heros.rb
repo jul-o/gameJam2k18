@@ -1,6 +1,15 @@
 require_relative 'Personnage'
 require_relative 'Gun'
 
+module EtatSprite
+  DEFAUT_DROIT = Gosu::Image.new("resources/sprites/ChevalierIddleD.png", :retro => true)
+  DEFAUT_GAUCHE = Gosu::Image.new("resources/sprites/ChevalierIddleG.png", :retro => true)
+  COURSE_DROIT = ["resources/sprites/ChevalierD1.png",
+                  "resources/sprites/ChevalierD2.png"]
+  COURSE_GAUCHE = ["resources/sprites/ChevalierG1.png",
+                   "resources/sprites/ChevalierG2.png"]
+end
+
 class Heros < Personnage
   attr_reader :img, :gun
 
@@ -13,9 +22,6 @@ class Heros < Personnage
 
   SIZE_X = 37
   SIZE_Y = 50
-
-  SPRITE_GAUCHE = ["resources/sprites/ChevalierG1.png","resources/sprites/ChevalierG2.png"]
-  SPRITE_DROITE = ["resources/sprites/ChevalierD1.png","resources/sprites/ChevalierD2.png"]
 
   VELOCITY_H = 8
 
@@ -30,10 +36,10 @@ class Heros < Personnage
     # Création du gun du menz
     @gun = Gun.new
 
-    super map, x, y, VELOCITY_H, @sizeX, @sizeY, SPRITE_GAUCHE, SPRITE_DROITE
+    super map, x, y, VELOCITY_H, @sizeX, @sizeY, EtatSprite::COURSE_GAUCHE, EtatSprite::COURSE_DROIT, false
   end
 
-  def draw    
+  def draw
     super
 
     # Ajout d'un recul après le tir
@@ -55,6 +61,17 @@ class Heros < Personnage
     @gun.shoot @x,@y,@tourneVersDroite
   end
 
+  def update
+    super
+    ###
+    if (@vX == 0)
+      @spriteCourant = EtatSprite::DEFAUT_DROIT if @tourneVersDroite
+      @spriteCourant = EtatSprite::DEFAUT_GAUCHE if !@tourneVersDroite
+    end
+    ###
+    @vX = 0
+  end
+
   # Experimental : changer d'arme
   def switchWeapon
     nb = rand(1..Gun.NB_WEAPONS-1)
@@ -72,7 +89,6 @@ class Heros < Personnage
 
   def move
     super
-    @vX = 0
     # Saut
     if @vY < 0
       (arrondiN(-@vY)).times { if @map.obstAt?([@x,@y-1]) then @vY = 0 else @y -= 1 end }

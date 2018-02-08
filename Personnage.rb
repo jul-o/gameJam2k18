@@ -8,7 +8,7 @@ end
 
 class Personnage
   # Getter sur les attributs
-  attr_accessor :x, :y, :velocity, :sizeX, :sizeY, :tourneVersDroite
+  attr_accessor :x, :y, :velocity, :sizeX, :sizeY, :tourneVersDroite, :estMort
 
   # Constantes de classe
   #GRAVITY_Y = 9*Game.FPS/60
@@ -18,7 +18,7 @@ class Personnage
   BLINK_DURATION = 500
   #?=
 
-  def initialize map, x, y, velocity, sizeX, sizeY, spriteGauche, spriteDroite
+  def initialize map, x, y, velocity, sizeX, sizeY, spriteGauche, spriteDroite, estMonstre
     # Création  des sprites gauche\droite
     @GRAVITY_Y = 2#*Game.FPS/60
 
@@ -70,6 +70,10 @@ class Personnage
     @blinking,@blinkNow = false,false
     @blinkT, @blinkDelay = 0
     # --
+
+    # Mob ou non
+    @estMonstre = estMonstre
+    @escaped = false
   end
 
   #?=
@@ -150,13 +154,19 @@ class Personnage
     # Gravité
     @vY += 1.5
     if !((0..(Game.HEIGHT - @sizeY)) ===(@y + @vY))
-      @vY = 0
+      # Si le menz dépasse de la map on l'arrete
+      @vY = 0 if !@estMonstre
+      # Si c'est un monstre on le laisse dépasser mais on le déclare comme mort pour pouvoir le supprimer
+      @escaped = true if @estMonstre
     end
 
     if @vY > 0
-      arrondiN(@vY).times { if @map.obstAt?([@x,@y+1])
-                  then @vY = 0; @jumping = false
-                  else @y += 1 end }
+      arrondiN(@vY).times {
+        if @map.obstAt?([@x,@y+1], @estMonstre) then
+          @vY = 0; @jumping = false
+        else
+          @y += 1
+        end }
     end
 
     # et on calcule la nouvelle position du bolosse (si on ne sort pas du cadre)

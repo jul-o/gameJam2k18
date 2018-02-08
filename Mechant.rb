@@ -32,6 +32,10 @@ module AlienType
   def self.RND
     ALLMOBS[rand (0..NBMOBS-1)]
   end
+
+  # Animation de mort du mob
+  @mobDying = false
+
 end
 
 class Mechant < Personnage
@@ -53,7 +57,7 @@ class Mechant < Personnage
 
     @frameJump = 0
 
-    super map, x, y, @vX, @sizeX, @sizeY, @spriteG, @spriteD
+    super map, x, y, @vX, @sizeX, @sizeY, @spriteG, @spriteD, true
   end
 
   def draw
@@ -86,6 +90,7 @@ class Mechant < Personnage
 
     # Si le mob est mort après l'attaque, on lance l'animation de mort
     if isDead then
+      # @mobDying = true
       Game.INSTANCE.removeMob self
       # Pour l'instant il ne fait que disaparaître => à faire
     end
@@ -96,5 +101,9 @@ class Mechant < Personnage
 
   def isDead
     @pV <= 0
+  end
+
+  def isEscaped
+    @escaped
   end
 end
