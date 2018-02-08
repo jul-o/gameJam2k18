@@ -11,13 +11,13 @@ module Guns
     # rayon du projectile, vélocité, fadeOut, exploding, degatsProj,  shakeForce   idSon
 
     VIEUX_FUSIL = [0, "resources/guns/vieuxFusilG.png",             "resources/guns/vieuxFusilD.png",
-                      "resources/guns/projectiles/vieuxFusil.png",  5, 500, 5, 18, 20, false,  false,  20, 7,  4]
+                      "resources/guns/projectiles/vieuxFusil.png",  5, 500, 5, 18, 20, false,  false,  60, 7,  4]
     BAZOOKA     = [1, "resources/guns/bazookG.png",                 "resources/guns/bazookD.png",
-                      "resources/guns/projectiles/bazooka.png",     0, 1500,  8, 18, 30, false, true,  15, 13, 3]
+                      "resources/guns/projectiles/bazooka.png",     0, 1500,  8, 18, 30, false, true,  20, 20, 3] #sf 13
     REVOLVER    = [2, "resources/guns/revolverG.png",               "resources/guns/revolverD.png",
-                      "resources/guns/projectiles/revolver.png",    0, 500,  6, 20, 25, false, false, 100, 5,  2]
+                      "resources/guns/projectiles/revolver.png",    0, 650,  6, 20, 25, false, false, 101, 5,  2]
     MACHINE_GUN = [3, "resources/guns/machineGunG.png",             "resources/guns/machineGunD.png",
-                      "resources/guns/projectiles/machineGun.png",  7,  10,  7, 15, 18, false, false,  10, 6,  1]
+                      "resources/guns/projectiles/machineGun.png",  7,  15x,  7, 15, 18, false, false,  15, 6,  1]
     # DART_GUN    = [3, "resources/guns/machineGunG.png",             "resources/guns/machineGunD.png",
     #                 "resources/guns/projectiles/machineGun.png",  7,  10,  7, 15, 18, false, false,  10]
 end

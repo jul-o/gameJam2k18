@@ -6,11 +6,11 @@ require_relative 'particles/BlinkEffect'
 #             sizeX, sizeY, spriteDroit, spriteGauche,  pvMax,  vélocité, typePers, vélocitéBase
 module AlienType
   CANARD_VERT =   [35, 50, ["resources/sprites/aliens/AlienVertD1.png", "resources/sprites/aliens/AlienVertD2.png"],
-                   ["resources/sprites/aliens/AlienVertG1.png",  "resources/sprites/aliens/AlienVertG2.png"], 30, 3, TYPE_MONSTRE, 3]
+                   ["resources/sprites/aliens/AlienVertG1.png",  "resources/sprites/aliens/AlienVertG2.png"], 101, 3, TYPE_MONSTRE, 3]
   CANARD_ROUGE =  [35, 50,  ["resources/sprites/aliens/AlienRougeD1.png", "resources/sprites/aliens/AlienRougeD2.png"],
-                            ["resources/sprites/aliens/AlienRougeG1.png", "resources/sprites/aliens/AlienRougeG2.png"], 30,3, TYPE_MONSTRE, 3]
+                            ["resources/sprites/aliens/AlienRougeG1.png", "resources/sprites/aliens/AlienRougeG2.png"], 101,3, TYPE_MONSTRE, 3]
   CANARD_VIOLET = [35, 50,  ["resources/sprites/aliens/AlienVioletD1.png", "resources/sprites/aliens/AlienVioletD2.png"],
-                            ["resources/sprites/aliens/AlienVioletG1.png", "resources/sprites/aliens/AlienVioletG2.png"], 30,3, TYPE_MONSTRE, 3]
+                            ["resources/sprites/aliens/AlienVioletG1.png", "resources/sprites/aliens/AlienVioletG2.png"], 101,3, TYPE_MONSTRE, 3]
   SLIME_BLEU    = [50, 50,  ["resources/sprites/slime/slimeD1.png",
                              "resources/sprites/slime/slimeD2.png",
                              "resources/sprites/slime/slimeD3.png",
@@ -22,7 +22,7 @@ module AlienType
                              "resources/sprites/slime/slimeG3.png",
                              "resources/sprites/slime/slimeG4.png",
                              "resources/sprites/slime/slimeG5.png",
-                             "resources/sprites/slime/slimeG6.png"], 40, 3, TYPE_MONSTRE, 3]
+                             "resources/sprites/slime/slimeG6.png"], 101, 3, TYPE_MONSTRE, 3]
 
   SLIME_BLEU_BOSS    = [100, 100,  ["resources/sprites/aliens/spriteBoss1G.png",
                              "resources/sprites/aliens/spriteBoss2G.png",
@@ -46,7 +46,7 @@ module AlienType
                              "resources/sprites/aliens/spriteBoss8D.png",
                              "resources/sprites/aliens/spriteBoss9D.png",
                              "resources/sprites/aliens/spriteBoss10D.png",
-                             "resources/sprites/aliens/spriteBoss11D.png"], 300, 3, TYPE_BOSS, 3]
+                             "resources/sprites/aliens/spriteBoss11D.png"], 500, 3, TYPE_BOSS, 3]
 
   # Variables pratiques
   NBMOBS = 4
