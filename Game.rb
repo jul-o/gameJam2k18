@@ -27,6 +27,12 @@ class Game < Gosu::Window
     @heros = Heros.new @map, 1, 10
     
     # Fond d'écran
+    @imageEtoiles = Gosu::Image.new("resources/fondEtoile.png", :retro=>true)
+    @imageEtoiles2 = Gosu::Image.new("resources/fondEtoile.png", :retro=>true)
+    @xEtoiles = -@@WIDTH
+    @xEtoiles2 = 0
+    @frameEtoiles = 0
+
     @bg = Gosu::Image.new("resources/bg.png", :retro=>true)
     @bgRatio = @@WIDTH.to_f/@bg.width
 
@@ -62,10 +68,28 @@ class Game < Gosu::Window
 
   def draw
     # Dessin des éléments principaux de l'écran
+
+    @imageEtoiles.draw(@xEtoiles,0,-2, self.width.to_f/@imageEtoiles.width.to_f, self.height.to_f/@imageEtoiles.height.to_f)
+    @imageEtoiles2.draw(@xEtoiles2,0,-2, self.width.to_f/@imageEtoiles.width.to_f, self.height.to_f/@imageEtoiles.height.to_f)
+    @frameEtoiles += 1
+    if(@frameEtoiles == 4)
+      @xEtoiles += 1
+      @xEtoiles2 += 1
+      @frameEtoiles = 0
+    end
+    if @xEtoiles >= self.width
+      @xEtoiles = -self.width
+    end
+    if @xEtoiles2 >= self.width
+      @xEtoiles2 = -self.width
+    end
+
+
     @bg.draw(0, 0, -1, @bgRatio, @bgRatio)
     @heros.draw
     @map.draw
     @caisse.draw
+
 
     # Si le joueur n'a pas perdu, on spawne des méchants
     @caissesBoss.each {|n|
@@ -139,7 +163,6 @@ end
         @perdu = true
         sleep 1
         close
-        #$menu = Menu.new
         $perdu = Perdu.new
       end
       
@@ -217,18 +240,20 @@ end
   # ==> Vrai si en contact
   def perdu?
     @mechants.each {|m|
-      mX = m.x
-      mY = m.y
+      if (!m.isDead)
+        mX = m.x
+        mY = m.y
 
-      # Coordonnées du personnage
-      x = @heros.x
-      y = @heros.y
+        # Coordonnées du personnage
+        x = @heros.x
+        y = @heros.y
 
-      rect1 = [x, y, Heros.SIZE[0], Heros.SIZE[1]]
-      rect2 = [mX, mY - m.sizeY + 50, m.sizeX, m.sizeY]
+        rect1 = [x, y, Heros.SIZE[0], Heros.SIZE[1]]
+        rect2 = [mX, mY - m.sizeY + 50, m.sizeX, m.sizeY]
 
-      if isHit?([rect1[0],rect1[1]],[rect2[0],rect2[1]],[rect1[2],rect1[3]],[rect2[2],rect2[3]])
-        return true
+        if isHit?([rect1[0],rect1[1]],[rect2[0],rect2[1]],[rect1[2],rect1[3]],[rect2[2],rect2[3]])
+          return true
+        end
       end
     }
     return false

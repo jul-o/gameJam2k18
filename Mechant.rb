@@ -6,11 +6,11 @@ require_relative 'particles/BlinkEffect'
 #             sizeX, sizeY, spriteDroit, spriteGauche,  pvMax,  vélocité, typePers
 module AlienType
   CANARD_VERT =   [35, 50, ["resources/sprites/aliens/AlienVertD1.png", "resources/sprites/aliens/AlienVertD2.png"],
-                   ["resources/sprites/aliens/AlienVertG1.png",  "resources/sprites/aliens/AlienVertG2.png"], 30, 5, TYPE_MONSTRE]
+                   ["resources/sprites/aliens/AlienVertG1.png",  "resources/sprites/aliens/AlienVertG2.png"], 30, 3, TYPE_MONSTRE]
   CANARD_ROUGE =  [35, 50,  ["resources/sprites/aliens/AlienRougeD1.png", "resources/sprites/aliens/AlienRougeD2.png"],
-                            ["resources/sprites/aliens/AlienRougeG1.png", "resources/sprites/aliens/AlienRougeG2.png"], 30,5, TYPE_MONSTRE]
+                            ["resources/sprites/aliens/AlienRougeG1.png", "resources/sprites/aliens/AlienRougeG2.png"], 30,3, TYPE_MONSTRE]
   CANARD_VIOLET = [35, 50,  ["resources/sprites/aliens/AlienVioletD1.png", "resources/sprites/aliens/AlienVioletD2.png"],
-                            ["resources/sprites/aliens/AlienVioletG1.png", "resources/sprites/aliens/AlienVioletG2.png"], 30,5, TYPE_MONSTRE]
+                            ["resources/sprites/aliens/AlienVioletG1.png", "resources/sprites/aliens/AlienVioletG2.png"], 30,3, TYPE_MONSTRE]
   SLIME_BLEU    = [50, 50,  ["resources/sprites/slime/slimeD1.png",
                              "resources/sprites/slime/slimeD2.png",
                              "resources/sprites/slime/slimeD3.png",
