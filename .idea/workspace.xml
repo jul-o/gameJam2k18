@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f6981fe-23e9-4175-b6bb-497b4f10feba" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/bouton.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/boutonHover.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Bouton.rb" afterPath="$PROJECT_DIR$/Bouton.rb" />
-      <change beforePath="$PROJECT_DIR$/Mechant.rb" afterPath="$PROJECT_DIR$/Mechant.rb" />
-      <change beforePath="$PROJECT_DIR$/Menu.rb" afterPath="$PROJECT_DIR$/Menu.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -504,7 +499,7 @@
       <workItem from="1518085043317" duration="1250000" />
       <workItem from="1518092433847" duration="1033000" />
       <workItem from="1518095440277" duration="335000" />
-      <workItem from="1518096205327" duration="1253000" />
+      <workItem from="1518096205327" duration="1421000" />
     </task>
     <task id="LOCAL-00001" summary="debut caisse">
       <created>1517913945044</created>
@@ -569,11 +564,18 @@
       <option name="project" value="LOCAL" />
       <updated>1518077164492</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Boutons">
+      <created>1518097795157</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1518097795157</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71252000" />
+    <option name="totallyTimeSpent" value="71420000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -619,7 +621,8 @@
     <MESSAGE value="Menu - crédits et tout" />
     <MESSAGE value="frf" />
     <MESSAGE value="Save menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Save menu" />
+    <MESSAGE value="Boutons" />
+    <option name="LAST_COMMIT_MESSAGE" value="Boutons" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
