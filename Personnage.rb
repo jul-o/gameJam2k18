@@ -81,7 +81,9 @@ class Personnage
     
     # Animation de mort du mob
     @mobDying = false
-    @dyingAngle = 0
+    @dyingAnimMax = [150, 150]
+    @dyingAnimVal = [5, 5]
+    @dyingAnimMin = [5,5]
   end
 
   #?=
@@ -102,9 +104,7 @@ class Personnage
     end
 
     if @mobDying then
-      # img.draw @x, @y - @sizeY + 50, 1, @ratioX, @ratioY
-      #draw_rot(x, y, z, angle, center_x = 0.5, center_y = 0.5, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default) ⇒ void 
-      img.draw_rot @x, @y, @dyingAngle, @x, @y
+      img.draw @x, @y - @sizeY + 50, 1, @ratioX, @ratioY
     else
       img.draw @x, @y - @sizeY + 50, 1, @ratioX, @ratioY     
     end
@@ -131,10 +131,6 @@ class Personnage
       end
     end
 
-    # Effet de rotation
-    if(@mobDying) then
-      @dyingAngle += 10
-    end
   end
 
   def indiceSpriteSuivant
