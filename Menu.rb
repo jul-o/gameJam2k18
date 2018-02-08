@@ -76,8 +76,6 @@ class Menu < Gosu::Window
       @bool_menu = false
       @bool_cQuoi = false
       @bool_credit = true
-
-      sleep 0.2
     end
     if @btn_cQuoi.isClick
       @bool_credit = false
@@ -85,20 +83,14 @@ class Menu < Gosu::Window
       @bool_jouer = false
       @bool_menu = false
       @bool_cQuoi = true
-
-      sleep 0.2
     end
     if @btn_quitter.isClick
       @bool_quitter = true
-
-      sleep 0.2
     end
     if @btn_retour.isClick
       @bool_cQuoi = false
       @bool_credit = false
       @bool_retour_Menu = true
-
-      sleep 0.2
     end
 
     if @bool_menu

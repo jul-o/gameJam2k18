@@ -8,7 +8,7 @@ class Credits < Window
   @@HEIGHT = 700
 
   def initialize
-    @text = Image.from_text(self,"                                         Credits de Castle Invaders
+    @text1 = Image.from_text(self, "                                         Credits
 
     Codeurs : Nathan Boulanger
                         Habib Slim
@@ -19,8 +19,7 @@ class Credits < Window
                                         Habib Slim
 
 
-Copyright ©",
-                            "resources/retroComputer.ttf", 36)
+Copyright ©", "resources/retroComputer.ttf", 36)
 
     @bg = Image.new("resources/bg2.jpg")
     @curseur = Image.new("resources/curseur.png")
@@ -36,7 +35,7 @@ Copyright ©",
   def draw
     fond
     self.draw_rect(20, 20, self.width - 40, self.height - 40, Color.argb(200, 180, 70, 70), 5)
-    @text.draw(70, 70, 10, 1, 1, Color.argb(255, 255, 255, 255))
+    @text1.draw(70, 70, 10, 1, 1, Color.argb(255, 255, 255, 255))
     @btn_retour.draw
   end
 

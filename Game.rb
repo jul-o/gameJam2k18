@@ -6,6 +6,8 @@ require_relative 'Caisse'
 require_relative 'Perdu'
 
 class Game < Gosu::Window
+
+  attr_writer :framesTextVitesse
   # @@FPS = 60
   # @@REFRESH_RATE = 1000/@@FPS
 
@@ -38,6 +40,10 @@ class Game < Gosu::Window
     @bg = Gosu::Image.new("resources/bg.png", :retro=>true)
     @bgRatio = @@WIDTH.to_f/@bg.width
 
+    AlienType::ALLMOBS.each {|m|
+      m[5] = m[7]
+    }
+
     @mechants = Array.new
     @spawns = initSpawns
 
@@ -55,10 +61,12 @@ class Game < Gosu::Window
     @caissesBoss = [2]
     @bossTousLesCaisses = 10
     @imageTextBoss = Gosu::Image.from_text("Il arrive...", 50, :font => "resources/SIXTY.ttf")
+    @imageTextVitesse = Gosu::Image.from_text("La vitesse augmente !", 50, :font => "resources/SIXTY.ttf")
     #@imageFondTexteBoss = Gosu::Image()
 
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
     @framesTextBoss = 0
+    @framesTextVitesse = 0
 
     initialiseTexteArme
 
@@ -74,7 +82,7 @@ class Game < Gosu::Window
   end
 
   def initSpawns
-    [Spawn.new(8, 0, @map, @mechants)]
+    [Spawn.new(8, 0, @map, @mechants, self)]
   end
 
   def draw
@@ -121,6 +129,15 @@ class Game < Gosu::Window
       Gosu::draw_rect(0,self.height/2 - @imageTextBoss.height/2 - 75,self.width,100,Gosu::Color.new(150*@framesTextBoss/60,0,0,0))
 
       @framesTextBoss -= 1
+    end
+
+
+    if @framesTextVitesse != 0 && @framesTextBoss == 0
+      puts @framesTextVitesse
+      @imageTextVitesse.draw(self.width/2 - @imageTextVitesse.width/2,self.height/2 - @imageTextVitesse.height/2 - 50,1,1,1,Color.argb(255*@framesTextVitesse/60, 255, 255, 255))
+      Gosu::draw_rect(0,self.height/2 - @imageTextVitesse.height/2 - 75,self.width,100,Gosu::Color.new(150*@framesTextVitesse/60,0,0,0))
+
+      @framesTextVitesse -= 1
     end
 
     if !@perdu then
@@ -178,6 +195,7 @@ end
 
       # On regarde si le héros est touché par un mechant
       if (perdu?)
+        sleep 0.7
         @perdu = true
         shake(10,10)      
         close

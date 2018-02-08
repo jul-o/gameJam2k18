@@ -1,7 +1,8 @@
 class Spawn
   SIZE_X = 200
   SIZE_Y = 100
-  def initialize x, y, map, intervalMin = 30, ennemyRate = 90, tabMechants
+  def initialize x, y, map, intervalMin = 30, ennemyRate = 90, tabMechants, game
+    @game = game
     @x = x
     @y = y
     coordPx = Map.coordToPx [x, y]
@@ -75,8 +76,9 @@ class Spawn
       @bossWait = false
       mechant = Mechant.new AlienType.RND_BOSS,@map, @x, @y
       AlienType::ALLMOBS.each {|m|
-        m[5] += 2
+        m[5] += 1
       }
+      @game.framesTextVitesse = 90
       if((rand * 2).to_i == 0)
         mechant.tourner
       end

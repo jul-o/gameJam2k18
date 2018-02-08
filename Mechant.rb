@@ -46,7 +46,7 @@ module AlienType
                              "resources/sprites/aliens/spriteBoss8D.png",
                              "resources/sprites/aliens/spriteBoss9D.png",
                              "resources/sprites/aliens/spriteBoss10D.png",
-                             "resources/sprites/aliens/spriteBoss11D.png"], 500, 3, TYPE_BOSS, 3]
+                             "resources/sprites/aliens/spriteBoss11D.png"], 300, 3, TYPE_BOSS, 3]
 
   # Variables pratiques
   NBMOBS = 4
