@@ -3,6 +3,7 @@ require_relative 'Map'
 require_relative 'Mechant'
 require_relative 'Spawn'
 require_relative 'Caisse'
+require_relative 'Perdu'
 
 class Game < Gosu::Window
   # @@FPS = 60
@@ -35,6 +36,7 @@ class Game < Gosu::Window
     # Nombre de caisses récupérées
     @nbCaisses = 0
     @texteNbCaisse = Gosu::Image.from_text("SCORE : 0", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
+
 
     @perdu = false
 
@@ -76,7 +78,9 @@ class Game < Gosu::Window
     }
 
     if @framesTextBoss != 0
-      @imageTextBoss.draw(self.width/2 - @imageTextBoss.width/2,self.height/2 - @imageTextBoss.height/2 - 50,1,1,1,Color.argb(255, 255, 255, 255))
+      @imageTextBoss.draw(self.width/2 - @imageTextBoss.width/2,self.height/2 - @imageTextBoss.height/2 - 50,1,1,1,Color.argb(255*@framesTextBoss/60, 255, 255, 255))
+      Gosu::draw_rect(0,self.height/2 - @imageTextBoss.height/2 - 75,self.width,100,Gosu::Color.new(150*@framesTextBoss/60,0,0,0))
+
       @framesTextBoss -= 1
     end
 
@@ -131,9 +135,10 @@ end
 
       # On regarde si le héros est touché par un mechant
       if (perdu?)
-        #@perdu = true
-        #close
+        @perdu = true
+        close
         #$menu = Menu.new
+        $perdu = Perdu.new
       end
       
       testeBalleTouche

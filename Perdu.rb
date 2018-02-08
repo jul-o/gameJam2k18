@@ -38,8 +38,9 @@ class Perdu < Window
 
   def update
     if @btn_retour.isClick
+      sleep 0.2
+      $menu = Menu.new
       close
-      $menu = Menu.new.show
     end
   end
 
