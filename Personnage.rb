@@ -122,6 +122,7 @@ class Personnage
     if (@blinking) then
       if (Gosu.milliseconds > @blinkT + BLINK_DURATION) then
         @blinkNow = false
+        @blinking = false
       else
         if (Gosu.milliseconds > @blinkDelay + BLINK_FREQ) then
           @blinkNow = !@blinkNow
