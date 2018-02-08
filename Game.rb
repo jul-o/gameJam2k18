@@ -22,7 +22,7 @@ class Game < Gosu::Window
     @heros = Heros.new @map, 1, 10
     
     # Fond d'écran
-    @bg = Gosu::Image.new("resources/bg.jpg", :retro=>true)
+    @bg = Gosu::Image.new("resources/bg.png", :retro=>true)
     @bgRatio = @@WIDTH.to_f/@bg.width
 
     @mechants = Array.new
@@ -63,7 +63,7 @@ class Game < Gosu::Window
     end
 
     # On affiche le nom de l'arme en haut a gauche
-    @listeArme[@indiceArmeCourante].draw(50,50,4,1,1,Gosu::Color.argb(255,255,255,255))
+    @listeArme[@indiceArmeCourante].draw(60,16,4,1,1,Gosu::Color.argb(255,255,255,255))
 
   end
 
@@ -76,11 +76,19 @@ class Game < Gosu::Window
       
       # Attaques
       @heros.shoot if Gosu::button_down?(Gosu::KbX)
-      @indiceArmeCourante = @heros.switchWeapon if Gosu::button_down?(Gosu::KbS)
+
+      # TEMPORAIRE
+      if Gosu::button_down?(Gosu::KbS) then
+        @indiceArmeCourante = @heros.switchWeapon 
+      end
 
       # Mise à jour des déplacements
       @heros.move
       @mechants.each {|m| m.move}
+
+      # Update des animations
+      @heros.update
+      @mechants.each {|m| m.update}
 
       # On regarde si le héros est touché par un mechant
       if (perdu?)
@@ -111,7 +119,9 @@ class Game < Gosu::Window
     hH = @heros.sizeY
 
     if isHit?([xH, yH], [xC, yC], [wH, hH], [wC, hC])
-      @heros.switchWeapon
+      # Changement de l'arme du héros et actualisation de l'arme courante
+      @indiceArmeCourante = @heros.switchWeapon
+      puts @indiceArmeCourante
       @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
     end
   end
@@ -134,15 +144,8 @@ class Game < Gosu::Window
           mechant.dealDMG bullet.degatsProj
 
           # => disparition du projectile si il ne doit pas exploser   
-          if bullet.explode
-            # On bute tous les mobs autour de la zone
-            @mechants.each do |mechant|
+          @heros.gun.bullets.delete key if !bullet.explode 
 
-            end
-
-          else
-            @heros.gun.bullets.delete key
-          end
           break
         end
       end
@@ -180,7 +183,6 @@ class Game < Gosu::Window
     return false
   end
 
-
   # Méthode externe pour supprimer un mob de la liste
   def removeMob mob
     @mechants.delete mob
@@ -191,10 +193,10 @@ class Game < Gosu::Window
   end
 
   def initialiseTexteArme
-    @listeArme = [Gosu::Image.from_text(self, "Fusil-à-pompe", "Arial", 20),
-                  Gosu::Image.from_text(self, "Bazooka", "Arial", 20),
-                  Gosu::Image.from_text(self, "Revolver", "Arial", 20),
-                  Gosu::Image.from_text(self, "Machine gun", "Arial", 20)]
+    @listeArme = [Gosu::Image.from_text("SHOTGUN",    22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center),
+                  Gosu::Image.from_text("BAZOOKA",    22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center),
+                  Gosu::Image.from_text("REVOLVER",   22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center),
+                  Gosu::Image.from_text("MACHINEGUN", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)]
     @indiceArmeCourante = 0
   end
 

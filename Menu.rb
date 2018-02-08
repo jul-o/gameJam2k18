@@ -72,7 +72,6 @@ class Menu < Gosu::Window
       $game = Game.new.show
 
     elsif @bool_quitter
-      abort("REVIENS")
       exit
     end
   end

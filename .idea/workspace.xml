@@ -2,10 +2,71 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f6981fe-23e9-4175-b6bb-497b4f10feba" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/particles/Fumee.rb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/SIXTY.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/bg.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/fenetre.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/particles/fumee.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/retroComputer.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/ChevalierIddleD.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/ChevalierIddleG.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/ChevalierSautD.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/ChevalierSautG.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/aliens/AlienRougeD1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/aliens/AlienRougeD2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/aliens/AlienRougeG1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/aliens/AlienRougeG2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/aliens/AlienVertD1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/aliens/AlienVertD2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/aliens/AlienVertG1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/aliens/AlienVertG2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/aliens/AlienVioletD1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/aliens/AlienVioletD2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/aliens/AlienVioletG1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/aliens/AlienVioletG2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/slime/slimeD1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/slime/slimeD2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/slime/slimeD3.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/slime/slimeD4.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/slime/slimeD5.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/slime/slimeD6.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/slime/slimeD7.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/slime/slimeD8.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/slime/slimeG1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/slime/slimeG2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/slime/slimeG3.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/slime/slimeG4.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/slime/slimeG5.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/slime/slimeG6.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/slime/slimeG7.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/sprites/slime/slimeG8.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/tileset/blocBrique1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/tileset/blocBrique2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/tileset/blocBrique3.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/tileset/blocBrique4.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/tileset/blocBrique5.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/tileset/blocBrique6.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/tileset/blocBrique7.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/resources/tileset/blocLisse.png" />
+      <change beforePath="$PROJECT_DIR$/Bouton.rb" afterPath="$PROJECT_DIR$/Bouton.rb" />
+      <change beforePath="$PROJECT_DIR$/Cquoi.rb" afterPath="$PROJECT_DIR$/Cquoi.rb" />
+      <change beforePath="$PROJECT_DIR$/Credits.rb" afterPath="$PROJECT_DIR$/Credits.rb" />
       <change beforePath="$PROJECT_DIR$/Game.rb" afterPath="$PROJECT_DIR$/Game.rb" />
+      <change beforePath="$PROJECT_DIR$/Heros.rb" afterPath="$PROJECT_DIR$/Heros.rb" />
       <change beforePath="$PROJECT_DIR$/Main.rb" afterPath="$PROJECT_DIR$/Main.rb" />
+      <change beforePath="$PROJECT_DIR$/Map.rb" afterPath="$PROJECT_DIR$/Map.rb" />
+      <change beforePath="$PROJECT_DIR$/Mechant.rb" afterPath="$PROJECT_DIR$/Mechant.rb" />
       <change beforePath="$PROJECT_DIR$/Menu.rb" afterPath="$PROJECT_DIR$/Menu.rb" />
+      <change beforePath="$PROJECT_DIR$/Personnage.rb" afterPath="$PROJECT_DIR$/Personnage.rb" />
+      <change beforePath="$PROJECT_DIR$/particles/Explosion.rb" afterPath="$PROJECT_DIR$/particles/Explosion.rb" />
+      <change beforePath="$PROJECT_DIR$/resources/SIXTY.TTF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/resources/ovni.png" afterPath="$PROJECT_DIR$/resources/ovni.png" />
+      <change beforePath="$PROJECT_DIR$/resources/sprites/ChevalierD2.png" afterPath="$PROJECT_DIR$/resources/sprites/ChevalierG1.png" />
+      <change beforePath="$PROJECT_DIR$/resources/sprites/ChevalierG1.png" afterPath="$PROJECT_DIR$/resources/sprites/ChevalierD2.png" />
+      <change beforePath="$PROJECT_DIR$/resources/sprites/alienBD.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/resources/sprites/alienBD.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/resources/sprites/alienBG.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/resources/sprites/alienBG.png" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,26 +84,26 @@
     <SUITE FILE_PATH="coverage/gameJam2k18@Main__2_.coverage" NAME="Main (2) Coverage Results" MODIFIED="1517931020349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
     <SUITE FILE_PATH="coverage/gameJam2k18@Main__3_.coverage" NAME="Main (3) Coverage Results" MODIFIED="1517952100216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
     <SUITE FILE_PATH="coverage/gameJam2k18@Heros.coverage" NAME="Heros Coverage Results" MODIFIED="1518008624752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
-    <SUITE FILE_PATH="coverage/gameJam2k18@Main.coverage" NAME="Main Coverage Results" MODIFIED="1518017822607" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
+    <SUITE FILE_PATH="coverage/gameJam2k18@Main.coverage" NAME="Main Coverage Results" MODIFIED="1518077950651" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
     <SUITE FILE_PATH="coverage/gameJam2k18@main.coverage" NAME="main Coverage Results" MODIFIED="1517827314936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gameJam2k18" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="24" column="9" lean-forward="false" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+            <state relative-caret-position="51">
+              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Menu.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Menu.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Menu.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="63" column="17" lean-forward="false" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+            <state relative-caret-position="349">
+              <caret line="84" column="26" lean-forward="true" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -51,8 +112,8 @@
       <file leaf-file-name="Game.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Game.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="91" column="8" lean-forward="false" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="8" />
+            <state relative-caret-position="1547">
+              <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -104,9 +165,9 @@
         <option value="$PROJECT_DIR$/Gun.rb" />
         <option value="$PROJECT_DIR$/Heros.rb" />
         <option value="$PROJECT_DIR$/Bouton.rb" />
-        <option value="$PROJECT_DIR$/Menu.rb" />
-        <option value="$PROJECT_DIR$/Main.rb" />
         <option value="$PROJECT_DIR$/Game.rb" />
+        <option value="$PROJECT_DIR$/Main.rb" />
+        <option value="$PROJECT_DIR$/Menu.rb" />
       </list>
     </option>
   </component>
@@ -116,7 +177,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="387" />
     <option name="y" value="116" />
     <option name="width" value="902" />
@@ -140,6 +201,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -156,7 +218,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -323,6 +384,7 @@
       <workItem from="1518007012814" duration="1712000" />
       <workItem from="1518008774675" duration="1980000" />
       <workItem from="1518011269340" duration="5728000" />
+      <workItem from="1518077673450" duration="317000" />
     </task>
     <task id="LOCAL-00001" summary="debut caisse">
       <created>1517913945044</created>
@@ -349,19 +411,19 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62454000" />
+    <option name="totallyTimeSpent" value="62771000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="387" y="116" width="902" height="484" extended-state="0" />
+    <frame x="-4" y="0" width="1374" height="736" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19392523" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1969697" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37003058" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32874617" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20948012" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6083551" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31061807" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -371,6 +433,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32874617" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -395,7 +458,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -403,7 +465,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="21" lean-forward="false" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -411,7 +472,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="9" lean-forward="false" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -427,7 +487,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -435,7 +494,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="21" lean-forward="false" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -443,7 +501,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="9" lean-forward="false" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -475,7 +532,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
           <caret line="35" column="41" lean-forward="false" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -507,7 +563,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
           <caret line="35" column="41" lean-forward="true" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -523,7 +578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -563,7 +617,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="14" lean-forward="true" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -626,7 +679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
           <caret line="45" column="13" lean-forward="false" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -651,7 +703,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="112" column="7" lean-forward="false" selection-start-line="112" selection-start-column="7" selection-end-line="112" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -664,7 +715,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
           <caret line="77" column="26" lean-forward="true" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -680,7 +730,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="20" column="47" lean-forward="false" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -696,7 +745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -704,7 +752,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
           <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -712,30 +759,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="22" lean-forward="false" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Game.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="91" column="8" lean-forward="false" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Menu.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="63" column="17" lean-forward="false" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+        <state relative-caret-position="1547">
+          <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Main.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="24" column="9" lean-forward="false" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Menu.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="84" column="26" lean-forward="true" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
           <folding />
         </state>
       </provider>

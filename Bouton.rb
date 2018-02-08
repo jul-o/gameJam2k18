@@ -10,12 +10,9 @@ class Bouton
   # Un bouton est centré en x et n'a donc besoin que d'une fenêtre, d'un texte et de coordonnées en y et z
   def initialize(window, text, y, z, iconHover = "")
     @window = window
-    @text = Image.from_text(window, text, "resources/SIXTY.TTF", 50)
+    @text = Image.from_text(text, 40, :font => "resources/SIXTY.ttf")
     @image = Image.new("resources/Fond-rouge-fonce.jpg")
     @imageHover = Image.new("resources/Fond-rouge.jpg")
-    if iconHover != ""
-      @iconHover = Image.new(iconHover)
-    end
     @y = y
     @z = z
   end

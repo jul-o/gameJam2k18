@@ -6,7 +6,7 @@ class Credits
   def initialize(window, text)
 
     @window = window
-    @text = Image.from_text(window, text, "resources/SIXTY.TTF", 50)
+    @text = Image.from_text(window, text, "resources/SIXTY.ttf", 50)
 
   end
 
