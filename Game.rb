@@ -315,7 +315,7 @@ end
         x = @heros.x
         y = @heros.y
 
-        rect1 = [x, y, Heros.SIZE[0], Heros.SIZE[1]]
+        rect1 = [x+10, y+10, Heros.SIZE[0]-10, Heros.SIZE[1]-10]
         rect2 = [mX, mY - m.sizeY + 50, m.sizeX, m.sizeY]
 
         if isHit?([rect1[0],rect1[1]],[rect2[0],rect2[1]],[rect1[2],rect1[3]],[rect2[2],rect2[3]])
