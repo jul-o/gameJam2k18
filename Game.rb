@@ -38,6 +38,9 @@ class Game < Gosu::Window
 
     @mechants = Array.new
     @spawns = initSpawns
+    AlienType::ALLMOBS.each {|m|
+      m[5] = m[7]
+    }
 
     # Nombre de caisses récupérées
     @nbCaisses = 0
@@ -100,6 +103,7 @@ class Game < Gosu::Window
         @apBossed = true
         @framesTextBoss = NB_FRAMES_TEXT_BOSS
         @caissesBoss.delete n
+
       end
     }
     if @nbCaisses%@bossTousLesCaisses == 0 && @nbCaisses != 0 && !@apBossed

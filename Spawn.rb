@@ -74,6 +74,9 @@ class Spawn
     if @bossWait && @tabMechants.empty?
       @bossWait = false
       mechant = Mechant.new AlienType.RND_BOSS,@map, @x, @y
+      AlienType::ALLMOBS.each {|m|
+        m[5] += 2
+      }
       if((rand * 2).to_i == 0)
         mechant.tourner
       end
