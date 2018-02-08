@@ -38,6 +38,10 @@ class Game < Gosu::Window
 
     @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
 
+    @nbCaisses = 0
+    @apBossed = false
+    @caissesBoss = [2,5,10,15]
+
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
 
     initialiseTexteArme
@@ -46,7 +50,7 @@ class Game < Gosu::Window
   end
 
   def initSpawns
-    [Spawn.new(8, 0, @map)]
+    [Spawn.new(8, 0, @map, @mechants)]
   end
 
   def draw
@@ -56,6 +60,13 @@ class Game < Gosu::Window
     @caisse.draw
 
     # Si le joueur n'a pas perdu, on spawne des méchants
+    @caissesBoss.each {|n|
+      if @nbCaisses == n && !@apBossed
+        @spawns[0].apBoss
+        @apBossed = true
+      end
+    }
+
     if !@perdu then
       @spawns.each {|s|
         resSpawn = s.tick
@@ -133,7 +144,10 @@ end
       puts @indiceArmeCourante
       @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
       @nbCaisses += 1
+
+      @apBossed = false
       @texteNbCaisse = Gosu::Image.from_text("#{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
+
     end
   end
 
@@ -183,7 +197,7 @@ end
       y = @heros.y
 
       rect1 = [x, y, Heros.SIZE[0], Heros.SIZE[1]]
-      rect2 = [mX, mY, m.sizeX, m.sizeY]
+      rect2 = [mX, mY - m.sizeY + 50, m.sizeX, m.sizeY]
 
       if isHit?([rect1[0],rect1[1]],[rect2[0],rect2[1]],[rect1[2],rect1[3]],[rect2[2],rect2[3]])
         return true

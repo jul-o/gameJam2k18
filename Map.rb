@@ -108,14 +108,14 @@ class Map
     # Collision du personnage
     # ==========================================================
     # Renvoie vrai s'il y a collison aux coordonnées pixel coord
-    def obstAt?(coordPx, isMob = false)
+    def obstAt?(coordPx, typePers =  0)
         # Pour chaque obstacle on vérifie les collisions
         x = 0
         y = 0
 
         @viewGrid.each do |line|
             line.each do |cell|
-              if !(isMob && cell == BLOC_SORTIE)
+              if !(typePers == 1 && cell == BLOC_SORTIE)
                 if (cell!=0) then
                     obstCoordPx = [x*CELLSIZE, y*CELLSIZE]
                     return true if (isHit?(obstCoordPx, coordPx, Heros.SIZE))

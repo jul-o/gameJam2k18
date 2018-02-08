@@ -6,6 +6,10 @@ module Direction
   DOWN = [0,1]
 end
 
+TYPE_MONSTRE = 1
+TYPE_BOSS = 2
+TYPE_HEROS = 0
+
 class Personnage
   # Getter sur les attributs
   attr_accessor :x, :y, :velocity, :sizeX, :sizeY, :tourneVersDroite, :estMort
@@ -18,7 +22,7 @@ class Personnage
   BLINK_DURATION = 500
   #?=
 
-  def initialize map, x, y, velocity, sizeX, sizeY, spriteGauche, spriteDroite, estMonstre
+  def initialize map, x, y, velocity, sizeX, sizeY, spriteGauche, spriteDroite, typePers
     # Création  des sprites gauche\droite
     @GRAVITY_Y = 2#*Game.FPS/60
 
@@ -72,7 +76,7 @@ class Personnage
     # --
 
     # Mob ou non
-    @estMonstre = estMonstre
+    @typePers = typePers
     @escaped = false
   end
 
@@ -92,7 +96,7 @@ class Personnage
         img = @spG[@indiceSpriteCourant]
       end
     end
-    img.draw @x, @y, 1, @ratioX, @ratioY
+    img.draw @x, @y - @sizeY + 50, 1, @ratioX, @ratioY
   end
 
   def update
@@ -155,14 +159,14 @@ class Personnage
     @vY += 1.5
     if !((0..(Game.HEIGHT - @sizeY)) ===(@y + @vY))
       # Si le menz dépasse de la map on l'arrete
-      @vY = 0 if !@estMonstre
+      @vY = 0 if @typePers == TYPE_HEROS
       # Si c'est un monstre on le laisse dépasser mais on le déclare comme mort pour pouvoir le supprimer
-      @escaped = true if @estMonstre
+      @escaped = true if @typePers == TYPE_MONSTRE
     end
 
     if @vY > 0
       arrondiN(@vY).times {
-        if @map.obstAt?([@x,@y+1], @estMonstre) then
+        if @map.obstAt?([@x,@y+1], @typePers) then
           @vY = 0; @jumping = false
         else
           @y += 1

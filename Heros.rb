@@ -36,7 +36,7 @@ class Heros < Personnage
     # Création du gun du menz
     @gun = Gun.new
 
-    super map, x, y, VELOCITY_H, @sizeX, @sizeY, EtatSprite::COURSE_GAUCHE, EtatSprite::COURSE_DROIT, false
+    super map, x, y, VELOCITY_H, @sizeX, @sizeY, EtatSprite::COURSE_GAUCHE, EtatSprite::COURSE_DROIT, TYPE_HEROS
   end
 
   def draw
