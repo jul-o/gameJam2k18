@@ -24,18 +24,29 @@ module AlienType
                              "resources/sprites/slime/slimeG5.png",
                              "resources/sprites/slime/slimeG6.png"], 40, 3, TYPE_MONSTRE]
 
-  SLIME_BLEU_BOSS    = [100, 100,  ["resources/sprites/slime/slimeD1.png",
-                             "resources/sprites/slime/slimeD2.png",
-                             "resources/sprites/slime/slimeD3.png",
-                             "resources/sprites/slime/slimeD4.png",
-                             "resources/sprites/slime/slimeD5.png",
-                             "resources/sprites/slime/slimeD6.png"],
-                             ["resources/sprites/slime/slimeG1.png",
-                              "resources/sprites/slime/slimeG2.png",
-                              "resources/sprites/slime/slimeG3.png",
-                              "resources/sprites/slime/slimeG4.png",
-                              "resources/sprites/slime/slimeG5.png",
-                              "resources/sprites/slime/slimeG6.png"], 500, 3, TYPE_BOSS]
+  SLIME_BLEU_BOSS    = [100, 100,  ["resources/sprites/aliens/spriteBoss1G.png",
+                             "resources/sprites/aliens/spriteBoss2G.png",
+                             "resources/sprites/aliens/spriteBoss3G.png",
+                             "resources/sprites/aliens/spriteBoss4G.png",
+                             "resources/sprites/aliens/spriteBoss5G.png",
+                             "resources/sprites/aliens/spriteBoss6G.png",
+                             "resources/sprites/aliens/spriteBoss7G.png",
+                             "resources/sprites/aliens/spriteBoss8G.png",
+                             "resources/sprites/aliens/spriteBoss9G.png",
+                             "resources/sprites/aliens/spriteBoss10G.png",
+                             "resources/sprites/aliens/spriteBoss11G.png"],
+
+                             ["resources/sprites/aliens/spriteBoss1D.png",
+                             "resources/sprites/aliens/spriteBoss2D.png",
+                             "resources/sprites/aliens/spriteBoss3D.png",
+                             "resources/sprites/aliens/spriteBoss4D.png",
+                             "resources/sprites/aliens/spriteBoss5D.png",
+                             "resources/sprites/aliens/spriteBoss6D.png",
+                             "resources/sprites/aliens/spriteBoss7D.png",
+                             "resources/sprites/aliens/spriteBoss8D.png",
+                             "resources/sprites/aliens/spriteBoss9D.png",
+                             "resources/sprites/aliens/spriteBoss10D.png",
+                             "resources/sprites/aliens/spriteBoss11D.png"], 500, 3, TYPE_BOSS]
 
   # Variables pratiques
   NBMOBS = 4
@@ -107,8 +118,8 @@ class Mechant < Personnage
 
     # Si le mob est mort après l'attaque, on lance l'animation de mort
     if isDead then
-      #@mobDying = true
-      Game.INSTANCE.removeMob self
+      @mobDying = true
+      # Game.INSTANCE.removeMob self
       # Pour l'instant il ne fait que disaparaître => à faire
     end
 
