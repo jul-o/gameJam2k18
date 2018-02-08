@@ -94,7 +94,7 @@ class Menu < Gosu::Window
       @bool_menu = true
     end
 
-    puts "#{@bool_jouer} #{@bool_quitter} #{@bool_cQuoi} #{@bool_credit} #{@bool_menu} "
+    #puts "#{@bool_jouer} #{@bool_quitter} #{@bool_cQuoi} #{@bool_credit} #{@bool_menu} "
     #puts @bool_credit
     #puts @bool_menu
     #puts @bool_quitter

@@ -2,10 +2,9 @@ include Gosu
 
 class Cquoi
 
-
   def initialize(window, text)
     @window = window
-    @text = Image.from_text(window, text, "resources/SIXTY.TTF", 40)
+    @text = Image.from_text(window, text, "resources/SIXTY.ttf", 40)
   end
 
 
