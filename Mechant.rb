@@ -1,15 +1,16 @@
 require_relative 'Personnage'
+require_relative 'particles/BlinkEffect'
 
 # Définit les différents types de mobs
-# Format :      0  -   1  -      2      -     3      -    4   -    5
-#             sizeX, sizeY, spriteDroit, spriteGauche,  pvMax,  vélocité
+# Format :      0  -   1  -      2      -     3      -    4   -    5   -    6
+#             sizeX, sizeY, spriteDroit, spriteGauche,  pvMax,  vélocité, typePers
 module AlienType
   CANARD_VERT =   [35, 50, ["resources/sprites/aliens/AlienVertD1.png", "resources/sprites/aliens/AlienVertD2.png"],
-                   ["resources/sprites/aliens/AlienVertG1.png",  "resources/sprites/aliens/AlienVertG2.png"], 30, 5]
+                   ["resources/sprites/aliens/AlienVertG1.png",  "resources/sprites/aliens/AlienVertG2.png"], 30, 5, TYPE_MONSTRE]
   CANARD_ROUGE =  [35, 50,  ["resources/sprites/aliens/AlienRougeD1.png", "resources/sprites/aliens/AlienRougeD2.png"],
-                            ["resources/sprites/aliens/AlienRougeG1.png", "resources/sprites/aliens/AlienRougeG2.png"], 30,5]
+                            ["resources/sprites/aliens/AlienRougeG1.png", "resources/sprites/aliens/AlienRougeG2.png"], 30,5, TYPE_MONSTRE]
   CANARD_VIOLET = [35, 50,  ["resources/sprites/aliens/AlienVioletD1.png", "resources/sprites/aliens/AlienVioletD2.png"],
-                            ["resources/sprites/aliens/AlienVioletG1.png", "resources/sprites/aliens/AlienVioletG2.png"], 30,5]
+                            ["resources/sprites/aliens/AlienVioletG1.png", "resources/sprites/aliens/AlienVioletG2.png"], 30,5, TYPE_MONSTRE]
   SLIME_BLEU    = [50, 50,  ["resources/sprites/slime/slimeD1.png",
                              "resources/sprites/slime/slimeD2.png",
                              "resources/sprites/slime/slimeD3.png",
@@ -21,7 +22,7 @@ module AlienType
                              "resources/sprites/slime/slimeG3.png",
                              "resources/sprites/slime/slimeG4.png",
                              "resources/sprites/slime/slimeG5.png",
-                             "resources/sprites/slime/slimeG6.png"], 40, 3]
+                             "resources/sprites/slime/slimeG6.png"], 40, 3, TYPE_MONSTRE]
 
   SLIME_BLEU_BOSS    = [100, 100,  ["resources/sprites/slime/slimeD1.png",
                              "resources/sprites/slime/slimeD2.png",
@@ -34,7 +35,7 @@ module AlienType
                               "resources/sprites/slime/slimeG3.png",
                               "resources/sprites/slime/slimeG4.png",
                               "resources/sprites/slime/slimeG5.png",
-                              "resources/sprites/slime/slimeG6.png"], 200, 3]
+                              "resources/sprites/slime/slimeG6.png"], 200, 3, TYPE_BOSS]
 
   # Variables pratiques
   NBMOBS = 4
@@ -49,22 +50,23 @@ module AlienType
   def self.RND_BOSS
     ALLMOBS[rand (NBMOBS..NBBOSSES - 1 + NBMOBS)]
   end
+  # Animation de mort du mob
+  @mobDying = false
 end
 
 class Mechant < Personnage
 
   # VELOCITY_M = 5
+  attr_reader :estBoss
 
   def initialize (typeMob, map, x , y)
     @velocity = typeMob[5]
     @sizeX = typeMob[0]
     @sizeY = typeMob[1]
 
-    #?=
-    # SUPPRIMER CES 2 LIGNES
     @spriteD = typeMob[2]
     @spriteG = typeMob[3]
-    #?=
+    @estBoss = typeMob[6]
 
     @pV = typeMob[4]
 
@@ -73,9 +75,7 @@ class Mechant < Personnage
 
     @frameJump = 0
 
-    #?=
-    super map, x, y, @vX, @sizeX, @sizeY, @spriteG, @spriteD
-    #?=
+    super map, x, y, @vX, @sizeX, @sizeY, @spriteG, @spriteD, typeMob[6]
   end
 
   def draw
@@ -108,12 +108,20 @@ class Mechant < Personnage
 
     # Si le mob est mort après l'attaque, on lance l'animation de mort
     if isDead then
+      # @mobDying = true
       Game.INSTANCE.removeMob self
       # Pour l'instant il ne fait que disaparaître => à faire
     end
+
+    # On lance l'animation de clignotement du mob
+    blink
   end
 
   def isDead
     @pV <= 0
+  end
+
+  def isEscaped
+    @escaped
   end
 end

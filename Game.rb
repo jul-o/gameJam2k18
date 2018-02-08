@@ -10,6 +10,8 @@ class Game < Gosu::Window
 
   @@WIDTH, @@HEIGHT = 765, 627
   @@INSTANCE = nil
+
+  #
   
   # Dimensions map : 24x14
 
@@ -27,6 +29,10 @@ class Game < Gosu::Window
 
     @mechants = Array.new
     @spawns = initSpawns
+
+    # Nombre de caisses récupérées
+    @nbCaisses = 0
+    @texteNbCaisse = Gosu::Image.from_text("0", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
 
     @perdu = false
 
@@ -76,7 +82,8 @@ class Game < Gosu::Window
     # On affiche le nom de l'arme en haut a gauche
     @listeArme[@indiceArmeCourante].draw(60,16,4,1,1,Gosu::Color.argb(255,255,255,255))
 
-  end
+    @texteNbCaisse.draw(500,16,4,1,1,Gosu::Color.argb(255,255,255,255))
+end
 
   def update
     if(!@perdu) then
@@ -103,13 +110,15 @@ class Game < Gosu::Window
 
       # On regarde si le héros est touché par un mechant
       if (perdu?)
-        @perdu = true
-        close
-        $menu = Menu.new
+        #@perdu = true
+        #close
+        #$menu = Menu.new
       end
       
       testeBalleTouche
       testeRamasseCaisse
+
+      supprimeMort
     else
       $ETAT = $ETAT_PERDU
       close
@@ -135,8 +144,10 @@ class Game < Gosu::Window
       puts @indiceArmeCourante
       @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
       @nbCaisses += 1
+
       @apBossed = false
-      puts @nbCaisses
+      @texteNbCaisse = Gosu::Image.from_text("#{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
+
     end
   end
 
@@ -195,6 +206,16 @@ class Game < Gosu::Window
     return false
   end
 
+  def supprimeMort
+    @mechants.each do |m|
+      if (m.isEscaped)
+        @mechants.delete(m)
+        @nbCaisses = @nbCaisses-1
+        @texteNbCaisse = Gosu::Image.from_text("#{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
+      end
+    end
+  end
+
   # Méthode externe pour supprimer un mob de la liste
   def removeMob mob
     @mechants.delete mob
@@ -229,4 +250,3 @@ class Game < Gosu::Window
     @@INSTANCE
   end
 end
-
