@@ -26,7 +26,7 @@ class Menu < Gosu::Window
     @bool_credit = false
     @bool_cQuoi = false
     @bool_quitter = false
-    @bool_retour = false
+    @bool_retour_Menu = false
     @bool_menu = true
 
 
@@ -50,7 +50,7 @@ class Menu < Gosu::Window
       close
       $cQuoi = Cquoi.new.show
     end
-    if @bool_retour
+    if @bool_retour_Menu
       close
       $menu = Menu.new.show
     end
@@ -90,7 +90,7 @@ class Menu < Gosu::Window
     if @btn_retour.isClick
       @bool_cQuoi = false
       @bool_credit = false
-      @bool_retour = true
+      @bool_retour_Menu = true
     end
 
     if @bool_menu
@@ -98,10 +98,6 @@ class Menu < Gosu::Window
     end
   end
 
-  def fond
-    @curseur.draw(mouse_x ,mouse_y, 30)
-    @bg.draw(0, 0, -10)
-  end
 
   def menu
     fond
@@ -110,4 +106,11 @@ class Menu < Gosu::Window
     @btn_cQuoi.draw
     @btn_quitter.draw
   end
+
+
+  def fond
+    @curseur.draw(mouse_x ,mouse_y, 30)
+    @bg.draw(0, 0, -10)
+  end
+
 end
