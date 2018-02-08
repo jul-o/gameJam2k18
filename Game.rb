@@ -30,13 +30,13 @@ class Game < Gosu::Window
 
     @perdu = false
 
-    @caisse = Caisse.new 1,2, @map
+    @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
 
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
 
     initialiseTexteArme
 
-    self.show
+    #self.show
   end
 
   def initSpawns
@@ -85,6 +85,8 @@ class Game < Gosu::Window
       # On regarde si le héros est touché par un mechant
       if (perdu?)
         @perdu = true
+        close
+        $menu = Menu.new
       end
       
       testeBalleTouche

@@ -32,7 +32,7 @@ class Bouton
       @image.draw(@window.width/2 - @image.width/2, @y, @z)
     end
     # Centre le texte
-    @text.draw(@window.width/2 - @text.width/2, @y + @image.height/2 - @text.height/2, 4, 1, 1, Color.argb(255, 255, 255, 255))
+    @text.draw(@window.width/2 - @text.width/2, @y + @image.height/2 - @text.height/2, @z+1, 1, 1, Color.argb(255, 255, 255, 255))
   end
 
 
@@ -53,6 +53,14 @@ class Bouton
 
   def getY
     @y
+  end
+
+  def isClick
+    x = @window.mouse_x > @window.width/2 - @image.width/2 && @window.mouse_x < @window.width/2 + @image.width
+    y = @window.mouse_y > @y && @window.mouse_y < @y + @image.height
+    if button_down?(MS_LEFT)
+      return x == true && y == true
+    end
   end
 
 end
