@@ -127,27 +127,25 @@ class Game < Gosu::Window
   end
 
   def testeBalleTouche
-    @mechants.each do |mechant|
-      @heros.gun.bullets.each do |key, bullet|
-        xM = mechant.x
-        yM = mechant.y
-        wM = mechant.sizeX
-        hM = mechant.sizeY
+    @heros.gun.bullets.each do |key, bullet|      
+      xB = bullet.pos[0]
+      yB = bullet.pos[1]
+      wB = bullet.sizeR
+      hB = bullet.sizeR
 
-        xB = bullet.pos[0]
-        yB = bullet.pos[1]
-        wB = bullet.sizeR
-        hB = bullet.sizeR
+      @mechants.each do |mechant|
+          xM = mechant.x
+          yM = mechant.y
+          wM = mechant.sizeX
+          hM = mechant.sizeY
 
-        if isHit?([xM, yM], [xB,yB], [wM,hM], [wB,hB])
-          # On inflige les dégâts du projectile au mob touché
-          mechant.dealDMG bullet.degatsProj
+          if isHit?([xM, yM], [xB,yB], [wM,hM], [wB,hB])
+            # On inflige les dégâts du projectile au mob touché
+            mechant.dealDMG bullet.degatsProj
 
-          # => disparition du projectile si il ne doit pas exploser   
-          @heros.gun.bullets.delete key if !bullet.explode 
-
-          break
-        end
+            # => disparition du projectile si il ne doit pas exploser   
+            @heros.gun.bullets.delete key if !bullet.explode 
+          end
       end
     end
   end
