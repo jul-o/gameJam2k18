@@ -271,8 +271,7 @@ end
       @nbCaisses += 1
       @nbCaissesTotal += 1
 
-      # Son.INST.playSon(8)
-      # CRRATE
+      Son.INST.playSon(9)
 
       @apBossed = false
       @texteNbCaisse = Gosu::Image.from_text("SCORE : #{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)

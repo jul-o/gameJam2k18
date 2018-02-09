@@ -9,12 +9,14 @@ module ListSons
     SON_MORT_BOSS = [6, "resources/sons/mort-boss.wav"]
     SON_ARRIVEE_BOSS = [7, 'resources/sons/gong_boss.wav']
     SON_BOSS_TOMBE = [8, 'resources/sons/fall-down.wav']
+    SON_CRATE_PICKUP = [9, 'resources/sons/cratePickup.wav']
 end
 
 class Son
   @@INSTANCE = nil
   @@allSons = [ListSons::SON_SPAWN,     ListSons::SON_MINIGUN,   ListSons::SON_REVOLVER,      ListSons::SON_BAZOOKA, ListSons::SON_POMPE,
-                ListSons::SON_EXPLOSION, ListSons::SON_MORT_BOSS, ListSons::SON_ARRIVEE_BOSS, ListSons::SON_BOSS_TOMBE]
+               ListSons::SON_EXPLOSION, ListSons::SON_MORT_BOSS, ListSons::SON_ARRIVEE_BOSS,  ListSons::SON_BOSS_TOMBE,
+               ListSons::SON_CRATE_PICKUP]
 
   def initialize
     @sonsCharges = Array.new
@@ -51,6 +53,8 @@ class Son
         @sonsCharges[idSon].play(0.10,1,false)
       when ListSons::SON_POMPE[0]
         @sonsCharges[idSon].play(0.15,1,false)
+      when ListSons::SON_CRATE_PICKUP[0]
+        @sonsCharges[idSon].play(0.07,1,false)
       else
         @sonsCharges[idSon].play(0.4,1,false)
     end
