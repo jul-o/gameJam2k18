@@ -83,6 +83,7 @@ class Game < Gosu::Window
 
     # On initialise tous les sons
     Son.INST
+
     #self.show
   end
 

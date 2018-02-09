@@ -1,4 +1,5 @@
 module ListSons
+    MUSIQUE_FOND = ['resources/sons/fullMusic.ogg']
     SON_SPAWN = [0, 'resources/sons/spawn_mob.wav']
     SON_MINIGUN = [1, 'resources/sons/machinegun.wav']
     SON_REVOLVER = [2, 'resources/sons/revolver.wav']
@@ -20,6 +21,11 @@ module ListSons
         son = Gosu::Sample.new(ficSon[1])
         @sonsCharges << son
       end
+
+      # On joue la musique de fond
+      @music = Gosu::Song.new(ListSons::MUSIQUE_FOND[0])
+      @music.volume = 0.10
+      @music.play(true)
     end
       
     def self.INST
