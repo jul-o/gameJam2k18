@@ -38,17 +38,17 @@ class Menu < Gosu::Window
 
     # Animation du seul mob cool du jeu
     allSrc =
-    ["resources/sprites/aliens/spriteBoss1G.png",
-    "resources/sprites/aliens/spriteBoss2G.png",
-    "resources/sprites/aliens/spriteBoss3G.png",
-    "resources/sprites/aliens/spriteBoss4G.png",
-    "resources/sprites/aliens/spriteBoss5G.png",
-    "resources/sprites/aliens/spriteBoss6G.png",
-    "resources/sprites/aliens/spriteBoss7G.png",
-    "resources/sprites/aliens/spriteBoss8G.png",
-    "resources/sprites/aliens/spriteBoss9G.png",
-    "resources/sprites/aliens/spriteBoss10G.png",
-    "resources/sprites/aliens/spriteBoss11G.png"]
+    ["resources/sprites/aliens/bossR/spriteBoss1G.png",
+    "resources/sprites/aliens/bossR/spriteBoss2G.png",
+    "resources/sprites/aliens/bossR/spriteBoss3G.png",
+    "resources/sprites/aliens/bossR/spriteBoss4G.png",
+    "resources/sprites/aliens/bossR/spriteBoss5G.png",
+    "resources/sprites/aliens/bossR/spriteBoss6G.png",
+    "resources/sprites/aliens/bossR/spriteBoss7G.png",
+    "resources/sprites/aliens/bossR/spriteBoss8G.png",
+    "resources/sprites/aliens/bossR/spriteBoss9G.png",
+    "resources/sprites/aliens/bossR/spriteBoss10G.png",
+    "resources/sprites/aliens/bossR/spriteBoss11G.png"]
     @allSp = []
 
     allSrc.each do |src|

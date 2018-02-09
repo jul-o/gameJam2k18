@@ -24,42 +24,66 @@ module AlienType
                              "resources/sprites/slime/slimeG5.png",
                              "resources/sprites/slime/slimeG6.png"], 30, 7, TYPE_MONSTRE, 3]
 
-  SLIME_BLEU_BOSS    = [100, 100,  ["resources/sprites/aliens/spriteBoss1G.png",
-                             "resources/sprites/aliens/spriteBoss2G.png",
-                             "resources/sprites/aliens/spriteBoss3G.png",
-                             "resources/sprites/aliens/spriteBoss4G.png",
-                             "resources/sprites/aliens/spriteBoss5G.png",
-                             "resources/sprites/aliens/spriteBoss6G.png",
-                             "resources/sprites/aliens/spriteBoss7G.png",
-                             "resources/sprites/aliens/spriteBoss8G.png",
-                             "resources/sprites/aliens/spriteBoss9G.png",
-                             "resources/sprites/aliens/spriteBoss10G.png",
-                             "resources/sprites/aliens/spriteBoss11G.png"],
+  SLIME_BLEU_BOSS    = [100, 100,  ["resources/sprites/aliens/bossV/spriteBoss1G.png",
+  "resources/sprites/aliens/bossV/spriteBoss2G.png",
+  "resources/sprites/aliens/bossV/spriteBoss3G.png",
+  "resources/sprites/aliens/bossV/spriteBoss4G.png",
+  "resources/sprites/aliens/bossV/spriteBoss5G.png",
+  "resources/sprites/aliens/bossV/spriteBoss6G.png",
+  "resources/sprites/aliens/bossV/spriteBoss7G.png",
+  "resources/sprites/aliens/bossV/spriteBoss8G.png",
+  "resources/sprites/aliens/bossV/spriteBoss9G.png",
+  "resources/sprites/aliens/bossV/spriteBoss10G.png",
+  "resources/sprites/aliens/bossV/spriteBoss11G.png"],
 
-                             ["resources/sprites/aliens/spriteBoss1D.png",
-                             "resources/sprites/aliens/spriteBoss2D.png",
-                             "resources/sprites/aliens/spriteBoss3D.png",
-                             "resources/sprites/aliens/spriteBoss4D.png",
-                             "resources/sprites/aliens/spriteBoss5D.png",
-                             "resources/sprites/aliens/spriteBoss6D.png",
-                             "resources/sprites/aliens/spriteBoss7D.png",
-                             "resources/sprites/aliens/spriteBoss8D.png",
-                             "resources/sprites/aliens/spriteBoss9D.png",
-                             "resources/sprites/aliens/spriteBoss10D.png",
-                             "resources/sprites/aliens/spriteBoss11D.png"], 500, 3, TYPE_BOSS, 3]
+  ["resources/sprites/aliens/bossV/spriteBoss1D.png",
+  "resources/sprites/aliens/bossV/spriteBoss2D.png",
+  "resources/sprites/aliens/bossV/spriteBoss3D.png",
+  "resources/sprites/aliens/bossV/spriteBoss4D.png",
+  "resources/sprites/aliens/bossV/spriteBoss5D.png",
+  "resources/sprites/aliens/bossV/spriteBoss6D.png",
+  "resources/sprites/aliens/bossV/spriteBoss7D.png",
+  "resources/sprites/aliens/bossV/spriteBoss8D.png",
+  "resources/sprites/aliens/bossV/spriteBoss9D.png",
+  "resources/sprites/aliens/bossV/spriteBoss10D.png",
+  "resources/sprites/aliens/bossV/spriteBoss11D.png"], 500, 3, TYPE_BOSS, 3]
+
+  SLIME_VERT_BOSS    = [100, 100,  ["resources/sprites/aliens/bossR/spriteBoss1G.png",
+                            "resources/sprites/aliens/bossR/spriteBoss2G.png",
+                            "resources/sprites/aliens/bossR/spriteBoss3G.png",
+                            "resources/sprites/aliens/bossR/spriteBoss4G.png",
+                            "resources/sprites/aliens/bossR/spriteBoss5G.png",
+                            "resources/sprites/aliens/bossR/spriteBoss6G.png",
+                            "resources/sprites/aliens/bossR/spriteBoss7G.png",
+                            "resources/sprites/aliens/bossR/spriteBoss8G.png",
+                            "resources/sprites/aliens/bossR/spriteBoss9G.png",
+                            "resources/sprites/aliens/bossR/spriteBoss10G.png",
+                            "resources/sprites/aliens/bossR/spriteBoss11G.png"],
+
+                            ["resources/sprites/aliens/bossR/spriteBoss1D.png",
+                            "resources/sprites/aliens/bossR/spriteBoss2D.png",
+                            "resources/sprites/aliens/bossR/spriteBoss3D.png",
+                            "resources/sprites/aliens/bossR/spriteBoss4D.png",
+                            "resources/sprites/aliens/bossR/spriteBoss5D.png",
+                            "resources/sprites/aliens/bossR/spriteBoss6D.png",
+                            "resources/sprites/aliens/bossR/spriteBoss7D.png",
+                            "resources/sprites/aliens/bossR/spriteBoss8D.png",
+                            "resources/sprites/aliens/bossR/spriteBoss9D.png",
+                            "resources/sprites/aliens/bossR/spriteBoss10D.png",
+                            "resources/sprites/aliens/bossR/spriteBoss11D.png"], 500, 3, TYPE_BOSS, 3]
 
   # Variables pratiques
   NBMOBS = 4
   NBBOSSES = 1
-  ALLMOBS = [SLIME_BLEU, CANARD_VIOLET, CANARD_ROUGE, CANARD_VERT, SLIME_BLEU_BOSS] #les boss doivent etre déclarés après les mobs classiques
+  ALLMOBS = [SLIME_BLEU, CANARD_VIOLET, CANARD_ROUGE, CANARD_VERT, SLIME_BLEU_BOSS, SLIME_VERT_BOSS] #les boss doivent etre déclarés après les mobs classiques
 
   # Génère un mob au hasard et renvoie ses propriétés
   def self.RND
-    ALLMOBS[rand (0..NBMOBS-1)]
+    ALLMOBS[rand (0..NBMOBS-2)]
   end
 
   def self.RND_BOSS
-    ALLMOBS[rand (NBMOBS..NBBOSSES - 1 + NBMOBS)]
+    ALLMOBS[rand (4..5)]
   end
 
 end
