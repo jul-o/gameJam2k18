@@ -77,6 +77,12 @@ class Heros < Personnage
     nb = rand(0..Gun.NB_WEAPONS-1)
     while (@gun.allGuns[nb][0] == @gun.currentGun[0])
       nb = rand(0..Gun.NB_WEAPONS-1)
+
+      # => Le bazooka a 50% moins de chance d'être looté
+      if ((nb==1)&&(rand(1..2)==2)) then
+        # On reroll
+        nb = rand(0..Gun.NB_WEAPONS-1)
+      end
     end
     @gun.setWeapon(nb)
 
