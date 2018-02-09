@@ -3,16 +3,16 @@ include Gosu
 class Bouton
 
   # Dimension de l'image du bouton
-  @@Image_WIDTH = 462
-  @@Image_HEIGHT = 97
+  @@Image_WIDTH = 437
+  @@Image_HEIGHT = 70
 
 
   # Un bouton est centré en x et n'a donc besoin que d'une fenêtre, d'un texte et de coordonnées en y et z
   def initialize(window, text, y, z, iconHover = "")
     @window = window
-    @text1 = Image.from_text(text, 40, :font => "resources/retroComputer.ttf")
-    @image = Image.new("resources/bouton.png")
-    @imageHover = Image.new("resources/boutonHover.png")
+    # @text1 = Image.from_text(text, 40, :font => "resources/retroComputer.ttf")
+    @image =      Image.new("resources/menu/#{text}N.png")
+    @imageHover = Image.new("resources/menu/#{text}H.png")
     @y = y
     @z = z
   end
@@ -29,7 +29,7 @@ class Bouton
       @image.draw(@window.width/2 - @image.width/2, @y, @z)
     end
     # Centre le texte
-    @text1.draw(@window.width/2 - @text1.width/2, @y + @image.height/2 - @text1.height/2, @z+1, 1, 1, Color.argb(255, 255, 255, 255))
+    # @text1.draw(@window.width/2 - @text1.width/2, @y + @image.height/2 - @text1.height/2, @z+1, 1, 1, Color.argb(255, 255, 255, 255))
   end
 
 

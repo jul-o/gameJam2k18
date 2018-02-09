@@ -7,19 +7,17 @@ class Menu < Gosu::Window
   # Dimension fenêtre du menu
   @@WIDTH = 1200
   @@HEIGHT = 700
-
+  
   def initialize
     @nom = "Castle Invaders"
 
     # Définition des boutons
-    @btn_jouer = Bouton.new(self, "Jouer", 280, 0)
-    @btn_credit = Bouton.new(self, "Credits", 350 + 20, 0)
-    @btn_cQuoi = Bouton.new(self, "C QUOI ?", 440 + 20, 0)
-    @btn_quitter = Bouton.new(self, "Quitter", 530 + 20, 0, "resources/porte.png")
+    @btn_jouer = Bouton.new(self, "jouer", 240, 0)
+    @btn_credit = Bouton.new(self, "credits", 310 + 20, 0)
+    @btn_cQuoi = Bouton.new(self, "buts", 400 + 20, 0)
 
     # Bouton retour pour les pages crédits et cQuoi
-    @btn_retour = Bouton.new(self, "Retour", 550, 7)
-
+    @btn_retour = Bouton.new(self, "retour", 550, 7)
 
     # Booléens pour les pages
     @bool_jouer = false
@@ -29,9 +27,8 @@ class Menu < Gosu::Window
     @bool_retour_Menu = false
     @bool_menu = true
 
-
-    @bg = Gosu::Image.new("resources/bg2.jpg")
-    @curseur = Gosu::Image.new("resources/curseur.png")
+    @bg = Gosu::Image.new("resources/menu/bgMenu.png")
+    @curseur = Gosu::Image.new("resources/menu/curseur.png")
 
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
     self.caption = @nom
@@ -71,21 +68,18 @@ class Menu < Gosu::Window
       sleep 0.2
     end
     if @btn_credit.isClick
-      @bool_quitter = false
-      @bool_jouer = false
-      @bool_menu = false
-      @bool_cQuoi = false
-      @bool_credit = true
+      # @bool_quitter = false
+      # @bool_jouer = false
+      # @bool_menu = false
+      # @bool_cQuoi = false
+      # @bool_credit = true      
     end
     if @btn_cQuoi.isClick
-      @bool_credit = false
-      @bool_quitter = false
-      @bool_jouer = false
-      @bool_menu = false
-      @bool_cQuoi = true
-    end
-    if @btn_quitter.isClick
-      @bool_quitter = true
+      # @bool_credit = false
+      # @bool_quitter = false
+      # @bool_jouer = false
+      # @bool_menu = false
+      # @bool_cQuoi = true
     end
     if @btn_retour.isClick
       @bool_cQuoi = false
@@ -104,7 +98,6 @@ class Menu < Gosu::Window
     @btn_jouer.draw
     @btn_credit.draw
     @btn_cQuoi.draw
-    @btn_quitter.draw
   end
 
 

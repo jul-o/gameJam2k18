@@ -11,17 +11,11 @@ class Perdu < Window
   @@HEIGHT = 700
 
   def initialize
-    @text = Image.from_text(self,"
+    @text = Image.from_text("VOUS AVEZ PERDU !", 40, :font => "resources/retroComputer.ttf", :width => 1200, :align => :center)
+    @bg = Image.new("resources/menu/bgMenu.png")
+    @curseur = Image.new("resources/menu/curseur.png")
 
-
-                    VOUS AVEZ PERDU ESPECE DE MAUVAIS
-
-
-","resources/retroComputer.ttf", 40)
-    @bg = Image.new("resources/bg2.jpg")
-    @curseur = Image.new("resources/curseur.png")
-
-    @btn_retour = Bouton.new(self, "Retour", 550, 7)
+    @btn_retour = Bouton.new(self, "retour", 550, 7)
 
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
     self.caption = @nom
@@ -31,8 +25,8 @@ class Perdu < Window
 
   def draw
     fond
-    self.draw_rect(20, 20, self.width - 40, self.height - 40, Color.argb(200, 180, 70, 70), 5)
-    @text.draw(70, 70, 10, 1, 1, Color.argb(255, 255, 255, 255))
+    self.draw_rect(20, 20, self.width - 40, self.height - 40, Color.argb(200, 1, 0, 200), 5)
+    @text.draw(0, 250, 10, 1, 1, Color.argb(255, 255, 255, 255))
     @btn_retour.draw
   end
 

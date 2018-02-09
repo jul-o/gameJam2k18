@@ -20,14 +20,14 @@ class Cquoi < Window
 
                                                         Bonne chance chevalier !", "resources/retroComputer.ttf", 26)
 
-    @bg = Image.new("resources/bg2.jpg")
-    @curseur = Image.new("resources/curseur.png")
+    @bg = Image.new("resources/menu/bgMenu.png")
+    @curseur = Image.new("resources/menu/curseur.png")
 
     @text2 = Image.from_text(self, "Les personnages de Castle Invaders :", "resources/retroComputer.ttf", 26)
-    @monstres = Image.new("resources/monstres.png")
+    @monstres = Image.new("resources/menu/monstres.png")
 
 
-    @btn_retour = Bouton.new(self, "Retour", 550, 7)
+    @btn_retour = Bouton.new(self, "retour", 550, 7)
 
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
     self.caption = @nom
