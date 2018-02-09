@@ -61,7 +61,7 @@ class Game < Gosu::Window
 
     @nbCaisses = 0
     @apBossed = false
-    @caissesBoss = [2]
+    @caissesBoss = [7]
     @bossTousLesCaisses = 10
     @imageTextBoss = Gosu::Image.from_text("Il arrive...", 50, :font => "resources/SIXTY.ttf")
     @imageTextVitesse = Gosu::Image.from_text("La vitesse augmente !", 50, :font => "resources/SIXTY.ttf")
@@ -115,7 +115,6 @@ class Game < Gosu::Window
     # Si le joueur n'a pas perdu, on spawne des méchants
     @caissesBoss.each {|n|
       if @nbCaisses == n && !@apBossed
-
         @spawns[0].apBoss
         @apBossed = true
         @framesTextBoss = NB_FRAMES_TEXT_BOSS
