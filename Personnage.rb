@@ -11,7 +11,7 @@ TYPE_BOSS = 2
 TYPE_HEROS = 0
 
 class Personnage
-  # Getter sur les attributs
+  # Getter sur les attributs
   attr_accessor :x, :y, :velocity, :sizeX, :sizeY, :tourneVersDroite, :estMort, :typePers
 
   # Constantes de classe
@@ -82,6 +82,8 @@ class Personnage
     # Animation de mort du mob
     @mobDying = false
     @dyingAlpha = 255
+
+    @bossVaAtterir = false
   end
 
   #?=
@@ -137,7 +139,7 @@ class Personnage
         Game.INSTANCE.removeMob self
       end
 
-      # On annule vX et vY
+      # On annule vX et vY
       @vX = 0
       @vY = 0
     end
@@ -187,12 +189,18 @@ class Personnage
       @escaped = true if @typePers == TYPE_MONSTRE
     end
 
+    if (@vY == 1.5 && @bossVaAtterir)
+      Game.INSTANCE.shake(6,11)
+    end
+    @bossVaAtterir = false
+
     if @vY > 0
       arrondiN(@vY).times {
         if @map.obstAt?([@x,@y+1], @typePers) then
           @vY = 0; @jumping = false
         else
           @y += 1
+          @bossVaAtterir = true if @typePers == TYPE_BOSS
         end }
     end
 

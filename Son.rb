@@ -28,22 +28,24 @@ module ListSons
       end
       @@INSTANCE
     end
-  
+
     def playSon(idSon)
-        #puts idSon
-      case idSon
-        when ListSons::SON_MORT_BOSS[0]
-          @sonsCharges[idSon].play(0.8,1,false)
-        when ListSons::SON_MINIGUN[0]
-          @sonsCharges[idSon].play(0.1,1,false)
-        when ListSons::SON_EXPLOSION[0]
-          @sonsCharges[idSon].play(0.07,1.2,false)
-        when ListSons::SON_SPAWN[0]
-          @sonsCharges[idSon].play(0.2,1,false)
-        when ListSons::SON_BAZOOKA[0]
-          @sonsCharges[idSon].play(0.25,1,false)
-        else
-          @sonsCharges[idSon].play(0.5,1,false)
-      end
+      #puts idSon
+    case idSon
+      when ListSons::SON_MORT_BOSS[0]
+        @sonsCharges[idSon].play(0.8,1,false)
+      when ListSons::SON_MINIGUN[0]
+        @sonsCharges[idSon].play(0.1,1,false)
+      when ListSons::SON_EXPLOSION[0]
+        @sonsCharges[idSon].play(0.05,1.2,false)
+      when ListSons::SON_SPAWN[0]
+        @sonsCharges[idSon].play(0.02,1,false)
+      when ListSons::SON_BAZOOKA[0]
+        @sonsCharges[idSon].play(0.10,1,false)
+      when ListSons::SON_POMPE[0]
+        @sonsCharges[idSon].play(0.15,1,false)
+      else
+        @sonsCharges[idSon].play(0.4,1,false)
     end
+  end
   end

@@ -61,7 +61,7 @@ class Game < Gosu::Window
 
     @nbCaisses = 0
     @apBossed = false
-    @caissesBoss = [7]
+    @caissesBoss = [4]
     @bossTousLesCaisses = 10
     @imageTextBoss = Gosu::Image.from_text("Il arrive...", 50, :font => "resources/SIXTY.ttf")
     @imageTextVitesse = Gosu::Image.from_text("La vitesse augmente !", 50, :font => "resources/SIXTY.ttf")

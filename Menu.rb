@@ -30,6 +30,8 @@ class Menu < Gosu::Window
     @bg = Gosu::Image.new("resources/menu/bgMenu.png")
     @curseur = Gosu::Image.new("resources/menu/curseur.png")
 
+    
+
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
     self.caption = @nom
     self.show
