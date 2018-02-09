@@ -142,7 +142,7 @@ class Menu < Gosu::Window
       # @bool_menu = false
       # @bool_cQuoi = true
     end
-    if @btn_retour.isClick
+    if @btn_retour.isClick && @bool_jouer = false
       @bool_cQuoi = false
       @bool_credit = false
       @bool_retour_Menu = true
