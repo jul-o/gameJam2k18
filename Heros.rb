@@ -74,7 +74,7 @@ class Heros < Personnage
 
   # Experimental : changer d'arme
   def switchWeapon
-    nb = rand(1..Gun.NB_WEAPONS-1)
+    nb = rand(0..Gun.NB_WEAPONS-1)
     while (@gun.allGuns[nb][0] == @gun.currentGun[0])
       nb = rand(0..Gun.NB_WEAPONS-1)
     end

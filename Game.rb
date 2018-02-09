@@ -22,7 +22,7 @@ class Game < Gosu::Window
   # Temps de l'effet de secousse
   SHAKE_FREQ = 50
   SHAKE_DURATION = 100
-  
+
   # Dimensions map : 24x14
 
   def initialize
@@ -32,7 +32,7 @@ class Game < Gosu::Window
     # Création de la map et du héros
     @map = Map.new
     @heros = Heros.new @map, 1, 10
-    
+
     # Fond d'écran
     @imageEtoiles = Gosu::Image.new("resources/fondEtoile.png", :retro=>true)
     @imageEtoiles2 = Gosu::Image.new("resources/fondEtoile.png", :retro=>true)
@@ -183,13 +183,13 @@ end
       @heros.setDirection(Direction::LEFT) if Gosu::button_down?(Gosu::KbLeft)
       @heros.setDirection(Direction::RIGHT) if Gosu::button_down?(Gosu::KbRight)
       @heros.jump if Gosu::button_down?(Gosu::KbUp)
-      
+
       # Attaques
       @heros.shoot if Gosu::button_down?(Gosu::KbX)
 
       # TEMPORAIRE
       if Gosu::button_down?(Gosu::KbS) then
-        @indiceArmeCourante = @heros.switchWeapon 
+        @indiceArmeCourante = @heros.switchWeapon
       end
 
       # Mise à jour des déplacements
@@ -204,11 +204,11 @@ end
       if (perdu?)
         sleep 0.7
         @perdu = true
-        shake(10,10)      
+        shake(10,10)
         close
-        $perdu = Perdu.new  
+        $perdu = Perdu.new
       end
-      
+
       testeBalleTouche
       testeRamasseCaisse
 
@@ -226,7 +226,7 @@ end
           if (Gosu.milliseconds - @shakingDate >= SHAKE_FREQ) then
             @shakeX = rand(1..@shakeVal[0])*@shakeBool[0]
             @shakeY = rand(1..@shakeVal[1])*@shakeBool[1]
-            
+
             # On inverse le shake pour la fois d'après
             @shakeBool[0] *= -1
             @shakeBool[1] *= -1
@@ -270,7 +270,7 @@ end
   end
 
   def testeBalleTouche
-    @heros.gun.bullets.each do |key, bullet|      
+    @heros.gun.bullets.each do |key, bullet|
       xB = bullet.pos[0]
       yB = bullet.pos[1]
       wB = bullet.sizeR
@@ -286,8 +286,8 @@ end
             # On inflige les dégâts du projectile au mob touché
             mechant.dealDMG bullet.degatsProj
 
-            # => disparition du projectile si il ne doit pas exploser   
-            @heros.gun.bullets.delete key if !bullet.explode 
+            # => disparition du projectile si il ne doit pas exploser
+            @heros.gun.bullets.delete key if !bullet.explode
           end
       end
     end
@@ -300,7 +300,7 @@ end
     rect2 = [coordB[0], coordB[1], sizeB[0], sizeB[1]]
 
     return ((rect1[0] < rect2[0] + rect2[2] && rect1[0] + rect1[2] > rect2[0]) &&
-            (rect1[1] < rect2[1] + rect2[3] && rect1[3] + rect1[1] > rect2[1])) 
+            (rect1[1] < rect2[1] + rect2[3] && rect1[3] + rect1[1] > rect2[1]))
   end
 
   # Vérifie si le héros est touché par un monstre ou non
@@ -330,7 +330,9 @@ end
     @mechants.each do |m|
       if (m.isEscaped)
         @mechants.delete(m)
-        @nbCaisses = @nbCaisses-1
+        if @nbCaisses > 0
+          @nbCaisses = @nbCaisses-1
+        end
         @texteNbCaisse = Gosu::Image.from_text("SCORE : #{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
       end
     end
