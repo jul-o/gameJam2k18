@@ -29,6 +29,12 @@ class Game < Gosu::Window
     @nom = "Castle Invaders"
     @@INSTANCE = self
 
+    # Score final
+    @nbCaissesTotal = 0
+    @nbEnnemisPasses = 0
+    @nbMobsTues = 0
+    @nbBallesTouchees = 0
+
     # Création de la map et du héros
     @map = Map.new
     @heros = Heros.new @map, 1, 10
@@ -240,6 +246,10 @@ end
     close if Gosu::button_down?(Gosu::KbEscape)
   end
 
+  def score?
+    return [@nbMobsTues, @nbEnnemisPasses, @nbCaissesTotal, @nbCaisses, @nbBallesTouchees]
+  end
+
 
 
   def testeRamasseCaisse
@@ -259,6 +269,10 @@ end
       #puts @indiceArmeCourante
       @caisse = Caisse.new (rand*15).to_i + 1, (rand * 13).to_i + 1, @map
       @nbCaisses += 1
+      @nbCaissesTotal += 1
+
+      # Son.INST.playSon(8)
+      # CRRATE
 
       @apBossed = false
       @texteNbCaisse = Gosu::Image.from_text("SCORE : #{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
@@ -285,6 +299,8 @@ end
 
             # => disparition du projectile si il ne doit pas exploser
             @heros.gun.bullets.delete key if !bullet.explode
+
+            @nbBallesTouchees += 1
           end
       end
     end
@@ -330,6 +346,7 @@ end
         if @nbCaisses > 0
           @nbCaisses = @nbCaisses-1
         end
+        @nbEnnemisPasses += 1
         @texteNbCaisse = Gosu::Image.from_text("SCORE : #{@nbCaisses}", 22, :font => "resources/retroComputer.ttf", :width => 155, :align => :center)
       end
     end
@@ -347,6 +364,7 @@ end
 
   # Méthode externe pour supprimer un mob de la liste
   def removeMob mob
+    @nbMobsTues += 1
     @mechants.delete mob
   end
 
