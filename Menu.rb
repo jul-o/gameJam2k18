@@ -7,6 +7,12 @@ class Menu < Gosu::Window
   # Dimension fenêtre du menu
   @@WIDTH = 1200
   @@HEIGHT = 700
+
+  # Animation marrante
+  DUREE_ANIMATION_COMPLETE_MS = 300
+  VELOCITY_H = 4
+  REFOCUS_TIME = 400
+  FOCUS_FRAMES = 4
   
   def initialize
     @nom = "Castle Invaders"
@@ -30,7 +36,40 @@ class Menu < Gosu::Window
     @bg = Gosu::Image.new("resources/menu/bgMenu.png")
     @curseur = Gosu::Image.new("resources/menu/curseur.png")
 
-    
+    # Animation du seul mob cool du jeu
+    allSrc =
+    ["resources/sprites/aliens/spriteBoss1G.png",
+    "resources/sprites/aliens/spriteBoss2G.png",
+    "resources/sprites/aliens/spriteBoss3G.png",
+    "resources/sprites/aliens/spriteBoss4G.png",
+    "resources/sprites/aliens/spriteBoss5G.png",
+    "resources/sprites/aliens/spriteBoss6G.png",
+    "resources/sprites/aliens/spriteBoss7G.png",
+    "resources/sprites/aliens/spriteBoss8G.png",
+    "resources/sprites/aliens/spriteBoss9G.png",
+    "resources/sprites/aliens/spriteBoss10G.png",
+    "resources/sprites/aliens/spriteBoss11G.png"]
+    @allSp = []
+
+    allSrc.each do |src|
+      @allSp << Gosu::Image.new(src, :retro=>true)      
+    end
+
+    @imgFocus = Gosu::Image.new('resources/menu/anim/focus.png')
+
+    @currentIm = @allSp[0]
+    @iSCourant = 0
+    @dateMajSprite = 0.0
+
+    # => effet de refocus :
+    @offsetX,@offsetY = rand(1..15), rand(1..15)
+    @timerRefocus = 0.0
+
+    @posX = -120 # position de départ
+    @focus = [0,0]
+    @focusFrames = 0
+    @refocus = false
+    # ===
 
     super @@WIDTH, @@HEIGHT, options = {:fullscreen => false}
     self.caption = @nom
@@ -57,6 +96,26 @@ class Menu < Gosu::Window
       close
       $credit = Credits.new.show
     end
+
+    # Update de l'animation cool
+    if (Gosu.milliseconds > @dateMajSprite + DUREE_ANIMATION_COMPLETE_MS/@allSp.length)
+      @iSCourant += 1
+      @currentIm = @allSp[@iSCourant % @allSp.length]
+      @dateMajSprite = Gosu.milliseconds
+    end
+    # => effet de focus :
+    if (Gosu.milliseconds > @timerRefocus + REFOCUS_TIME)
+      @offsetX,@offsetY = (rand(1..240)- 120), (rand(1..40)-20)
+      @timerRefocus = Gosu.milliseconds
+    else
+      @focusFrames += 1
+      # On décide s'il est nécessaire de se déplacer à cette frame
+      if (@focusFrames >= FOCUS_FRAMES) then
+        @refocus = true
+        @focusFrames = 0
+      end
+    end
+    # ==
   end
 
   def draw
@@ -92,8 +151,31 @@ class Menu < Gosu::Window
     if @bool_menu
       menu
     end
-  end
 
+    # Dessin de l'animation sympatoche
+    @posX += VELOCITY_H
+
+    # => dessin du focus en fond
+    # calcul de la position du focus
+    if (@refocus) then
+      if (@focus[0]<@offsetX) 
+        @focus[0] += 1 
+      else
+        @focus[0] -= 1
+      end
+      if (@focus[1]<@offsetY) 
+        @focus[1] += 1 
+      else
+        @focus[1] -= 1
+      end
+      @refocus = false
+    end
+
+    @imgFocus.draw @posX%@@WIDTH-47+@focus[0],555-14+@focus[1],1,1,1
+
+    # => dessin de l'image
+    @currentIm.draw @posX%@@WIDTH,555,1,6,6
+  end
 
   def menu
     fond

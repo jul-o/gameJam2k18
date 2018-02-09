@@ -81,9 +81,6 @@ class Game < Gosu::Window
 
     self.shake(10,10)
 
-    # On initialise tous les sons
-    Son.INST
-
     #self.show
   end
 
