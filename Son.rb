@@ -8,34 +8,35 @@ module ListSons
     SON_EXPLOSION = [5, 'resources/sons/explosion.wav']
     SON_MORT_BOSS = [6, "resources/sons/mort-boss.wav"]
     SON_ARRIVEE_BOSS = [7, 'resources/sons/gong_boss.wav']
+    SON_BOSS_TOMBE = [8, 'resources/sons/fall-down.wav']
+end
+
+class Son
+  @@INSTANCE = nil
+  @@allSons = [ListSons::SON_SPAWN,     ListSons::SON_MINIGUN,   ListSons::SON_REVOLVER,      ListSons::SON_BAZOOKA, ListSons::SON_POMPE,
+                ListSons::SON_EXPLOSION, ListSons::SON_MORT_BOSS, ListSons::SON_ARRIVEE_BOSS, ListSons::SON_BOSS_TOMBE]
+
+  def initialize
+    @sonsCharges = Array.new
+    @@allSons.each do |ficSon|
+      son = Gosu::Sample.new(ficSon[1])
+      @sonsCharges << son
+    end
+
+    # On joue la musique de fond
+    @music = Gosu::Song.new(ListSons::MUSIQUE_FOND[0])
+    @music.volume = 0.10
+    @music.play(true)
   end
-  
-  class Son
-    @@INSTANCE = nil
-    @@allSons = [ListSons::SON_SPAWN, ListSons::SON_MINIGUN, ListSons::SON_REVOLVER, ListSons::SON_BAZOOKA, ListSons::SON_POMPE,
-                 ListSons::SON_EXPLOSION, ListSons::SON_MORT_BOSS, ListSons::SON_ARRIVEE_BOSS]
-  
-    def initialize
-      @sonsCharges = Array.new
-      @@allSons.each do |ficSon|
-        son = Gosu::Sample.new(ficSon[1])
-        @sonsCharges << son
-      end
-
-      # On joue la musique de fond
-      @music = Gosu::Song.new(ListSons::MUSIQUE_FOND[0])
-      @music.volume = 0.10
-      @music.play(true)
+    
+  def self.INST
+    if (@@INSTANCE.nil?) then
+      @@INSTANCE = self.new
     end
-      
-    def self.INST
-      if (@@INSTANCE.nil?) then
-        @@INSTANCE = self.new
-      end
-      @@INSTANCE
-    end
+    @@INSTANCE
+  end
 
-    def playSon(idSon)
+  def playSon(idSon)
       #puts idSon
     case idSon
       when ListSons::SON_MORT_BOSS[0]
@@ -54,4 +55,4 @@ module ListSons
         @sonsCharges[idSon].play(0.4,1,false)
     end
   end
-  end
+end

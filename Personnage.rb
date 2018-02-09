@@ -191,6 +191,8 @@ class Personnage
 
     if (@vY == 1.5 && @bossVaAtterir)
       Game.INSTANCE.shake(6,11)
+      # On joue le son stylé du boss qui tombe
+      Son.INST.playSon(8)
     end
     @bossVaAtterir = false
 
